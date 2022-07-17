@@ -37,7 +37,12 @@ export interface Options {
    * ```js
    * ```
    */
-  readonly types?: Record<`${string}Error` | 'default', Omit<Options, 'types'>>
+  readonly types?: {
+    readonly [errorName in `${string}Error` | 'default']?: Omit<
+      Options,
+      'types'
+    >
+  }
 }
 
 /**
