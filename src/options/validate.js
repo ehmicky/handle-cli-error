@@ -3,10 +3,8 @@ import {
   MIN_EXIT_CODE,
   MAX_EXIT_CODE,
   INVALID_OPTS_EXIT_CODE,
-  NO_TIMEOUT,
-  INFINITE_TIMEOUT,
-  DEFAULT_TIMEOUT,
 } from '../exit.js'
+import { NO_TIMEOUT, INFINITE_TIMEOUT, DEFAULT_TIMEOUT } from '../timeout.js'
 
 // Validate option values
 export const validateOpts = function ({ silent, short, exitCode, timeout }) {

@@ -1,6 +1,7 @@
 import { excludeKeys } from 'filter-obj'
 
-import { DEFAULT_EXIT_CODE, DEFAULT_TIMEOUT } from '../exit.js'
+import { DEFAULT_EXIT_CODE } from '../exit.js'
+import { DEFAULT_TIMEOUT } from '../timeout.js'
 
 // Apply default options
 export const applyDefaultOpts = function (opts) {
