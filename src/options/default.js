@@ -6,12 +6,7 @@ export const applyDefaultOpts = function (opts) {
 }
 
 // Default values of options
-export const DEFAULT_OPTS = {
-  silent: false,
-  short: false,
-  exitCode: 1,
-  timeout: 5e3,
-}
+const DEFAULT_OPTS = { silent: false, short: false, exitCode: 1, timeout: 5e3 }
 
 // Remove `undefined` values of an object
 export const removeUndefined = function (object) {

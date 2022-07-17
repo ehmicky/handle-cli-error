@@ -1,7 +1,7 @@
 import normalizeException from 'normalize-exception'
 
 import { exitProcess } from './exit.js'
-import { getOpts } from './options.js'
+import { getOpts } from './options/main.js'
 
 // Print CLI errors and exit, depending on the error type
 export default function handleCliError(error, opts) {

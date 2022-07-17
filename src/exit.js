@@ -1,13 +1,11 @@
 import process from 'process'
 
-import { DEFAULT_OPTS } from './default.js'
-
 // Handle user errors, i.e. invalid options
 export const handleOptsError = function (message) {
   const error = new Error(`handle-cli-error invalid usage: ${message}`)
   // eslint-disable-next-line no-restricted-globals, no-console
   console.error(error.stack)
-  exitProcess(INVALID_OPTS_EXIT_CODE, DEFAULT_OPTS.timeout)
+  exitProcess(INVALID_OPTS_EXIT_CODE, 0)
 }
 
 export const MIN_EXIT_CODE = 0
