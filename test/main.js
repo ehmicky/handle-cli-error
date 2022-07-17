@@ -1,12 +1,8 @@
 import test from 'ava'
-import handleCliError from 'handle-cli-error'
 
-import { mockProcessExit, unmockProcessExit } from './helpers/exit.js'
+import { handleError } from './helpers/main.js'
 
-test.before(mockProcessExit)
-test.after(unmockProcessExit)
-
-test('Dummy test', (t) => {
-  handleCliError()
-  t.is(process.exitCode, 1)
+test.serial('Dummy test', (t) => {
+  const { exitCode } = handleError()
+  t.is(exitCode, 1)
 })

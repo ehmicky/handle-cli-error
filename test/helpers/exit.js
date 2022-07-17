@@ -6,28 +6,25 @@ const originalProcessExitCode = process.exitCode
 // Mock `process.exit()` during test
 export const mockProcessExit = function () {
   // eslint-disable-next-line fp/no-mutation
-  process.exit = function exit(exitCode) {
-    // eslint-disable-next-line fp/no-mutation
-    processExitFuncCode = exitCode
-  }
+  process.exit = mockedProcessExit
+}
+
+const mockedProcessExit = function (exitCode) {
+  // eslint-disable-next-line fp/no-mutation
+  exitFuncCode = exitCode
+}
+
+// Retrieve value passed to `process.exitCode` and mocked `process.exit()`
+export const getProcessExitCodes = function () {
+  return { exitCode: process.exitCode, exitFuncCode }
 }
 
 // Reverse `mockProcessExit()`
 export const unmockProcessExit = function () {
+  process.exitCode = originalProcessExitCode
   // eslint-disable-next-line fp/no-mutation
   process.exit = originalProcessExit
-  process.exitCode = originalProcessExitCode
-}
-
-// Retrieve value passed to mocked `process.exit()`
-export const getProcessExitFuncCode = function () {
-  return processExitFuncCode
-}
-
-// Retrieve value passed to mocked `process.exitCode`
-export const getProcessExitCode = function () {
-  return process.exitCode
 }
 
 // eslint-disable-next-line fp/no-let, init-declarations
-let processExitFuncCode
+let exitFuncCode
