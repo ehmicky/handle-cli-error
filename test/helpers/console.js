@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-restricted-globals, no-console
 const originalConsoleError = console.error
 
-// Mock `console.error()` during test
+// Mock `console.error()` during tests
 export const mockConsole = function () {
   // eslint-disable-next-line fp/no-mutation, no-restricted-globals, no-console
   console.error = mockedConsoleError

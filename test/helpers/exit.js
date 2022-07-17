@@ -3,7 +3,7 @@ import process from 'process'
 const originalProcessExit = process.exit
 const originalProcessExitCode = process.exitCode
 
-// Mock `process.exit()` during test
+// Mock `process.exit()` during tests
 export const mockProcessExit = function () {
   // eslint-disable-next-line fp/no-mutation
   process.exit = mockedProcessExit
