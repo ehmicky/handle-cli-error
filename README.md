@@ -6,12 +6,42 @@
 
 💥 Error handler for CLI applications.
 
-Work in progress!
+# Features
+
+- [Error type-specific](#types) handling
+- [Graceful exit](#timeout)
+- [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
+- Log verbosity: full, [short](#short) or [silent](#silent)
+- Custom [exit code](#exitcode)
+- Exception-safe
 
 # Example
 
+## General
+
 ```js
+#!/usr/bin/env node
 import handleCliError from 'handle-cli-error'
+
+const cliMain = function () {
+  try {
+    // ...
+  } catch (error) {
+    handleCliError(error) // Print `error` then exit the process
+  }
+}
+
+cliMain()
+```
+
+## Error type-specific
+
+```js
+handleCliError(error, {
+  InputError: { exitCode: 1, short: true },
+  DatabaseError: { exitCode: 2, short: true },
+  InternalError: { exitCode: 3 },
+})
 ```
 
 # Install
@@ -29,10 +59,64 @@ not `require()`.
 ## handleCliError(error, options?)
 
 `error` `any`\
-`options` `Options?`\
+`options` [`Options?`](#options)\
 _Return value_: `undefined`
 
-`handleCliError()` never throws (except when `options` are invalid).
+Print `error` on the console (`stderr`) then exit the process.
+
+This never throws. Invalid `error`s are silently
+[normalized](https://github.com/ehmicky/normalize-exception).
+
+### Options
+
+#### exitCode
+
+_Type_: `integer`\
+_Default_: `1`
+
+Process [exit code](https://en.wikipedia.org/wiki/Exit_status).
+
+When passing invalid `options`, the exit code is `125`.
+
+#### short
+
+_Type_: `boolean`\
+_Default_: `false`
+
+When `true`, only the `error` message is logged, not its stack trace. This is
+useful when the error was caused by the user (as opposed to being an internal
+bug), in which cause the stack trace is not relevant to the user.
+
+#### silent
+
+_Type_: `boolean`\
+_Default_: `false`
+
+When `true`, the `error` is not logged. The process still exits with a specific
+[exit code](#exitcode).
+
+#### timeout
+
+_Type_: `integer` (in milliseconds)\
+_Default_: `5000` (5 seconds)
+
+The process exits gracefully, i.e. it waits for ongoing tasks (callbacks,
+promises, etc.) to complete, up to a specific `timeout`. Special values:
+
+- `0`: Exit right away, without waiting for ongoing tasks
+- `Number.POSITIVE_INFINITY`: Wait for ongoing tasks forever, without timing out
+
+#### types
+
+_Type_: `object`\
+_Default_: `{}`
+
+Specify different options per error type. The object:
+
+- Keys are the
+  [`error.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/name)
+  or `"default"` (used if no `error.name` matches)
+- Values are [options](#options) objects.
 
 # Related projects
 
