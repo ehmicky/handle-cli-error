@@ -16,7 +16,7 @@ export const advanceTimeout = function (
   clock,
   { timeout = DEFAULT_TIMEOUT } = {},
 ) {
-  if (timeout === NO_TIMEOUT || timeout === INFINITE_TIMEOUT) {
+  if (timeout === NO_TIMEOUT || timeout === INFINITE_TIMEOUT || timeout < 0) {
     return
   }
 
