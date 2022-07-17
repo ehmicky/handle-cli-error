@@ -53,3 +53,21 @@ each(
     })
   },
 )
+
+each(
+  [
+    { types: { TypeError: { exitCode: 2 } } },
+    { exitCode: 2, types: { Error: { exitCode: 1 } } },
+    { types: { Error: { exitCode: 1 }, default: { exitCode: 2 } } },
+    { types: { TypeError: { exitCode: 2 }, default: { exitCode: 1 } } },
+    { exitCode: 1, types: { default: { exitCode: 2 } } },
+    { exitCode: 2, types: { typeerror: { exitCode: 1 } } },
+  ],
+  ({ title }, options) => {
+    test(`Apply option "types" | ${title}`, (t) => {
+      const typeError = new TypeError('test')
+      const { exitCode } = handleError(typeError, options)
+      t.is(exitCode, 2)
+    })
+  },
+)
