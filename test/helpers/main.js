@@ -21,8 +21,6 @@ export const handleError = function (error, options) {
     advanceTimeout(clock, options)
     const { exitFuncCode: exitCodeAfter } = getProcessExitCodes()
     return { consoleMessage, exitCode, exitCodeBefore, exitCodeAfter }
-  } catch (libError) {
-    return { libError }
   } finally {
     unmockAll(clock)
   }

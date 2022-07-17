@@ -7,8 +7,7 @@ import { handleInvalidOpts } from './validate.js'
 // `error.name` matches.
 export const applyTypesOpts = function ({ types = {}, ...opts }, error) {
   if (!isPlainObj(types)) {
-    handleInvalidOpts(`options.types must be a plain object: ${types}`)
-    return
+    return handleInvalidOpts(`options.types must be a plain object: ${types}`)
   }
 
   const typesOpts = findTypesOpts(types, error)
@@ -18,8 +17,9 @@ export const applyTypesOpts = function ({ types = {}, ...opts }, error) {
   }
 
   if (!isPlainObj(typesOpts)) {
-    handleInvalidOpts(`options.types.* must be a plain object: ${typesOpts}`)
-    return
+    return handleInvalidOpts(
+      `options.types.* must be a plain object: ${typesOpts}`,
+    )
   }
 
   return { ...opts, ...removeUndefined(typesOpts) }

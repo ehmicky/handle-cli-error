@@ -7,7 +7,10 @@ import { printError } from './print.js'
 // Print CLI errors and exit, depending on the error type
 export default function handleCliError(error, opts) {
   const errorA = normalizeException(error)
-  const { silent, short, exitCode, timeout } = getOpts(errorA, opts)
-  printError(errorA, silent, short)
+  const {
+    error: errorB,
+    opts: { silent, short, exitCode, timeout },
+  } = getOpts(errorA, opts)
+  printError(errorB, silent, short)
   exitProcess(exitCode, timeout)
 }
