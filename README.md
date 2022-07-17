@@ -26,12 +26,13 @@ not `require()`.
 
 # API
 
-## handleCliError(error)
+## handleCliError(error, options?)
 
 `error` `any`\
+`options` `Options?`\
 _Return value_: `undefined`
 
-`handleCliError()` never throws.
+`handleCliError()` never throws (except when `options` are invalid).
 
 # Related projects
 
