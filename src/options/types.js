@@ -1,7 +1,8 @@
 import isPlainObj from 'is-plain-obj'
 
+import { handleOptsError } from '../exit.js'
+
 import { removeUndefined } from './default.js'
-import { handleOptsError } from './exit.js'
 
 // `options.types.{ErrorName}.*` is like `options.*` but only applies if
 // `error.name` matches.

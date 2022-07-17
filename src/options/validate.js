@@ -1,4 +1,4 @@
-import { handleOptsError, MIN_EXIT_CODE, MAX_EXIT_CODE } from './exit.js'
+import { handleOptsError, MIN_EXIT_CODE, MAX_EXIT_CODE } from '../exit.js'
 
 // Validate option values
 export const validateOpts = function ({ silent, short, exitCode, timeout }) {
