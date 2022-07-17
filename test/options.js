@@ -2,7 +2,7 @@ import test from 'ava'
 import { each } from 'test-each'
 
 // eslint-disable-next-line no-restricted-imports
-import { INVALID_OPTS_EXIT_CODE } from '../src/exit.js'
+import { INVALID_OPTS_EXIT_CODE, DEFAULT_EXIT_CODE } from '../src/exit.js'
 
 import { handleError } from './helpers/main.js'
 
@@ -35,6 +35,21 @@ each(
       t.true(consoleMessage.includes(PACKAGE_NAME))
       t.true(consoleMessage.includes('at '))
       t.is(exitCode, INVALID_OPTS_EXIT_CODE)
+    })
+  },
+)
+
+each(
+  [
+    { options: { exitCode: undefined }, expectedCode: DEFAULT_EXIT_CODE },
+    {
+      options: { exitCode: 2, types: { default: { exitCode: undefined } } },
+      expectedCode: 2,
+    },
+  ],
+  ({ title }, { options, expectedCode }) => {
+    test(`Undefined options are ignored | ${title}`, (t) => {
+      t.is(handleError('', options).exitCode, expectedCode)
     })
   },
 )
