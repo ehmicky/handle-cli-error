@@ -4,6 +4,7 @@ import {
   MAX_EXIT_CODE,
   INVALID_OPTS_EXIT_CODE,
 } from '../exit.js'
+import { printError } from '../print.js'
 import { NO_TIMEOUT, INFINITE_TIMEOUT, DEFAULT_TIMEOUT } from '../timeout.js'
 
 // Validate option values
@@ -50,7 +51,6 @@ const isSpecialTimeout = function (timeout) {
 // Handle user errors, i.e. invalid options
 export const handleInvalidOpts = function (message) {
   const error = new Error(`handle-cli-error invalid usage: ${message}`)
-  // eslint-disable-next-line no-restricted-globals, no-console
-  console.error(error.stack)
+  printError(error, false, false)
   exitProcess(INVALID_OPTS_EXIT_CODE, DEFAULT_TIMEOUT)
 }
