@@ -76,7 +76,7 @@ _Default_: `1`
 
 Process [exit code](https://en.wikipedia.org/wiki/Exit_status).
 
-When passing invalid [`options`](#options), the exit code is `125`.
+Note: when passing invalid [`options`](#options), the exit code is always `125`.
 
 #### short
 
