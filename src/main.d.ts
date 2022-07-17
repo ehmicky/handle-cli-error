@@ -38,10 +38,7 @@ export interface Options {
    * ```
    */
   readonly types?: {
-    readonly [errorName in `${string}Error` | 'default']?: Omit<
-      Options,
-      'types'
-    >
+    readonly [errorName: string]: Omit<Options, 'types'>
   }
 }
 
