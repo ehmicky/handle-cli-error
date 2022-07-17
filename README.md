@@ -62,7 +62,7 @@ not `require()`.
 `options` [`Options?`](#options)\
 _Return value_: `undefined`
 
-Print `error` on the console (`stderr`) then exit the process.
+Prints `error` on the console (`stderr`) then exits the process.
 
 This never throws. Invalid `error`s are silently
 [normalized](https://github.com/ehmicky/normalize-exception).
@@ -76,16 +76,17 @@ _Default_: `1`
 
 Process [exit code](https://en.wikipedia.org/wiki/Exit_status).
 
-When passing invalid `options`, the exit code is `125`.
+When passing invalid [`options`](#options), the exit code is `125`.
 
 #### short
 
 _Type_: `boolean`\
 _Default_: `false`
 
-When `true`, only the `error` message is logged, not its stack trace. This is
-useful when the error was caused by the user (as opposed to being an internal
-bug), in which cause the stack trace is not relevant to the user.
+When `true`, only the `error` message is logged, not its stack trace.
+
+This is useful when the error was caused by the user (as opposed to being an
+internal bug), in which cause the stack trace is not relevant to the user.
 
 #### silent
 
@@ -100,23 +101,26 @@ When `true`, the `error` is not logged. The process still exits with a specific
 _Type_: `integer` (in milliseconds)\
 _Default_: `5000` (5 seconds)
 
-The process exits gracefully, i.e. it waits for ongoing tasks (callbacks,
-promises, etc.) to complete, up to a specific `timeout`. Special values:
+The process exits gracefully: it waits for any ongoing tasks (callbacks,
+promises, etc.) to complete, up to a specific `timeout`.
 
-- `0`: Exit right away, without waiting for ongoing tasks
-- `Number.POSITIVE_INFINITY`: Wait for ongoing tasks forever, without timing out
+Special values:
+
+- `0`: Exits right away, without waiting for ongoing tasks
+- `Number.POSITIVE_INFINITY`: Waits for ongoing tasks forever, without timing
+  out
 
 #### types
 
 _Type_: `object`\
 _Default_: `{}`
 
-Specify different options per error type. The object:
+Specify [different options per error type](#error-type-specific). The object:
 
-- Keys are the
-  [`error.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/name)
+- Keys are either the
+  [`error.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/name),
   or `"default"` (used if no `error.name` matches)
-- Values are [options](#options) objects.
+- Values are [options](#options) objects
 
 # Related projects
 
