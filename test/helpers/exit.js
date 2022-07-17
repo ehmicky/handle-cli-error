@@ -24,6 +24,8 @@ export const unmockProcessExit = function () {
   process.exitCode = originalProcessExitCode
   // eslint-disable-next-line fp/no-mutation
   process.exit = originalProcessExit
+  // eslint-disable-next-line fp/no-mutation
+  exitFuncCode = undefined
 }
 
 // eslint-disable-next-line fp/no-let, init-declarations
