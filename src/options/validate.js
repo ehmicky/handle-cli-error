@@ -34,8 +34,8 @@ const validateExitCode = function (exitCode) {
 
 const validateTimeout = function (timeout) {
   if (
-    (!Number.isInteger(timeout) && timeout !== INFINITE_TIMEOUT) ||
-    isNegativeTimeout(timeout)
+    (!Number.isInteger(timeout) || timeout <= 0) &&
+    !isSpecialTimeout(timeout)
   ) {
     handleInvalidOpts(
       `options.timeout must be 0, a positive integer or Infinity: ${timeout}`,
@@ -43,8 +43,8 @@ const validateTimeout = function (timeout) {
   }
 }
 
-const isNegativeTimeout = function (timeout) {
-  return timeout <= 0 && timeout !== NO_TIMEOUT
+const isSpecialTimeout = function (timeout) {
+  return timeout === INFINITE_TIMEOUT || timeout === NO_TIMEOUT
 }
 
 // Handle user errors, i.e. invalid options
