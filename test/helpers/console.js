@@ -21,6 +21,8 @@ export const getConsoleMessage = function () {
 export const unmockConsole = function () {
   // eslint-disable-next-line fp/no-mutation, no-restricted-globals, no-console
   console.error = originalConsoleError
+  // eslint-disable-next-line fp/no-mutation
+  consoleMessage = undefined
 }
 
 // eslint-disable-next-line fp/no-let, init-declarations
