@@ -5,7 +5,7 @@ import normalizeException from 'normalize-exception'
 import { getOpts } from './options.js'
 
 // Print CLI errors and exit, depending on the error type
-export const handleCliError = function (error, opts) {
+export default function handleCliError(error, opts) {
   const errorA = normalizeException(error)
   const { silent, short, exitCode, timeout } = getOpts(errorA, opts)
   printError(errorA, silent, short)
