@@ -1,14 +1,13 @@
 import isPlainObj from 'is-plain-obj'
 
-import { handleOptsError } from '../exit.js'
-
 import { removeUndefined } from './default.js'
+import { handleInvalidOpts } from './validate.js'
 
 // `options.types.{ErrorName}.*` is like `options.*` but only applies if
 // `error.name` matches.
 export const applyTypesOpts = function ({ types = {}, ...opts }, error) {
   if (!isPlainObj(types)) {
-    handleOptsError(`options.types must be a plain object: ${types}`)
+    handleInvalidOpts(`options.types must be a plain object: ${types}`)
     return
   }
 
@@ -19,7 +18,7 @@ export const applyTypesOpts = function ({ types = {}, ...opts }, error) {
   }
 
   if (!isPlainObj(typesOpts)) {
-    handleOptsError(`options.types.* must be a plain object: ${typesOpts}`)
+    handleInvalidOpts(`options.types.* must be a plain object: ${typesOpts}`)
     return
   }
 

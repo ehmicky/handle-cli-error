@@ -1,15 +1,13 @@
 import isPlainObj from 'is-plain-obj'
 
-import { handleOptsError } from '../exit.js'
-
 import { applyDefaultOpts } from './default.js'
 import { applyTypesOpts } from './types.js'
-import { validateOpts } from './validate.js'
+import { handleInvalidOpts, validateOpts } from './validate.js'
 
 // Normalize and validate options
 export const getOpts = function (error, opts = {}) {
   if (!isPlainObj(opts)) {
-    handleOptsError(`options must be a plain object: ${opts}`)
+    handleInvalidOpts(`options must be a plain object: ${opts}`)
     return
   }
 

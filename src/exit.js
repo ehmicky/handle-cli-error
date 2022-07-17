@@ -1,23 +1,9 @@
 import process from 'process'
 
-// Handle user errors, i.e. invalid options
-export const handleOptsError = function (message) {
-  const error = new Error(`handle-cli-error invalid usage: ${message}`)
-  // eslint-disable-next-line no-restricted-globals, no-console
-  console.error(error.stack)
-  exitProcess(INVALID_OPTS_EXIT_CODE, 0)
-}
-
-export const MIN_EXIT_CODE = 0
-// 126-255 have special meaning in Bash.
-// 125 is reserved for invalid options with `handle-cli-error` itself.
-export const MAX_EXIT_CODE = 124
-const INVALID_OPTS_EXIT_CODE = 125
-
 // We use `process.exitCode` instead of `process.exit()` to let any pending
 // tasks complete, with a timeout
 export const exitProcess = function (exitCode, timeout) {
-  if (timeout === 0) {
+  if (timeout === NO_TIMEOUT) {
     // eslint-disable-next-line unicorn/no-process-exit, n/no-process-exit
     process.exit(exitCode)
     return
@@ -25,7 +11,7 @@ export const exitProcess = function (exitCode, timeout) {
 
   process.exitCode = exitCode
 
-  if (timeout === Number.POSITIVE_INFINITY) {
+  if (timeout === INFINITE_TIMEOUT) {
     return
   }
 
@@ -34,3 +20,15 @@ export const exitProcess = function (exitCode, timeout) {
     process.exit(exitCode)
   }, timeout).unref()
 }
+
+// Minimum exit code
+export const MIN_EXIT_CODE = 0
+// 126-255 have special meaning in Bash.
+export const MAX_EXIT_CODE = 124
+// 125 is reserved for invalid options with `handle-cli-error` itself.
+export const INVALID_OPTS_EXIT_CODE = 125
+
+// `options.timeout` value that disables waiting on exit
+export const NO_TIMEOUT = 0
+// `options.timeout` value that disables timing out while waiting
+export const INFINITE_TIMEOUT = Number.POSITIVE_INFINITY
