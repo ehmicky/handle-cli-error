@@ -1,5 +1,5 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ehmicky/design/main/handle-cli-error/handle-cli-error_dark_7.svg"/>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ehmicky/design/main/handle-cli-error/handle-cli-error_dark.svg"/>
   <img alt="spyd logo" src="https://raw.githubusercontent.com/ehmicky/design/main/handle-cli-error/handle-cli-error.svg" width="500"/>
 </picture>
 
