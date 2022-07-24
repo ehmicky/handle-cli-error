@@ -14,15 +14,11 @@ Error handler for CLI applications.
 # Features
 
 - 💣 [Error type-specific](#types) handling
-- [Graceful exit](#timeout)
-- [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
-- Log verbosity: full, [short](#short) or [silent](#silent)
-- Custom [exit code](#exitcode)
+- 👨‍🚒️ [Graceful exit](#timeout)
+- 🧯 [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
+- 📕 Log verbosity: full, [short](#short) or [silent](#silent)
+- 🚒 Custom [exit code](#exitcode)
 - 💥 Exception-safe
-
-🧨 🌋 📛 🪔 ❤️‍🔥 🔥
-
-🧯 👨‍🚒️ 🚒
 
 # Example
 
@@ -78,7 +74,7 @@ This never throws. Invalid `error`s are silently
 
 ### Options
 
-#### exitCode
+#### 🚒 exitCode
 
 _Type_: `integer`\
 _Default_: `1`
@@ -87,7 +83,7 @@ Process [exit code](https://en.wikipedia.org/wiki/Exit_status).
 
 Note: when passing invalid [`options`](#options), the exit code is always `125`.
 
-#### short
+#### 📕 short
 
 _Type_: `boolean`\
 _Default_: `false`
@@ -97,7 +93,7 @@ When `true`, only the `error` message is logged, not its stack trace.
 This is useful when the error was caused by the user (as opposed to being an
 internal bug), in which cause the stack trace is not relevant to the user.
 
-#### silent
+#### 🔕 silent
 
 _Type_: `boolean`\
 _Default_: `false`
@@ -105,7 +101,7 @@ _Default_: `false`
 When `true`, the `error` is not logged. The process still exits with a specific
 [exit code](#exitcode).
 
-#### timeout
+#### 👨‍🚒️ timeout
 
 _Type_: `integer` (in milliseconds)\
 _Default_: `5000` (5 seconds)
@@ -119,7 +115,7 @@ Special values:
 - `Number.POSITIVE_INFINITY`: Waits for ongoing tasks forever, without timing
   out
 
-#### types
+#### 💣 types
 
 _Type_: `object`\
 _Default_: `{}`
