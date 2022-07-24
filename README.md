@@ -143,7 +143,7 @@ Specify [different options per error type](#error-type-specific). The object:
 # Credits
 
 The logo background was created by
-[dgim-studio](https://www.freepik.com/vectors/comic-explosion).
+[dgim-studio](https://www.freepik.com/free-vector/comic-dynamic-elements-set_7997347.htm).
 
 # Support
 
