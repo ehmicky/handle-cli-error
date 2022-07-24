@@ -14,10 +14,10 @@ Error handler for CLI applications.
 # Features
 
 - 💣 [Error type-specific](#-types) handling
-- 👨‍🚒️ [Graceful exit](#%EF%B8%8F-timeout)
-- 🧯 [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
+- 🚒 [Graceful exit](#-timeout)
+- ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
 - 📕 Log verbosity: full, [short](#-short) or [silent](#-silent)
-- 🚒 Custom [exit code](#-exitcode)
+- 🚨 Custom [exit code](#-exitcode)
 - 💥 Exception-safe
 
 # Example
@@ -74,7 +74,7 @@ This never throws. Invalid `error`s are silently
 
 ### Options
 
-#### 🚒 exitCode
+#### 🚨 exitCode
 
 _Type_: `integer`\
 _Default_: `1`
@@ -101,7 +101,7 @@ _Default_: `false`
 When `true`, the `error` is not logged. The process still exits with a specific
 [exit code](#-exitcode).
 
-#### 👨‍🚒️ timeout
+#### 🚒 timeout
 
 _Type_: `integer` (in milliseconds)\
 _Default_: `5000` (5 seconds)
