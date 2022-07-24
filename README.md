@@ -140,6 +140,11 @@ Specify [different options per error type](#error-type-specific). The object:
 - [`error-cause-polyfill`](https://github.com/ehmicky/error-cause-polyfill):
   Polyfill `error.cause`
 
+# Credits
+
+The logo background was created by
+[dgim-studio](https://www.freepik.com/vectors/comic-explosion).
+
 # Support
 
 For any question, _don't hesitate_ to [submit an issue on GitHub](../../issues).
