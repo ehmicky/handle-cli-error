@@ -11,7 +11,7 @@
   "scripts": {
     "test": "gulp test"
   },
-  "description": "💥 Error handler for CLI applications",
+  "description": "💣 Error handler for CLI applications 💥",
   "keywords": [
     "nodejs",
     "javascript",
