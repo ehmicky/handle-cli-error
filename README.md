@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ehmicky/design/main/handle-cli-error/handle-cli-error_dark.svg"/>
+  <img alt="spyd logo" src="https://raw.githubusercontent.com/ehmicky/design/main/handle-cli-error/handle-cli-error.svg" width="500"/>
+</picture>
+
 [![Codecov](https://img.shields.io/codecov/c/github/ehmicky/handle-cli-error.svg?label=tested&logo=codecov)](https://codecov.io/gh/ehmicky/handle-cli-error)
 [![Node](https://img.shields.io/node/v/handle-cli-error.svg?logo=node.js)](https://www.npmjs.com/package/handle-cli-error)
 [![TypeScript](https://img.shields.io/badge/-typed-brightgreen?logo=typescript&colorA=gray)](/src/main.d.ts)
