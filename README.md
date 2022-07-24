@@ -9,7 +9,7 @@
 [![Twitter](https://img.shields.io/badge/%E2%80%8B-twitter-brightgreen.svg?logo=twitter)](https://twitter.com/intent/follow?screen_name=ehmicky)
 [![Medium](https://img.shields.io/badge/%E2%80%8B-medium-brightgreen.svg?logo=medium)](https://medium.com/@ehmicky)
 
-💥 Error handler for CLI applications.
+💣 Error handler for CLI applications. 💥
 
 # Features
 
