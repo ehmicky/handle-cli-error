@@ -9,16 +9,20 @@
 [![Twitter](https://img.shields.io/badge/%E2%80%8B-twitter-brightgreen.svg?logo=twitter)](https://twitter.com/intent/follow?screen_name=ehmicky)
 [![Medium](https://img.shields.io/badge/%E2%80%8B-medium-brightgreen.svg?logo=medium)](https://medium.com/@ehmicky)
 
-💣 Error handler for CLI applications. 💥
+Error handler for CLI applications.
 
 # Features
 
-- [Error type-specific](#types) handling
+- 💣 [Error type-specific](#types) handling
 - [Graceful exit](#timeout)
 - [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
 - Log verbosity: full, [short](#short) or [silent](#silent)
 - Custom [exit code](#exitcode)
-- Exception-safe
+- 💥 Exception-safe
+
+🧨 🌋 📛 🪔 ❤️‍🔥 🔥
+
+🧯 👨‍🚒️ 🚒
 
 # Example
 
