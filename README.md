@@ -46,7 +46,7 @@ handleCliError(error, {
   types: {
     InputError: { exitCode: 1, short: true },
     DatabaseError: { exitCode: 2, short: true },
-    InternalError: { exitCode: 3 },
+    default: { exitCode: 3 },
   },
 })
 ```
