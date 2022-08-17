@@ -144,6 +144,8 @@ Specify [different options per error type](#error-type-specific). The object:
   error with its `cause`
 - [`error-cause-polyfill`](https://github.com/ehmicky/error-cause-polyfill):
   Polyfill `error.cause`
+- [`log-process-errors`](https://github.com/ehmicky/log-process-errors): Show
+  some ❤ to Node.js process errors
 
 # Credits
 
