@@ -133,8 +133,9 @@ Specify [different options per error type](#error-type-specific). The object:
 
 - [`modern-errors`](https://github.com/ehmicky/modern-errors): Handle errors
   like it's 2022 🔮
-- [`error-type`](https://github.com/ehmicky/error-type): Create custom error
-  types
+- [`create-error-types`](https://github.com/ehmicky/create-error-types): Create
+  multiple error types
+- [`error-type`](https://github.com/ehmicky/error-type): Create one error type
 - [`error-serializer`](https://github.com/ehmicky/error-serializer): Convert
   errors to/from plain objects
 - [`normalize-exception`](https://github.com/ehmicky/normalize-exception):
