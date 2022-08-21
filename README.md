@@ -13,7 +13,7 @@ Error handler for CLI applications.
 
 # Features
 
-- 💣 [Error type-specific](#-types) handling
+- 💣 [Error class-specific](#-types) handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
 - 📕 Log verbosity: full, [short](#-short) or [silent](#-silent)
@@ -39,7 +39,7 @@ const cliMain = function () {
 cliMain()
 ```
 
-## Error type-specific
+## Error class-specific
 
 ```js
 handleCliError(error, {
@@ -122,7 +122,7 @@ Special values:
 _Type_: `object`\
 _Default_: `{}`
 
-Specify [different options per error type](#error-type-specific). The object:
+Specify [different options per error class](#error-class-specific). The object:
 
 - Keys are either the
   [`error.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/name),
@@ -134,8 +134,8 @@ Specify [different options per error type](#error-type-specific). The object:
 - [`modern-errors`](https://github.com/ehmicky/modern-errors): Handle errors
   like it's 2022 🔮
 - [`create-error-types`](https://github.com/ehmicky/create-error-types): Create
-  multiple error types
-- [`error-type`](https://github.com/ehmicky/error-type): Create one error type
+  multiple error classes
+- [`error-type`](https://github.com/ehmicky/error-type): Create one error class
 - [`error-serializer`](https://github.com/ehmicky/error-serializer): Convert
   errors to/from plain objects
 - [`normalize-exception`](https://github.com/ehmicky/normalize-exception):

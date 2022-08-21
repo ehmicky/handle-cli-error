@@ -44,7 +44,7 @@ export interface Options {
   readonly timeout?: number
 
   /**
-   * Specify different options per error type. The object:
+   * Specify different options per error class. The object:
    *  - Keys are either the
    *    [`error.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/name),
    *    or `"default"` (used if no `error.name` matches)

@@ -4,8 +4,8 @@ import normalizeException from 'normalize-exception'
 import { INVALID_OPTS_EXIT_CODE } from '../exit.js'
 import { DEFAULT_TIMEOUT } from '../timeout.js'
 
+import { applyTypesOpts } from './classes.js'
 import { applyDefaultOpts } from './default.js'
-import { applyTypesOpts } from './types.js'
 import { handleInvalidOpts, validateOpts } from './validate.js'
 
 // Normalize and validate options
