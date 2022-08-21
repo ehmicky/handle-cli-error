@@ -57,6 +57,6 @@
   "dependencies": {
     "filter-obj": "^5.1.0",
     "is-plain-obj": "^4.1.0",
-    "normalize-exception": "^2.3.2"
+    "normalize-exception": "^2.4.0"
   }
 }
