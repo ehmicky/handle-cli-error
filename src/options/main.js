@@ -4,7 +4,7 @@ import normalizeException from 'normalize-exception'
 import { INVALID_OPTS_EXIT_CODE } from '../exit.js'
 import { DEFAULT_TIMEOUT } from '../timeout.js'
 
-import { applyTypesOpts } from './classes.js'
+import { applyClassesOpts } from './classes.js'
 import { applyDefaultOpts } from './default.js'
 import { handleInvalidOpts, validateOpts } from './validate.js'
 
@@ -23,7 +23,7 @@ const safeGetOpts = function (error, opts = {}) {
     return handleInvalidOpts(`options must be a plain object: ${opts}`)
   }
 
-  const optsA = applyTypesOpts(opts, error)
+  const optsA = applyClassesOpts(opts, error)
   const optsB = applyDefaultOpts(optsA)
   validateOpts(optsB)
   return { error, opts: optsB }

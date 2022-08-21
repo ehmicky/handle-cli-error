@@ -61,8 +61,8 @@ export interface Options {
    * })
    * ```
    */
-  readonly types?: {
-    readonly [errorName: string]: Omit<Options, 'types'>
+  readonly classes?: {
+    readonly [errorName: string]: Omit<Options, 'classes'>
   }
 }
 

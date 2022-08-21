@@ -1,3 +1,9 @@
+# 2.0.0
+
+## Breaking changes
+
+- Rename `types` option to [`classes`](README.md#-classes)
+
 # 1.1.1
 
 ## Bug fixes

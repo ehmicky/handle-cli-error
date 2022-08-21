@@ -13,7 +13,7 @@ Error handler for CLI applications.
 
 # Features
 
-- 💣 [Error class-specific](#-types) handling
+- 💣 [Error class-specific](#-classes) handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
 - 📕 Log verbosity: full, [short](#-short) or [silent](#-silent)
@@ -43,7 +43,7 @@ cliMain()
 
 ```js
 handleCliError(error, {
-  types: {
+  classes: {
     InputError: { exitCode: 1, short: true },
     DatabaseError: { exitCode: 2, short: true },
     default: { exitCode: 3 },
@@ -117,7 +117,7 @@ Special values:
 - `Number.POSITIVE_INFINITY`: Waits for ongoing tasks forever, without timing
   out
 
-#### 💣 types
+#### 💣 classes
 
 _Type_: `object`\
 _Default_: `{}`
