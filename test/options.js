@@ -33,7 +33,6 @@ each(
     test(`Handle invalid options | ${title}`, (t) => {
       const { consoleMessage, exitCode } = handleError('', options)
       t.true(consoleMessage.includes(PACKAGE_NAME))
-      t.true(consoleMessage.includes('at '))
       t.is(exitCode, INVALID_OPTS_EXIT_CODE)
     })
   },
