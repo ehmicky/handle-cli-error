@@ -1,3 +1,9 @@
+# 1.4.1
+
+## Bug fixes
+
+- Print error `name` and `message` on Firefox and Safari
+
 # 1.4.0
 
 ## Features
