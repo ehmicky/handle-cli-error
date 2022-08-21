@@ -1,24 +1,15 @@
-# 1.4.1
+# 1.1.1
 
 ## Bug fixes
 
 - Print error `name` and `message` on Firefox and Safari
 
-# 1.4.0
+# 1.1.0
 
 ## Features
 
 - Reduce npm package size
 
-# 1.3.0
+# 1.0.1
 
-## Features
-
-- Improve handling of errors that are `Proxy` instances
-
-# 1.2.0
-
-## Features
-
-- Handle errors that are `Proxy` instances, by converting them to non-`Proxy`
-- Handle error properties that are `get` functions that throw
+Initial release
