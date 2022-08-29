@@ -143,6 +143,10 @@ Specify [different options per error class](#error-class-specific). The object:
   Normalize exceptions/errors
 - [`merge-error-cause`](https://github.com/ehmicky/merge-error-cause): Merge an
   error with its `cause`
+- [`set-error-message`](https://github.com/ehmicky/set-error-message): Properly
+  update an error's message
+- [`set-error-props`](https://github.com/ehmicky/set-error-props): Properly
+  update an error's properties
 - [`error-cause-polyfill`](https://github.com/ehmicky/error-cause-polyfill):
   Polyfill `error.cause`
 - [`log-process-errors`](https://github.com/ehmicky/log-process-errors): Show
