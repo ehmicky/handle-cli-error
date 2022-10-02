@@ -90,7 +90,7 @@ Note: when passing invalid [`options`](#options), the exit code is always `125`.
 _Type_: `boolean`\
 _Default_: `false`
 
-When `true`, only the `error` message is logged, not its stack trace.
+Log the `error` message only, not its stack trace.
 
 This is useful when the error was caused by the user (as opposed to being an
 internal bug), in which cause the stack trace is not relevant to the user.
@@ -100,7 +100,7 @@ internal bug), in which cause the stack trace is not relevant to the user.
 _Type_: `boolean`\
 _Default_: `false`
 
-When `true`, the process exits without logging anything on the console.
+Exits the process without logging anything on the console.
 
 #### 🚒 timeout
 
