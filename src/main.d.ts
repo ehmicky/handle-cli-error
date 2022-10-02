@@ -12,7 +12,7 @@ export interface Options {
   readonly exitCode?: number
 
   /**
-   * When `true`, only the `error` message is logged, not its stack trace.
+   * Log the `error` message only, not its stack trace.
    *
    * This is useful when the error was caused by the user (as opposed to being
    * an internal bug), in which cause the stack trace is not relevant to the
@@ -23,8 +23,7 @@ export interface Options {
   readonly short?: boolean
 
   /**
-   * When `true`, the `error` is not logged. The process still exits with a
-   * specific exit code.
+   * Exits the process without logging anything on the console.
    *
    * @default false
    */
