@@ -90,7 +90,7 @@ Note: when passing invalid [`options`](#options), the exit code is always `125`.
 _Type_: `boolean`\
 _Default_: `false`
 
-Log the `error` message only, not its stack trace.
+Logs the `error` message only, not its stack trace.
 
 This is useful when the error was caused by the user (as opposed to being an
 internal bug), in which cause the stack trace is not relevant to the user.
