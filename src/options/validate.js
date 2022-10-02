@@ -97,6 +97,7 @@ const VALIDATORS = {
 }
 
 const handleInvalidOpts = function (message, value, optName) {
-  const fullOptName = optName.join('.')
-  throw new Error(`"${fullOptName}" ${message}: ${value}`)
+  const fullOptName =
+    optName.length === 0 ? 'options' : `"${optName.join('.')}"`
+  throw new Error(`${fullOptName} ${message}: ${value}`)
 }
