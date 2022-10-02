@@ -10,7 +10,7 @@ export default function handleCliError(error, opts) {
   const {
     error: errorB,
     opts: { silent, short, exitCode, timeout },
-  } = getOpts(errorA, opts)
+  } = getOpts(opts, errorA)
   printError(errorB, silent, short)
   exitProcess(exitCode, timeout)
 }

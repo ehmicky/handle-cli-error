@@ -1,39 +1,66 @@
+import isPlainObj from 'is-plain-obj'
+
 import { MIN_EXIT_CODE, MAX_EXIT_CODE } from '../exit.js'
 import { NO_TIMEOUT, INFINITE_TIMEOUT } from '../timeout.js'
 
 // Validate option values
-export const validateOpts = function ({ silent, short, exitCode, timeout }) {
-  validateBooleanOpt(silent, 'silent')
-  validateBooleanOpt(short, 'short')
-  validateExitCode(exitCode)
-  validateTimeout(timeout)
+export const validateOpts = function (opts, optName) {
+  if (opts === undefined) {
+    return
+  }
+
+  if (!isPlainObj(opts)) {
+    handleInvalidOpts('must be a plain object', opts, optName)
+  }
+
+  Object.entries(opts).forEach(([key, optValue]) => {
+    validateOpt(optValue, [...optName, key])
+  })
+}
+
+const validateOpt = function (optValue, optName) {
+  if (optValue === undefined) {
+    return
+  }
+
+  const validator = VALIDATORS[optName[optName.length - 1]]
+
+  if (validator === undefined) {
+    handleInvalidOpts('is an unknown option', '', optName)
+  }
+
+  validator(optValue, optName)
 }
 
 const validateBooleanOpt = function (value, optName) {
   if (typeof value !== 'boolean') {
-    return handleInvalidOpts(`options.${optName} must be a boolean: ${value}`)
+    handleInvalidOpts('must be a boolean', value, optName)
   }
 }
 
-const validateExitCode = function (exitCode) {
+const validateExitCode = function (exitCode, optName) {
   if (
     !Number.isInteger(exitCode) ||
     exitCode < MIN_EXIT_CODE ||
     exitCode > MAX_EXIT_CODE
   ) {
-    return handleInvalidOpts(
-      `options.exitCode must be between ${MIN_EXIT_CODE} and ${MAX_EXIT_CODE}: ${exitCode}`,
+    handleInvalidOpts(
+      `must be between ${MIN_EXIT_CODE} and ${MAX_EXIT_CODE}`,
+      exitCode,
+      optName,
     )
   }
 }
 
-const validateTimeout = function (timeout) {
+const validateTimeout = function (timeout, optName) {
   if (
     (!Number.isInteger(timeout) || timeout <= 0) &&
     !isSpecialTimeout(timeout)
   ) {
-    return handleInvalidOpts(
-      `options.timeout must be 0, a positive integer or Infinity: ${timeout}`,
+    handleInvalidOpts(
+      'must be 0, a positive integer or Infinity',
+      timeout,
+      optName,
     )
   }
 }
@@ -42,7 +69,31 @@ const isSpecialTimeout = function (timeout) {
   return timeout === INFINITE_TIMEOUT || timeout === NO_TIMEOUT
 }
 
-// Handle user errors, i.e. invalid options
-export const handleInvalidOpts = function (message) {
-  throw new Error(`handle-cli-error invalid usage: ${message}`)
+const validateClasses = function (classes, optName) {
+  if (!isPlainObj(classes)) {
+    handleInvalidOpts('must be a plain object', classes, optName)
+  }
+
+  if (optName.length > 2) {
+    handleInvalidOpts('must not be defined', classes, optName)
+  }
+
+  Object.entries(classes).forEach(([className, classOpts]) => {
+    validateOpts(classOpts, [...optName, className])
+  })
+}
+
+const VALIDATORS = {
+  silent: validateBooleanOpt,
+  short: validateBooleanOpt,
+  exitCode: validateExitCode,
+  timeout: validateTimeout,
+  classes: validateClasses,
+}
+
+const handleInvalidOpts = function (message, value, optName) {
+  const fullOptName = optName.join('.')
+  throw new Error(
+    `handle-cli-error invalid usage: "${fullOptName}" ${message}: ${value}`,
+  )
 }

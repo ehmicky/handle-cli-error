@@ -1,32 +1,33 @@
-import isPlainObj from 'is-plain-obj'
 import normalizeException from 'normalize-exception'
 
 import { INVALID_OPTS_EXIT_CODE } from '../exit.js'
 import { DEFAULT_TIMEOUT } from '../timeout.js'
 
-import { applyClassesOpts } from './classes.js'
-import { applyDefaultOpts } from './default.js'
-import { handleInvalidOpts, validateOpts } from './validate.js'
+import { removeUndefined, applyDefaultOpts } from './default.js'
+import { validateOpts } from './validate.js'
 
 // Normalize and validate options
-export const getOpts = function (error, opts) {
+export const getOpts = function (opts, error) {
   try {
-    return safeGetOpts(error, opts)
+    return safeGetOpts(opts, error)
   } catch (error_) {
     const errorA = normalizeException(error_)
     return { error: errorA, opts: INVALID_OPTS }
   }
 }
 
-const safeGetOpts = function (error, opts = {}) {
-  if (!isPlainObj(opts)) {
-    return handleInvalidOpts(`options must be a plain object: ${opts}`)
-  }
-
-  const optsA = applyClassesOpts(opts, error)
+const safeGetOpts = function (opts, error) {
+  validateOpts(opts, ['options'])
+  const optsA = applyClassesOpts(error, opts)
   const optsB = applyDefaultOpts(optsA)
-  validateOpts(optsB)
   return { error, opts: optsB }
+}
+
+// `options.classes.{ErrorName}.*` is like `options.*` but only applies if
+// `error.name` matches.
+const applyClassesOpts = function ({ name }, { classes = {}, ...opts } = {}) {
+  const classesOpts = classes[name] || classes.default || {}
+  return { ...opts, ...removeUndefined(classesOpts) }
 }
 
 // Options used when invalid input is passed
