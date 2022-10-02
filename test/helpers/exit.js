@@ -9,13 +9,6 @@ let exitFuncCode
 
 // Mock `process.exit()` during tests
 export const mockProcessExit = function () {
-  // eslint-disable-next-line n/prefer-global/process
-  const { process } = globalThis
-
-  if (process === undefined) {
-    return
-  }
-
   // eslint-disable-next-line fp/no-mutation
   originalProcessExitCode = process.exitCode
   // eslint-disable-next-line fp/no-mutation
@@ -36,13 +29,6 @@ export const getProcessExitCodes = function () {
 
 // Reverse `mockProcessExit()`
 export const unmockProcessExit = function () {
-  // eslint-disable-next-line n/prefer-global/process
-  const { process } = globalThis
-
-  if (process === undefined) {
-    return
-  }
-
   // eslint-disable-next-line fp/no-mutation
   process.exit = originalProcessExit
   process.exitCode = originalProcessExitCode

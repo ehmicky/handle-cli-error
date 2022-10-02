@@ -19,18 +19,3 @@ test.serial('Custom exit code', (t) => {
   t.is(exitCode, customExitCode)
   t.is(exitCodeAfter, customExitCode)
 })
-
-test.serial('No process', (t) => {
-  const customExitCode = 2
-  // eslint-disable-next-line n/prefer-global/process
-  const { process } = globalThis
-  // eslint-disable-next-line n/prefer-global/process, fp/no-mutation
-  globalThis.process = undefined
-  const { exitCode, exitCodeAfter } = handleError('', {
-    exitCode: customExitCode,
-  })
-  // eslint-disable-next-line n/prefer-global/process, fp/no-mutation
-  globalThis.process = process
-  t.is(exitCode, undefined)
-  t.is(exitCodeAfter, undefined)
-})
