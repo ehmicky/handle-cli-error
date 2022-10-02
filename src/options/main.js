@@ -4,7 +4,7 @@ import { INVALID_OPTS_EXIT_CODE } from '../exit.js'
 import { DEFAULT_TIMEOUT } from '../timeout.js'
 
 import { removeUndefined, applyDefaultOpts } from './default.js'
-import { validateOpts } from './validate.js'
+import { validateOptions } from './validate.js'
 
 // Normalize and validate options
 export const getOpts = function (opts, error) {
@@ -19,7 +19,7 @@ export const getOpts = function (opts, error) {
 }
 
 const safeGetOpts = function (opts, error) {
-  validateOpts(opts)
+  validateOptions(opts)
   const optsA = applyClassesOpts(error, opts)
   const optsB = applyDefaultOpts(optsA)
   return { error, opts: optsB }

@@ -5,7 +5,7 @@ import { NO_TIMEOUT, INFINITE_TIMEOUT } from '../timeout.js'
 
 // Validate option values.
 // This is exported, although not documented.
-export const validateOpts = function (opts) {
+export const validateOptions = function (opts) {
   validateAllOpts(opts, [])
 }
 
