@@ -1,10 +1,16 @@
-import process from 'process'
-
 import { waitForTimeout } from './timeout.js'
 
 // We use `process.exitCode` instead of `process.exit()` to let any pending
-// tasks complete, with a timeout
+// tasks complete, with a timeout.
+// We use `globalThis.process` so it works in browsers.
 export const exitProcess = function (exitCode, timeout) {
+  // eslint-disable-next-line n/prefer-global/process
+  const { process } = globalThis
+
+  if (process === undefined) {
+    return
+  }
+
   process.exitCode = exitCode
   waitForTimeout(timeout, () => {
     // eslint-disable-next-line unicorn/no-process-exit, n/no-process-exit
