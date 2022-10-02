@@ -1,3 +1,9 @@
+# 2.4.2
+
+## Bug fixes
+
+- Revert browsers support
+
 # 2.4.1
 
 ## Bug fixes
