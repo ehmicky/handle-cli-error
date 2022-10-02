@@ -1,4 +1,5 @@
 import test from 'ava'
+import { validateOpts } from 'handle-cli-error'
 import { each } from 'test-each'
 
 import { handleError } from './helpers/main.js'
@@ -18,3 +19,11 @@ each(
     })
   },
 )
+
+test('validateOpts() throws on invalid options', (t) => {
+  t.throws(validateOpts.bind(undefined, { silent: 'true' }))
+})
+
+test('validateOpts() does not throw on valid options', (t) => {
+  t.notThrows(validateOpts.bind(undefined, { silent: true }))
+})

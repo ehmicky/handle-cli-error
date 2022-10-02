@@ -4,6 +4,8 @@ import { exitProcess } from './exit.js'
 import { getOpts } from './options/main.js'
 import { printError } from './print.js'
 
+export { validateOpts } from './options/validate.js'
+
 // Print CLI errors and exit, depending on the error class
 export default function handleCliError(error, opts) {
   const errorA = normalizeException(error)

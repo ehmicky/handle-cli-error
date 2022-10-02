@@ -3,9 +3,10 @@ import isPlainObj from 'is-plain-obj'
 import { MIN_EXIT_CODE, MAX_EXIT_CODE } from '../exit.js'
 import { NO_TIMEOUT, INFINITE_TIMEOUT } from '../timeout.js'
 
-// Validate option values
+// Validate option values.
+// This is exported, although not documented.
 export const validateOpts = function (opts) {
-  validateAllOpts(opts, ['options'])
+  validateAllOpts(opts, [])
 }
 
 const validateAllOpts = function (opts, optName) {
@@ -78,7 +79,7 @@ const validateClasses = function (classes, optName) {
     handleInvalidOpts('must be a plain object', classes, optName)
   }
 
-  if (optName.length > 2) {
+  if (optName.length > 1) {
     handleInvalidOpts('must not be defined', classes, optName)
   }
 
@@ -97,7 +98,5 @@ const VALIDATORS = {
 
 const handleInvalidOpts = function (message, value, optName) {
   const fullOptName = optName.join('.')
-  throw new Error(
-    `handle-cli-error invalid usage: "${fullOptName}" ${message}: ${value}`,
-  )
+  throw new Error(`"${fullOptName}" ${message}: ${value}`)
 }
