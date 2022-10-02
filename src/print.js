@@ -1,19 +1,17 @@
-// Print the error message and|or stack trace
+// Print the error.
+// If `short`, we only print the error `message`, which is useful for well-known
+// errors such as input validation.
+// Otherwise, we pass the `error` instance to `console.error()`, so it prints
+// not only its `message` and `stack` but also its properties, `cause`,
+// aggregate `errors`, add colors, etc.
+//  - In Node.js, this is done by `util.inspect()`
+//  - In browsers, this is also done, but differently
 export const printError = function (error, silent, short) {
-  if (!silent) {
-    // eslint-disable-next-line no-restricted-globals, no-console
-    console.error(getErrorMessage(error, short))
-  }
-}
-
-// `stack` does not contain `name` nor `message` in SpiderMonkey or
-// JavaScriptCore. We make sure those are printed.
-const getErrorMessage = function ({ name, message, stack }, short) {
-  if (short) {
-    return message
+  if (silent) {
+    return
   }
 
-  return stack.includes(name) && stack.includes(message)
-    ? stack
-    : `${name}: ${message}\n${stack}`
+  const errorA = short ? error.message : error
+  // eslint-disable-next-line no-restricted-globals, no-console
+  console.error(errorA)
 }

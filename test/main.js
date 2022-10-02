@@ -13,8 +13,8 @@ each(
   ],
   ({ title }, { error, expectedMessage }) => {
     test.serial(`Normalize error | ${title}`, (t) => {
-      const { consoleMessage } = handleError(error)
-      t.true(consoleMessage.includes(expectedMessage))
+      const { consoleArg } = handleError(error)
+      t.true(consoleArg.toString().includes(expectedMessage))
     })
   },
 )

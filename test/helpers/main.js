@@ -1,6 +1,6 @@
 import handleCliError from 'handle-cli-error'
 
-import { mockConsole, unmockConsole, getConsoleMessage } from './console.js'
+import { mockConsole, unmockConsole, getConsoleArg } from './console.js'
 import {
   mockProcessExit,
   unmockProcessExit,
@@ -16,11 +16,11 @@ export const handleError = function (error, options) {
 
   try {
     handleCliError(error, options)
-    const consoleMessage = getConsoleMessage()
+    const consoleArg = getConsoleArg()
     const { exitCode, exitFuncCode: exitCodeBefore } = getProcessExitCodes()
     advanceTimeout(clock, options)
     const { exitFuncCode: exitCodeAfter } = getProcessExitCodes()
-    return { consoleMessage, exitCode, exitCodeBefore, exitCodeAfter }
+    return { consoleArg, exitCode, exitCodeBefore, exitCodeAfter }
   } finally {
     unmockAll(clock)
   }

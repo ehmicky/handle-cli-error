@@ -31,8 +31,8 @@ each(
   ],
   ({ title }, options) => {
     test(`Handle invalid options | ${title}`, (t) => {
-      const { consoleMessage, exitCode } = handleError('', options)
-      t.true(consoleMessage.includes(PACKAGE_NAME))
+      const { consoleArg, exitCode } = handleError('', options)
+      t.true(consoleArg.message.includes(PACKAGE_NAME))
       t.is(exitCode, INVALID_OPTS_EXIT_CODE)
     })
   },

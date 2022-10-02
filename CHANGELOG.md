@@ -1,3 +1,9 @@
+# 2.2.0
+
+## Features
+
+- Ensure error properties and colors are printed
+
 # 2.1.0
 
 ## Features
