@@ -11,8 +11,6 @@ const PACKAGE_NAME = 'handle-cli-error'
 each(
   [
     true,
-    { classes: true },
-    { classes: { default: true } },
     { silent: 0 },
     { short: 0 },
     { exitCode: '0' },
@@ -28,12 +26,35 @@ each(
     { timeout: Number.NaN },
     { timeout: Number.NEGATIVE_INFINITY },
     { timeout: -1 },
+    { unknown: true },
+    { classes: true },
+    { classes: { default: true } },
+    { classes: { default: { classes: {} } } },
   ],
   ({ title }, options) => {
     test(`Handle invalid options | ${title}`, (t) => {
       const { consoleArg, exitCode } = handleError('', options)
       t.true(consoleArg.message.includes(PACKAGE_NAME))
       t.is(exitCode, INVALID_OPTS_EXIT_CODE)
+    })
+  },
+)
+
+each(
+  [
+    ...['silent', 'short', 'exitCode', 'timeout'].flatMap((optName) => [
+      { [optName]: undefined },
+      { classes: { default: { [optName]: undefined } } },
+    ]),
+    ...[undefined, {}].flatMap((value) => [
+      value,
+      { classes: value },
+      { classes: { default: value } },
+    ]),
+  ],
+  ({ title }, options) => {
+    test(`Allow undefined options | ${title}`, (t) => {
+      t.not(handleError('', options), INVALID_OPTS_EXIT_CODE)
     })
   },
 )

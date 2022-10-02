@@ -1,3 +1,9 @@
+# 2.3.0
+
+## Features
+
+- Improve options validation
+
 # 2.2.0
 
 ## Features
