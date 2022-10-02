@@ -17,7 +17,7 @@ export const getOpts = function (opts, error) {
 }
 
 const safeGetOpts = function (opts, error) {
-  validateOpts(opts, ['options'])
+  validateOpts(opts)
   const optsA = applyClassesOpts(error, opts)
   const optsB = applyDefaultOpts(optsA)
   return { error, opts: optsB }

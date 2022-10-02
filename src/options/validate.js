@@ -4,7 +4,11 @@ import { MIN_EXIT_CODE, MAX_EXIT_CODE } from '../exit.js'
 import { NO_TIMEOUT, INFINITE_TIMEOUT } from '../timeout.js'
 
 // Validate option values
-export const validateOpts = function (opts, optName) {
+export const validateOpts = function (opts) {
+  validateAllOpts(opts, ['options'])
+}
+
+const validateAllOpts = function (opts, optName) {
   if (opts === undefined) {
     return
   }
@@ -79,7 +83,7 @@ const validateClasses = function (classes, optName) {
   }
 
   Object.entries(classes).forEach(([className, classOpts]) => {
-    validateOpts(classOpts, [...optName, className])
+    validateAllOpts(classOpts, [...optName, className])
   })
 }
 
