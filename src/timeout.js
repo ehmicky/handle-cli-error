@@ -1,4 +1,6 @@
-// Wait for a timeout to complete
+// Wait for a timeout to complete.
+// We still recommend users to perform cleanup logic in try/catch blocks,
+// preventing the need for this option.
 // eslint-disable-next-line promise/prefer-await-to-callbacks
 export const waitForTimeout = function (timeout, callback) {
   if (timeout === NO_TIMEOUT) {
