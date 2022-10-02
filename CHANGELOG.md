@@ -1,3 +1,9 @@
+# 2.4.1
+
+## Bug fixes
+
+- Fix error validation message
+
 # 2.4.0
 
 ## Features
