@@ -100,8 +100,7 @@ internal bug), in which cause the stack trace is not relevant to the user.
 _Type_: `boolean`\
 _Default_: `false`
 
-When `true`, the `error` is not logged. The process still exits with a specific
-[exit code](#-exitcode).
+When `true`, the process exits without logging anything on the console.
 
 #### 🚒 timeout
 
