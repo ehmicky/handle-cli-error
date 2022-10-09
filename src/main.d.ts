@@ -40,17 +40,17 @@ export interface Options {
    * Quoted strings in the error's message are printed in bold (for `"..."` and
    * `'...'`) and in italic (for `` `...` ``).
    *
-   * @default _Default_: `true` in terminals, `false` otherwise
+   * @default `true` in terminals, `false` otherwise
    */
   readonly colors?: boolean
 
   /**
-   * Icon prepended to the error's name. The available icons are listed
+   * Icon prepended to the error's name. The available values are listed
    * [here](https://github.com/sindresorhus/figures/blob/main/readme.md#figures-1).
    *
    * This can be disabled by passing an empty string.
    *
-   * @default "cross"
+   * @default 'cross'
    */
   readonly icon?: keyof typeof figures | ''
 
