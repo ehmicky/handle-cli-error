@@ -2,10 +2,8 @@
 
 ## Breaking changes
 
-- Rename the `short` option to [`stack`](README.md#-stack). Its value is
+- Renamed the `short` option to [`stack`](README.md#-stack). Its value is
   inverted.
-- The `error.name` is now always logged even if [`stack`](README.md#-stack) is
-  `false`
 
 Before:
 
@@ -19,6 +17,9 @@ After:
 handleCliError(error, { stack: false })
 ```
 
+- The error's name is now always logged even if [`stack`](README.md#-stack) is
+  `false`.
+
 ## Features
 
 - The [`colors` option](README.md#%EF%B8%8F-colors) has been added to show
@@ -26,10 +27,11 @@ handleCliError(error, { stack: false })
 - Quoted strings in the error message are now
   [colorized](README.md#%EF%B8%8F-colors).
 - An icon is now prepended to the error's name. This can be configured using the
-  [`icon` option](README.md#-icon)
+  [`icon` option](README.md#-icon).
 - The error's icon and name are now logged in red by default. This can be
-  configured using the [`header` option](README.md#-header)
-- The [`props` option](README.md#-props) has been added to hide error properties
+  configured using the [`header` option](README.md#-header).
+- The [`props` option](README.md#-props) has been added to hide error
+  properties.
 
 # 2.5.1
 
