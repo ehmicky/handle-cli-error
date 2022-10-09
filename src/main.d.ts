@@ -1,3 +1,5 @@
+import figures from 'figures'
+
 /**
  * `handle-cli-error` options
  */
@@ -19,11 +21,38 @@ export interface Options {
   readonly stack?: boolean
 
   /**
+   * Whether to log the error's additional properties.
+   *
+   * @default true
+   */
+  readonly props?: boolean
+
+  /**
    * Exits the process without logging anything on the console.
    *
    * @default false
    */
   readonly silent?: boolean
+
+  /**
+   * Whether to colorize the error's message, stack trace and additional properties.
+   *
+   * Quoted strings in the error's message are printed in bold (for `"..."` and
+   * `'...'`) and in italic (for `` `...` ``).
+   *
+   * @default _Default_: `true` in terminals, `false` otherwise
+   */
+  readonly colors?: boolean
+
+  /**
+   * Icon prepended to the error's name. The available icons are listed
+   * [here](https://github.com/sindresorhus/figures/blob/main/readme.md#figures-1).
+   *
+   * This can be disabled by passing an empty string.
+   *
+   * @default "cross"
+   */
+  readonly icon?: keyof typeof figures | ''
 
   /**
    * The process exits gracefully: it waits for any ongoing tasks (callbacks,
