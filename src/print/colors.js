@@ -6,7 +6,7 @@ import chalkString from 'chalk-string'
 // colors.
 export const getColors = function (colors) {
   const addStyles = chalkString({ colors, stream: stderr })
-  const useColors = addStyles.level !== 0
+  const useColors = addStyles('red', '_') !== '_'
   return { addStyles, useColors }
 }
 
