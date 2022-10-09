@@ -16,7 +16,7 @@ Error handler for CLI applications.
 - 💣 [Error class-specific](#-classes) handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
-- 🕯 Log verbosity: full, [no stack](#-stack), [no properties](#-properties) or
+- 🔕 Log verbosity: full, [no stack](#-stack), [no properties](#-properties) or
   [silent](#-silent)
 - 🚨 Custom [exit code](#-exitcode)
 - 💥 Exception-safe
@@ -93,7 +93,7 @@ _Default_: `true`
 
 Whether to log the error's stack trace.
 
-#### 🕯 props
+#### 📢 props
 
 _Type_: `boolean`\
 _Default_: `true`
