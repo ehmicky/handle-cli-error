@@ -21,6 +21,10 @@ Error handler for CLI applications.
 - 🚨 Custom [exit code](#-exitcode)
 - 💥 Exception-safe
 
+# Screenshot
+
+<img alt="handle-cli-error screenshot" src="docs/screenshot.png" width="500"/>
+
 # Example
 
 ## General
