@@ -1,4 +1,5 @@
 import test from 'ava'
+import { validateOptions } from 'handle-cli-error'
 import { each } from 'test-each'
 
 // eslint-disable-next-line no-restricted-imports
@@ -41,6 +42,10 @@ each(
       const { consoleArg, exitCode } = handleError('', options)
       t.true(consoleArg.includes(PACKAGE_NAME))
       t.is(exitCode, INVALID_OPTS_EXIT_CODE)
+    })
+
+    test.serial(`Expose validateOptions() | ${title}`, (t) => {
+      t.throws(validateOptions.bind(undefined, options))
     })
   },
 )
