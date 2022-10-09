@@ -23,6 +23,8 @@ handleCliError(error, { stack: false })
 
 - The [`colors` option](README.md#%EF%B8%8F-colors) has been added to show
   colors. It defaults to `true` in terminals.
+- Quoted strings in the error message are now
+  [colorized](README.md#%EF%B8%8F-colors).
 - The [`props` option](README.md#-props) has been added to hide error properties
 
 # 2.5.1

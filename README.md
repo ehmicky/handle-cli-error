@@ -112,7 +112,10 @@ Exits the process without logging anything on the console.
 _Type_: `boolean`\
 _Default_: `true` in terminals, `false` otherwise
 
-Whether to log with colors.
+Whether to colorize the error's message, stack trace and additional properties.
+
+Quoted strings in the error's message are printed in bold (for `"..."` and
+`'...'`) and in italic (for `` `...` ``).
 
 #### 🚒 timeout
 
