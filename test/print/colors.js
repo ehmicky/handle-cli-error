@@ -47,3 +47,10 @@ each(
     })
   },
 )
+
+test.serial('"colors" does not colorize quoted strings in stack line', (t) => {
+  const error = new Error('test')
+  const stackLines = '    at "a"'
+  error.stack = `Error: test\n${stackLines}`
+  t.true(handleError(error, { colors: true }).consoleArg.endsWith(stackLines))
+})

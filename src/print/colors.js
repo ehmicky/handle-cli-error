@@ -13,7 +13,6 @@ export const getColors = function (colors) {
 // When `colors` is true, add colors to quoted strings.
 // `util.inspect()` strips ANSI sequences, so this must be done on the
 // serialized output.
-// Not performed on multiline quoted strings.
 export const colorizeLine = function (line, useColors, chalk) {
   if (!useColors) {
     return line
