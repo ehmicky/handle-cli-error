@@ -17,9 +17,15 @@ each([true, false], [true, false], ({ title }, stack, props) => {
       ),
     )
   })
-})
 
-each([true, false], [true, false], ({ title }, stack, props) => {
+  test.serial(`Does not put the error in brackets | ${title}`, (t) => {
+    t.false(
+      handleError(testError, { stack, props }).consoleArg.includes(
+        `[${testError.name}: ${testError.message}]`,
+      ),
+    )
+  })
+
   test.serial(
     `Prints top-level stack providing "stack" is true | ${title}`,
     (t) => {
