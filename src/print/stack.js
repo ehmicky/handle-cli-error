@@ -61,7 +61,7 @@ const recurseValue = function (value, callFunc, depth) {
   if (
     typeof value !== 'object' ||
     value === null ||
-    depth === PRINT_MAX_DEPTH + 2
+    depth >= PRINT_MAX_DEPTH + 2
   ) {
     return
   }
