@@ -54,3 +54,15 @@ test.serial('"colors" does not colorize quoted strings in stack line', (t) => {
   error.stack = `Error: test\n${stackLines}`
   t.true(handleError(error, { colors: true }).consoleArg.endsWith(stackLines))
 })
+
+test.serial(
+  '"colors" does not colorize quoted strings in preview lines',
+  (t) => {
+    const error = new Error('test "b"')
+    const previewLines = '"a"'
+    error.stack = `${previewLines}\n${error.stack}`
+    const { consoleArg } = handleError(error, { colors: true })
+    t.true(consoleArg.startsWith(previewLines))
+    t.true(consoleArg.includes(`"${chalk.bold('b')}"`))
+  },
+)
