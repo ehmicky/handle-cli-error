@@ -1,8 +1,10 @@
-import figures from 'figures'
 import isPlainObj from 'is-plain-obj'
 
 import { MIN_EXIT_CODE, MAX_EXIT_CODE } from '../exit.js'
+import { validateIcon } from '../print/icon.js'
 import { NO_TIMEOUT, INFINITE_TIMEOUT } from '../timeout.js'
+
+import { handleInvalidOpts } from './invalid.js'
 
 // Validate option values.
 // This is exported, although not documented.
@@ -41,16 +43,6 @@ const validateOpt = function (optValue, optName) {
 const validateBooleanOpt = function (value, optName) {
   if (typeof value !== 'boolean') {
     handleInvalidOpts('must be a boolean', value, optName)
-  }
-}
-
-const validateIcon = function (value, optName) {
-  if (value !== '' && figures[value] === undefined) {
-    handleInvalidOpts(
-      `must be an icon name like "cross", "info" or "warning"`,
-      value,
-      optName,
-    )
   }
 }
 
@@ -108,10 +100,4 @@ const VALIDATORS = {
   exitCode: validateExitCode,
   timeout: validateTimeout,
   classes: validateClasses,
-}
-
-const handleInvalidOpts = function (message, value, optName) {
-  const fullOptName =
-    optName.length === 0 ? 'options' : `"${optName.join('.')}"`
-  throw new Error(`${fullOptName} ${message}: ${value}`)
 }
