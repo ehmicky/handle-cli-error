@@ -8,7 +8,10 @@ const testError = new Error('test')
 each(
   [
     { options: {}, expectedArg: testError },
-    { options: { stack: false }, expectedArg: testError.message },
+    {
+      options: { stack: false },
+      expectedArg: `${testError.name}: ${testError.message}`,
+    },
     { options: { silent: true }, expectedArg: undefined },
   ],
   ({ title }, { options, expectedArg }) => {
