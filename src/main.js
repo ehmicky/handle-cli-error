@@ -13,6 +13,6 @@ export default function handleCliError(error, opts) {
     error: errorB,
     opts: { silent, stack, exitCode, timeout },
   } = getOpts(opts, errorA)
-  printError(errorB, silent, stack)
+  printError({ error: errorB, silent, stack })
   exitProcess(exitCode, timeout)
 }

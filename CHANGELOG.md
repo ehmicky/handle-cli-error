@@ -4,6 +4,8 @@
 
 - Rename the `short` option to [`stack`](README.md#-stack). Its value is
   inverted.
+- The `error.name` is now always logged even if [`stack`](README.md#-stack) is
+  `false`
 
 Before:
 
