@@ -1,4 +1,5 @@
 import test from 'ava'
+import { serialize } from 'error-serializer'
 import { each } from 'test-each'
 
 import { handleError } from './helpers/main.js'
@@ -73,6 +74,12 @@ each(
         handleError(error, { stack, props }).consoleArg.includes('at '),
         stack,
       )
+    })
+
+    test.serial(`Does not modify the error | ${title}`, (t) => {
+      const errorCopy = serialize(error)
+      handleError(error, { stack, props })
+      t.deepEqual(serialize(error), errorCopy)
     })
   },
 )
