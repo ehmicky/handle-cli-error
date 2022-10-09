@@ -3,6 +3,7 @@
 import stripAnsi from 'strip-ansi'
 
 import { colorizeLine } from './colors.js'
+import { applyHeader } from './header.js'
 import { addIcon } from './icon.js'
 
 // Apply the `colors` option to make the error prettier
@@ -12,19 +13,34 @@ export const prettifyError = function ({
   chalk,
   useColors,
   icon,
+  header,
 }) {
   const lines = errorString.split('\n')
-  const linesA = prettifyLines({ error, lines, chalk, useColors, icon })
+  const linesA = prettifyLines({ error, lines, chalk, useColors, icon, header })
   return linesA.join('\n')
 }
 
-const prettifyLines = function ({ error, lines, chalk, useColors, icon }) {
+const prettifyLines = function ({
+  error,
+  lines,
+  chalk,
+  useColors,
+  icon,
+  header,
+}) {
   const { previewLines, messageLines, stackLines } = splitStack(lines, error)
   const messageLinesA = addIcon(messageLines, icon)
-  const messageLinesB = messageLinesA.map((line) =>
+  const messageLinesB = applyHeader({
+    messageLines: messageLinesA,
+    header,
+    useColors,
+    chalk,
+    error,
+  })
+  const messageLinesC = messageLinesB.map((line) =>
     colorizeLine(line, useColors, chalk),
   )
-  return [...previewLines, ...messageLinesB, ...stackLines]
+  return [...previewLines, ...messageLinesC, ...stackLines]
 }
 
 const splitStack = function (lines, error) {

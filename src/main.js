@@ -11,8 +11,8 @@ export default function handleCliError(error, opts) {
   const errorA = normalizeException(error)
   const {
     error: errorB,
-    opts: { silent, stack, props, colors, icon, exitCode, timeout },
+    opts: { silent, stack, props, colors, icon, header, exitCode, timeout },
   } = getOpts(opts, errorA)
-  printError({ error: errorB, silent, stack, props, colors, icon })
+  printError({ error: errorB, silent, stack, props, colors, icon, header })
   exitProcess(exitCode, timeout)
 }

@@ -23,6 +23,7 @@ export const printError = function ({
   props,
   colors,
   icon,
+  header,
 }) {
   if (silent) {
     return
@@ -36,6 +37,7 @@ export const printError = function ({
     chalk,
     useColors,
     icon,
+    header,
   })
   // eslint-disable-next-line no-restricted-globals, no-console
   console.error(errorStringA)
