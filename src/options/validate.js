@@ -91,6 +91,7 @@ const validateClasses = function (classes, optName) {
 const VALIDATORS = {
   silent: validateBooleanOpt,
   stack: validateBooleanOpt,
+  props: validateBooleanOpt,
   exitCode: validateExitCode,
   timeout: validateTimeout,
   classes: validateClasses,

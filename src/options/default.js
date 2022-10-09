@@ -12,6 +12,7 @@ export const applyDefaultOpts = function (opts) {
 const DEFAULT_OPTS = {
   silent: false,
   stack: true,
+  props: true,
   exitCode: DEFAULT_EXIT_CODE,
   timeout: DEFAULT_TIMEOUT,
 }

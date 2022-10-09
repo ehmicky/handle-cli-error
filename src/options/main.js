@@ -36,6 +36,7 @@ const applyClassesOpts = function ({ name }, { classes = {}, ...opts } = {}) {
 const INVALID_OPTS = {
   silent: false,
   stack: true,
+  props: true,
   exitCode: INVALID_OPTS_EXIT_CODE,
   timeout: DEFAULT_TIMEOUT,
 }
