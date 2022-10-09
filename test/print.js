@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import test from 'ava'
 import { serialize } from 'error-serializer'
 import { each } from 'test-each'
@@ -101,4 +102,17 @@ each([true, false], [true, false], ({ title }, stack, props) => {
       ),
     )
   })
+})
+
+const nonErrorStackError = new Error('test')
+// eslint-disable-next-line fp/no-mutation
+nonErrorStackError.prop = { stack: 'propStack' }
+
+test.serial('Does not remove stacks from non-errors', (t) => {
+  t.true(
+    handleError(nonErrorStackError, {
+      stack: false,
+      props: true,
+    }).consoleArg.includes(nonErrorStackError.prop.stack),
+  )
 })
