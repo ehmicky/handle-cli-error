@@ -1,9 +1,23 @@
+import chalkString from 'chalk-string'
+
 import { handleInvalidOpts } from '../options/invalid.js'
+
+const globalAddStyles = chalkString({ colors: true })
 
 // Validate `header` option
 export const validateHeader = function (value, optName) {
-  if (value !== '' && typeof value !== 'string') {
-    handleInvalidOpts('must be a style string', value, optName)
+  if (typeof value !== 'string') {
+    handleInvalidOpts('must be a string', value, optName)
+  }
+
+  if (value === '') {
+    return
+  }
+
+  try {
+    globalAddStyles(value, '')
+  } catch (error) {
+    handleInvalidOpts(`must be a valid style: ${error.message}`, value, optName)
   }
 }
 
