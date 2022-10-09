@@ -1,7 +1,12 @@
 import { inspect } from 'util'
 
 import { omitProps } from './props.js'
-import { omitStack, restoreStack, omitStackBracket } from './stack.js'
+import {
+  omitStack,
+  restoreStack,
+  omitStackBracket,
+  PRINT_MAX_DEPTH,
+} from './stack.js'
 
 // Print the error.
 // If `stack: false`, we do not print the error `stack` nor inline preview,
@@ -22,7 +27,7 @@ export const printError = function ({ error, silent, stack, props, colors }) {
 const serializeError = function ({ error, stack, props, colors }) {
   const errorA = omitProps(error, props)
   omitStack(errorA, stack)
-  const errorString = inspect(errorA, { colors })
+  const errorString = inspect(errorA, { colors, depth: PRINT_MAX_DEPTH })
   restoreStack(errorA, stack)
   const errorStringA = omitStackBracket(errorString, stack)
   return errorStringA

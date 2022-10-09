@@ -54,20 +54,28 @@ const setNonEnumProp = function (object, propName, value) {
 
 // Calls `callFunc(object)` on any object, recursively
 const recurseObject = function (value, callFunc) {
-  recurseValue(value, callFunc, [])
+  recurseValue(value, callFunc, 0)
 }
 
-const recurseValue = function (value, callFunc, parents) {
-  if (typeof value !== 'object' || value === null || parents.includes(value)) {
+const recurseValue = function (value, callFunc, depth) {
+  if (
+    typeof value !== 'object' ||
+    value === null ||
+    depth === PRINT_MAX_DEPTH + 2
+  ) {
     return
   }
 
   callFunc(value)
 
   Reflect.ownKeys(value).forEach((key) => {
-    recurseValue(value[key], callFunc, [...parents, value])
+    recurseValue(value[key], callFunc, depth + 1)
   })
 }
+
+// This is the default value, but we prevent overriding it with
+// `inspect.defaultOptions`
+export const PRINT_MAX_DEPTH = 2
 
 // `util.inspect()` surround `error.name: error.message` with `[...]` when
 // `error.stack` is missing. This is unwanted so we remove it.
