@@ -104,15 +104,12 @@ each([true, false], [true, false], ({ title }, stack, props) => {
   })
 })
 
-const nonErrorStackError = new Error('test')
-// eslint-disable-next-line fp/no-mutation
-nonErrorStackError.prop = { stack: 'propStack' }
-
 test.serial('Does not remove stacks from non-errors', (t) => {
+  const error = new Error('test')
+  error.prop = { stack: 'propStack' }
   t.true(
-    handleError(nonErrorStackError, {
-      stack: false,
-      props: true,
-    }).consoleArg.includes(nonErrorStackError.prop.stack),
+    handleError(error, { stack: false, props: true }).consoleArg.includes(
+      error.prop.stack,
+    ),
   )
 })
