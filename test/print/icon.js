@@ -13,11 +13,8 @@ each(
   ({ title }, { icon, output }) => {
     test.serial(`"icon" prepends an icon | ${title}`, (t) => {
       const error = new Error('test')
-      t.true(
-        handleError(error, { icon }).consoleArg.startsWith(
-          `${output}${error.name}`,
-        ),
-      )
+      const { consoleArg } = handleError(error, { icon })
+      t.true(consoleArg.startsWith(`${output}${error.name}`))
     })
   },
 )
@@ -25,9 +22,6 @@ each(
 test.serial('"icon" is not added to preview lines', (t) => {
   const error = new Error('test')
   error.stack = `preview\n${error.stack}`
-  t.true(
-    handleError(error, { icon: 'warning' }).consoleArg.includes(
-      `${figures.warning} ${error.name}`,
-    ),
-  )
+  const { consoleArg } = handleError(error, { icon: 'warning' })
+  t.true(consoleArg.includes(`${figures.warning} ${error.name}`))
 })

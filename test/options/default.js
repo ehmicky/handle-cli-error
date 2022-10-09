@@ -15,7 +15,8 @@ each(
   ],
   ({ title }, { options, expectedCode }) => {
     test.serial(`Undefined options are ignored | ${title}`, (t) => {
-      t.is(handleError('', options).exitCode, expectedCode)
+      const { exitCode } = handleError('', options)
+      t.is(exitCode, expectedCode)
     })
   },
 )

@@ -46,18 +46,13 @@ each(
   // eslint-disable-next-line max-params
   ({ title }, error, stack, props) => {
     test.serial(`Prints stack unless "stack" is false | ${title}`, (t) => {
-      t.is(
-        handleError(error, { stack, props }).consoleArg.includes('at '),
-        stack !== false,
-      )
+      const { consoleArg } = handleError(error, { stack, props })
+      t.is(consoleArg.includes('at '), stack !== false)
     })
 
     test.serial(`Does not put the error in brackets | ${title}`, (t) => {
-      t.false(
-        handleError(error, { stack, props }).consoleArg.startsWith(
-          `[${error.name}: ${error.message}]`,
-        ),
-      )
+      const { consoleArg } = handleError(error, { stack, props })
+      t.false(consoleArg.startsWith(`[${error.name}: ${error.message}]`))
     })
 
     test.serial(`Does not modify the error | ${title}`, (t) => {
@@ -67,31 +62,22 @@ each(
     })
 
     test.serial(`Prints error name and message | ${title}`, (t) => {
-      t.true(
-        handleError(error, { stack, props }).consoleArg.includes(
-          `${error.name}: ${error.message}`,
-        ),
-      )
+      const { consoleArg } = handleError(error, { stack, props })
+      t.true(consoleArg.includes(`${error.name}: ${error.message}`))
     })
   },
 )
 
 each([true, false], ({ title }, stack, props) => {
   test.serial(`Prints error name consistently | ${title}`, (t) => {
-    t.true(
-      handleError(ownNameError, { stack: false, props }).consoleArg.includes(
-        `Error [${ownNameError.name}`,
-      ),
-    )
+    const { consoleArg } = handleError(ownNameError, { stack: false, props })
+    t.true(consoleArg.includes(`Error [${ownNameError.name}`))
   })
 })
 
 test.serial('Does not remove stacks from non-errors', (t) => {
   const error = new Error('test')
   error.prop = { stack: 'propStack' }
-  t.true(
-    handleError(error, { stack: false, props: true }).consoleArg.includes(
-      error.prop.stack,
-    ),
-  )
+  const { consoleArg } = handleError(error, { stack: false, props: true })
+  t.true(consoleArg.includes(error.prop.stack))
 })

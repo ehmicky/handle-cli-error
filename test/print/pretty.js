@@ -10,7 +10,8 @@ test.serial('"colors" does not colorize quoted strings in stack line', (t) => {
   const error = new Error('test')
   const stackLines = '    at "a"'
   error.stack = `Error: test\n${stackLines}`
-  t.true(handleError(error, { colors: true }).consoleArg.endsWith(stackLines))
+  const { consoleArg } = handleError(error, { colors: true })
+  t.true(consoleArg.endsWith(stackLines))
 })
 
 each(['Error: ', 'Error [TypeError]: '], ({ title }, name) => {
@@ -32,10 +33,7 @@ test.serial(
   (t) => {
     const error = new Error('test')
     error.stack = '"a"'
-    t.true(
-      handleError(error, { colors: true }).consoleArg.includes(
-        `"${chalk.bold('a')}"`,
-      ),
-    )
+    const { consoleArg } = handleError(error, { colors: true })
+    t.true(consoleArg.includes(`"${chalk.bold('a')}"`))
   },
 )

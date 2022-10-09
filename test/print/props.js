@@ -12,12 +12,8 @@ each(
   [true, false, undefined],
   ({ title }, stack, props) => {
     test.serial(`Prints properties unless "props" is false | ${title}`, (t) => {
-      t.is(
-        handleError(propsError, { stack, props }).consoleArg.includes(
-          propsError.prop,
-        ),
-        props !== false,
-      )
+      const { consoleArg } = handleError(propsError, { stack, props })
+      t.is(consoleArg.includes(propsError.prop), props !== false)
     })
   },
 )

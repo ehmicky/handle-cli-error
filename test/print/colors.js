@@ -10,15 +10,14 @@ const chalk = colorsOption({ colors: true })
 
 each([true, false], ({ title }, colors) => {
   test.serial(`Add colors unless "colors" is false | ${title}`, (t) => {
-    t.is(
-      hasAnsi(handleError(testError, { colors }).consoleArg),
-      colors !== false,
-    )
+    const { consoleArg } = handleError(testError, { colors })
+    t.is(hasAnsi(consoleArg), colors !== false)
   })
 })
 
 test.serial('"colors" defaults to TTY color support', (t) => {
-  t.false(hasAnsi(handleError(testError).consoleArg))
+  const { consoleArg } = handleError(testError)
+  t.false(hasAnsi(consoleArg))
 })
 
 each(
@@ -31,11 +30,12 @@ each(
   ({ title }, { quote, style }, hasNewline) => {
     test.serial(`"colors" colorize quoted strings | ${title}`, (t) => {
       const newline = hasNewline ? '\n' : ''
+      const error = new Error(
+        `a ${quote}b${newline}${quote} c ${quote}d${quote}`,
+      )
+      const { consoleArg } = handleError(error, { colors: true })
       t.not(
-        handleError(
-          new Error(`a ${quote}b${newline}${quote} c ${quote}d${quote}`),
-          { colors: true },
-        ).consoleArg.includes(
+        consoleArg.includes(
           `a ${quote}${chalk[style]('b')}${newline}${quote} c ${quote}${chalk[
             style
           ]('d')}${quote}`,
