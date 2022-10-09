@@ -90,7 +90,7 @@ const validateClasses = function (classes, optName) {
 
 const VALIDATORS = {
   silent: validateBooleanOpt,
-  short: validateBooleanOpt,
+  stack: validateBooleanOpt,
   exitCode: validateExitCode,
   timeout: validateTimeout,
   classes: validateClasses,

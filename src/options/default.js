@@ -11,7 +11,7 @@ export const applyDefaultOpts = function (opts) {
 // Default values of options
 const DEFAULT_OPTS = {
   silent: false,
-  short: false,
+  stack: true,
   exitCode: DEFAULT_EXIT_CODE,
   timeout: DEFAULT_TIMEOUT,
 }

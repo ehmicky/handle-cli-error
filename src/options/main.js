@@ -35,7 +35,7 @@ const applyClassesOpts = function ({ name }, { classes = {}, ...opts } = {}) {
 // Options used when invalid input is passed
 const INVALID_OPTS = {
   silent: false,
-  short: false,
+  stack: true,
   exitCode: INVALID_OPTS_EXIT_CODE,
   timeout: DEFAULT_TIMEOUT,
 }

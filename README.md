@@ -16,7 +16,7 @@ Error handler for CLI applications.
 - 💣 [Error class-specific](#-classes) handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
-- 📕 Log verbosity: full, [short](#-short) or [silent](#-silent)
+- 📕 Log verbosity: full, [no stack](#-stack) or [silent](#-silent)
 - 🚨 Custom [exit code](#-exitcode)
 - 💥 Exception-safe
 
@@ -32,7 +32,7 @@ const cliMain = function () {
   try {
     // ...
   } catch (error) {
-    handleCliError(error) // Print `error` then exit the process
+    handleCliError(error) // Logs `error` then exit the process
   }
 }
 
@@ -44,8 +44,8 @@ cliMain()
 ```js
 handleCliError(error, {
   classes: {
-    InputError: { exitCode: 1, short: true },
-    DatabaseError: { exitCode: 2, short: true },
+    InputError: { exitCode: 1, stack: false },
+    DatabaseError: { exitCode: 2, stack: false },
     default: { exitCode: 3 },
   },
 })
@@ -69,7 +69,7 @@ not `require()`.
 `options` [`Options?`](#options)\
 _Return value_: `undefined`
 
-Prints `error` on the console (`stderr`) then exits the process.
+Logs `error` on the console (`stderr`) then exits the process.
 
 This never throws. Invalid `error`s are silently
 [normalized](https://github.com/ehmicky/normalize-exception).
@@ -85,15 +85,12 @@ Process [exit code](https://en.wikipedia.org/wiki/Exit_status).
 
 Note: when passing invalid [`options`](#options), the exit code is always `125`.
 
-#### 📕 short
+#### 📕 stack
 
 _Type_: `boolean`\
-_Default_: `false`
+_Default_: `true`
 
-Logs the `error` message only, not its stack trace.
-
-This is useful when the error was caused by the user (as opposed to being an
-internal bug), in which cause the stack trace is not relevant to the user.
+Whether to log the `error` stack trace.
 
 #### 🔕 silent
 

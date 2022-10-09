@@ -12,15 +12,11 @@ export interface Options {
   readonly exitCode?: number
 
   /**
-   * Logs the `error` message only, not its stack trace.
+   * Whether to log the `error` stack trace.
    *
-   * This is useful when the error was caused by the user (as opposed to being
-   * an internal bug), in which cause the stack trace is not relevant to the
-   * user.
-   *
-   * @default false
+   * @default true
    */
-  readonly short?: boolean
+  readonly stack?: boolean
 
   /**
    * Exits the process without logging anything on the console.
@@ -54,8 +50,8 @@ export interface Options {
    * @example
    * ```js
    * handleCliError(error, {
-   *   InputError: { exitCode: 1, short: true },
-   *   DatabaseError: { exitCode: 2, short: true },
+   *   InputError: { exitCode: 1, stack: false },
+   *   DatabaseError: { exitCode: 2, stack: false },
    *   default: { exitCode: 3 },
    * })
    * ```
@@ -66,7 +62,7 @@ export interface Options {
 }
 
 /**
- * Prints `error` on the console (`stderr`) then exits the process.
+ * Logs `error` on the console (`stderr`) then exits the process.
  *
  * This never throws. Invalid `error`s are silently
  * [normalized](https://github.com/ehmicky/normalize-exception).
@@ -80,7 +76,7 @@ export interface Options {
  *   try {
  *     // ...
  *   } catch (error) {
- *     handleCliError(error) // Print `error` then exit the process
+ *     handleCliError(error) // Logs `error` then exit the process
  *   }
  * }
  *

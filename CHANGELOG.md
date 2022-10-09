@@ -1,3 +1,22 @@
+# 3.0.0
+
+## Breaking changes
+
+- Rename the `short` option to [`stack`](README.md#-stack). Its value is
+  inverted.
+
+Before:
+
+```js
+handleCliError(error, { short: true })
+```
+
+After:
+
+```js
+handleCliError(error, { stack: false })
+```
+
 # 2.5.1
 
 ## Bug fixes

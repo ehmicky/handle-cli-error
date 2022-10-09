@@ -12,7 +12,7 @@ each(
   [
     true,
     { silent: 0 },
-    { short: 0 },
+    { stack: 0 },
     { exitCode: '0' },
     { exitCode: 0.1 },
     { exitCode: Number.NaN },
@@ -42,7 +42,7 @@ each(
 
 each(
   [
-    ...['silent', 'short', 'exitCode', 'timeout'].flatMap((optName) => [
+    ...['silent', 'stack', 'exitCode', 'timeout'].flatMap((optName) => [
       { [optName]: undefined },
       { classes: { default: { [optName]: undefined } } },
     ]),
