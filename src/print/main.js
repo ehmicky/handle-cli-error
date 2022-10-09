@@ -22,7 +22,7 @@ export const printError = function ({ error, silent, stack, props, colors }) {
 
   const { chalk, useColors } = getColors(colors)
   const errorString = serializeError({ error, stack, props, useColors })
-  const errorStringA = colorizeError(errorString, chalk, useColors)
+  const errorStringA = colorizeError({ error, errorString, chalk, useColors })
   // eslint-disable-next-line no-restricted-globals, no-console
   console.error(errorStringA)
 }
