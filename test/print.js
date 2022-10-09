@@ -113,3 +113,11 @@ test.serial('Does not remove stacks from non-errors', (t) => {
     ),
   )
 })
+
+test.serial('Print stack by default', (t) => {
+  t.true(handleError(testError).consoleArg.includes('at '))
+})
+
+test.serial('Print properties by default', (t) => {
+  t.true(handleError(propsError).consoleArg.includes(propsError.prop))
+})
