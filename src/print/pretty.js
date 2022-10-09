@@ -17,11 +17,6 @@ export const prettifyError = function ({
 
 const prettifyLines = function ({ error, lines, chalk, useColors }) {
   const { previewLines, messageLines, stackLines } = splitStack(lines, error)
-
-  if (messageLines === undefined) {
-    return lines
-  }
-
   const messageLinesA = messageLines.map((line) =>
     colorizeLine(line, useColors, chalk),
   )
@@ -29,27 +24,23 @@ const prettifyLines = function ({ error, lines, chalk, useColors }) {
 }
 
 const splitStack = function (lines, error) {
-  const firstLineIndex = lines.findIndex((line) => isFirstLine(line, error))
+  const messageLineIndex = lines.findIndex((line) => isMessageLine(line, error))
+  const messageLineIndexA = messageLineIndex === -1 ? 0 : messageLineIndex
+  const previewLines = lines.slice(0, messageLineIndexA)
+  const messageLines = lines.slice(messageLineIndexA)
 
-  if (firstLineIndex === -1) {
-    return {}
-  }
+  const stackLineIndex = messageLines.findIndex(isStackLine)
+  const stackLineIndexA =
+    stackLineIndex === -1 ? messageLines.length : stackLineIndex
+  const messageLinesA = messageLines.slice(0, stackLineIndexA)
+  const stackLines = messageLines.slice(stackLineIndexA)
 
-  const lastLineIndex = lines.findIndex(isLastLine)
-
-  if (lastLineIndex === -1) {
-    return {}
-  }
-
-  const previewLines = lines.slice(0, firstLineIndex)
-  const messageLines = lines.slice(firstLineIndex, lastLineIndex)
-  const stackLines = lines.slice(lastLineIndex)
-  return { previewLines, messageLines, stackLines }
+  return { previewLines, messageLines: messageLinesA, stackLines }
 }
 
 // Find first line with `error.name` and `error.message`, excluding the preview
 // added by `--enable-source-maps`
-const isFirstLine = function (line, error) {
+const isMessageLine = function (line, error) {
   return (
     line.startsWith(`${error.name}: `) ||
     line.startsWith(`${error.constructor.name} [`)
@@ -57,6 +48,6 @@ const isFirstLine = function (line, error) {
 }
 
 // Find first line with stack trace
-const isLastLine = function (line) {
+const isStackLine = function (line) {
   return stripAnsi(line).trimStart().startsWith('at ')
 }
