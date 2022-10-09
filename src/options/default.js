@@ -13,7 +13,6 @@ const DEFAULT_OPTS = {
   silent: false,
   stack: true,
   props: true,
-  colors: true,
   exitCode: DEFAULT_EXIT_CODE,
   timeout: DEFAULT_TIMEOUT,
 }

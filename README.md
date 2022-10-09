@@ -110,7 +110,7 @@ Exits the process without logging anything on the console.
 #### 🖍️ colors
 
 _Type_: `boolean`\
-_Default_: `true`
+_Default_: `true` in terminals, `false` otherwise
 
 Whether to log with colors.
 
