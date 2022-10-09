@@ -9,15 +9,6 @@ test.serial('Does not log if "silent" is true', (t) => {
   t.is(handleError(testError, { silent: true }).consoleArg, undefined)
 })
 
-each([true, false], ({ title }, stack) => {
-  test.serial(
-    `Prints top-level stack providing "stack" is true | ${title}`,
-    (t) => {
-      t.is(handleError(testError, { stack }).consoleArg.includes('at '), stack)
-    },
-  )
-})
-
 each([true, false], [true, false], ({ title }, stack, props) => {
   test.serial(`Prints error name and message | ${title}`, (t) => {
     t.true(
@@ -26,4 +17,16 @@ each([true, false], [true, false], ({ title }, stack, props) => {
       ),
     )
   })
+})
+
+each([true, false], [true, false], ({ title }, stack, props) => {
+  test.serial(
+    `Prints top-level stack providing "stack" is true | ${title}`,
+    (t) => {
+      t.is(
+        handleError(testError, { stack, props }).consoleArg.includes('at '),
+        stack,
+      )
+    },
+  )
 })
