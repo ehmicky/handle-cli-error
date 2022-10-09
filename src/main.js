@@ -1,6 +1,5 @@
 import normalizeException from 'normalize-exception'
 
-import { getColors } from './colors.js'
 import { exitProcess } from './exit.js'
 import { getOpts } from './options/main.js'
 import { printError } from './print/main.js'
@@ -14,7 +13,6 @@ export default function handleCliError(error, opts) {
     error: errorB,
     opts: { silent, stack, props, colors, exitCode, timeout },
   } = getOpts(opts, errorA)
-  const { useColors } = getColors(colors)
-  printError({ error: errorB, silent, stack, props, useColors })
+  printError({ error: errorB, silent, stack, props, colors })
   exitProcess(exitCode, timeout)
 }

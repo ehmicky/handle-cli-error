@@ -2,7 +2,7 @@ import test from 'ava'
 import hasAnsi from 'has-ansi'
 import { each } from 'test-each'
 
-import { handleError } from './helpers/main.js'
+import { handleError } from '../helpers/main.js'
 
 const testError = new TypeError('test')
 

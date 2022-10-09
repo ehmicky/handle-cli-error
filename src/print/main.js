@@ -1,5 +1,6 @@
 import { inspect } from 'util'
 
+import { getColors } from './colors.js'
 import { omitProps } from './props.js'
 import {
   omitStack,
@@ -14,17 +15,12 @@ import {
 // Otherwise, we pass the `error` instance to `console.error()`, so it prints
 // not only its `message` and `stack` but also its properties, `cause`,
 // aggregate `errors`, add colors, inline preview, etc. using `util.inspect()`.
-export const printError = function ({
-  error,
-  silent,
-  stack,
-  props,
-  useColors,
-}) {
+export const printError = function ({ error, silent, stack, props, colors }) {
   if (silent) {
     return
   }
 
+  const { useColors } = getColors(colors)
   const errorString = serializeError({ error, stack, props, useColors })
   // eslint-disable-next-line no-restricted-globals, no-console
   console.error(errorString)
