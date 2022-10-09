@@ -9,10 +9,11 @@ export const applyDefaultOpts = function (opts) {
 }
 
 // Default values of options
-const DEFAULT_OPTS = {
+export const DEFAULT_OPTS = {
   silent: false,
   stack: true,
   props: true,
+  icon: 'cross',
   exitCode: DEFAULT_EXIT_CODE,
   timeout: DEFAULT_TIMEOUT,
 }

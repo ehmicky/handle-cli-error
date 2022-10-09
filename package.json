@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "colors-option": "^4.4.0",
+    "figures": "^5.0.0",
     "filter-obj": "^5.1.0",
     "is-error-instance": "^1.1.0",
     "is-plain-obj": "^4.1.0",

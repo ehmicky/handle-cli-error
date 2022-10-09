@@ -15,6 +15,7 @@ each(
     { stack: 0 },
     { props: 0 },
     { colors: 0 },
+    { icon: 'unknown' },
     { exitCode: '0' },
     { exitCode: 0.1 },
     { exitCode: Number.NaN },

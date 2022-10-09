@@ -16,14 +16,27 @@ import {
 // Otherwise, we pass the `error` instance to `console.error()`, so it prints
 // not only its `message` and `stack` but also its properties, `cause`,
 // aggregate `errors`, add colors, inline preview, etc. using `util.inspect()`.
-export const printError = function ({ error, silent, stack, props, colors }) {
+export const printError = function ({
+  error,
+  silent,
+  stack,
+  props,
+  colors,
+  icon,
+}) {
   if (silent) {
     return
   }
 
   const { chalk, useColors } = getColors(colors)
   const errorString = serializeError({ error, stack, props, useColors })
-  const errorStringA = prettifyError({ error, errorString, chalk, useColors })
+  const errorStringA = prettifyError({
+    error,
+    errorString,
+    chalk,
+    useColors,
+    icon,
+  })
   // eslint-disable-next-line no-restricted-globals, no-console
   console.error(errorStringA)
 }

@@ -3,6 +3,7 @@
 import stripAnsi from 'strip-ansi'
 
 import { colorizeLine } from './colors.js'
+import { addIcon } from './icon.js'
 
 // Apply the `colors` option to make the error prettier
 export const prettifyError = function ({
@@ -10,18 +11,20 @@ export const prettifyError = function ({
   errorString,
   chalk,
   useColors,
+  icon,
 }) {
   const lines = errorString.split('\n')
-  const linesA = prettifyLines({ error, lines, chalk, useColors })
+  const linesA = prettifyLines({ error, lines, chalk, useColors, icon })
   return linesA.join('\n')
 }
 
-const prettifyLines = function ({ error, lines, chalk, useColors }) {
+const prettifyLines = function ({ error, lines, chalk, useColors, icon }) {
   const { previewLines, messageLines, stackLines } = splitStack(lines, error)
-  const messageLinesA = messageLines.map((line) =>
+  const messageLinesA = addIcon(messageLines, icon)
+  const messageLinesB = messageLinesA.map((line) =>
     colorizeLine(line, useColors, chalk),
   )
-  return [...previewLines, ...messageLinesA, ...stackLines]
+  return [...previewLines, ...messageLinesB, ...stackLines]
 }
 
 const splitStack = function (lines, error) {

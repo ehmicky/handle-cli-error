@@ -1,9 +1,8 @@
 import normalizeException from 'normalize-exception'
 
 import { INVALID_OPTS_EXIT_CODE } from '../exit.js'
-import { DEFAULT_TIMEOUT } from '../timeout.js'
 
-import { removeUndefined, applyDefaultOpts } from './default.js'
+import { removeUndefined, applyDefaultOpts, DEFAULT_OPTS } from './default.js'
 import { validateOptions } from './validate.js'
 
 // Normalize and validate options
@@ -34,9 +33,6 @@ const applyClassesOpts = function ({ name }, { classes = {}, ...opts } = {}) {
 
 // Options used when invalid input is passed
 const INVALID_OPTS = {
-  silent: false,
-  stack: true,
-  props: true,
+  ...DEFAULT_OPTS,
   exitCode: INVALID_OPTS_EXIT_CODE,
-  timeout: DEFAULT_TIMEOUT,
 }

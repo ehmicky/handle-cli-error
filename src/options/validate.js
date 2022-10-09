@@ -1,3 +1,4 @@
+import figures from 'figures'
 import isPlainObj from 'is-plain-obj'
 
 import { MIN_EXIT_CODE, MAX_EXIT_CODE } from '../exit.js'
@@ -40,6 +41,16 @@ const validateOpt = function (optValue, optName) {
 const validateBooleanOpt = function (value, optName) {
   if (typeof value !== 'boolean') {
     handleInvalidOpts('must be a boolean', value, optName)
+  }
+}
+
+const validateIcon = function (value, optName) {
+  if (value !== '' && figures[value] === undefined) {
+    handleInvalidOpts(
+      `must be an icon name like "cross", "info" or "warning"`,
+      value,
+      optName,
+    )
   }
 }
 
@@ -93,6 +104,7 @@ const VALIDATORS = {
   stack: validateBooleanOpt,
   props: validateBooleanOpt,
   colors: validateBooleanOpt,
+  icon: validateIcon,
   exitCode: validateExitCode,
   timeout: validateTimeout,
   classes: validateClasses,
