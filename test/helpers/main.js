@@ -53,6 +53,6 @@ const advanceTimeout = function ({ timeout = DEFAULT_TIMEOUT } = {}) {
   }
 }
 
-const getStubArg = function (stub) {
-  return stub.args.length === 0 ? undefined : stub.args[0][0]
+const getStubArg = function ({ args: [[firstCallFirstArg] = []] }) {
+  return firstCallFirstArg
 }
