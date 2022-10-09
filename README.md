@@ -133,8 +133,8 @@ _Default_: `'red bold'`
 
 Color/style of the error's [icon](#-icon) and name. The available values are
 listed [here](https://github.com/ehmicky/chalk-string#available-styles). Several
-styles can be specified by using spaces like `"red bold"`. Can be disabled by
-passing an empty string.
+styles can be specified by using spaces. Can be disabled by passing an empty
+string.
 
 #### 🚒 timeout
 

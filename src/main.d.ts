@@ -57,7 +57,7 @@ export interface Options {
   /**
    * Color/style of the error's icon and name. The available values are listed
    * [here](https://github.com/ehmicky/chalk-string#available-styles).
-   * Several styles can be specified by using spaces like `"red bold"`.
+   * Several styles can be specified by using spaces.
    * Can be disabled by passing an empty string.
    *
    * @default 'red bold'
