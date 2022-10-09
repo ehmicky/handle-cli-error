@@ -76,10 +76,10 @@ each(
   },
 )
 
-each([true, false], [true, false], ({ title }, stack, props) => {
+each([true, false], ({ title }, stack, props) => {
   test.serial(`Prints error name consistently | ${title}`, (t) => {
     t.true(
-      handleError(ownNameError, { stack, props }).consoleArg.includes(
+      handleError(ownNameError, { stack: false, props }).consoleArg.includes(
         `Error [${ownNameError.name}`,
       ),
     )
