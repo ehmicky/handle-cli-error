@@ -124,8 +124,7 @@ _Default_: `'cross'`
 
 Icon prepended to the error's name. The available values are listed
 [here](https://github.com/sindresorhus/figures/blob/main/readme.md#figures-1).
-
-This can be disabled by passing an empty string.
+Can be disabled by passing an empty string.
 
 #### 💄 header
 
@@ -133,9 +132,8 @@ _Type_: `string[]`\
 _Default_: `['red']`
 
 Color/style of the error's [icon](#-icon) and name. The available values are
-listed [here](https://github.com/chalk/chalk#styles).
-
-This can be disabled by passing an empty array.
+listed [here](https://github.com/chalk/chalk#styles). Can be disabled by passing
+an empty array.
 
 #### 🚒 timeout
 

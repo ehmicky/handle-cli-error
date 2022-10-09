@@ -47,12 +47,20 @@ export interface Options {
   /**
    * Icon prepended to the error's name. The available values are listed
    * [here](https://github.com/sindresorhus/figures/blob/main/readme.md#figures-1).
-   *
-   * This can be disabled by passing an empty string.
+   * Can be disabled by passing an empty string.
    *
    * @default 'cross'
    */
   readonly icon?: keyof typeof figures | ''
+
+  /**
+   * Color/style of the error's icon and name. The available values are listed
+   * [here](https://github.com/chalk/chalk#styles).
+   * Can be disabled by passing an empty array.
+   *
+   * @default ['red']
+   */
+  readonly header?: string[]
 
   /**
    * The process exits gracefully: it waits for any ongoing tasks (callbacks,
