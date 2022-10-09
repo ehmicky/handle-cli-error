@@ -64,6 +64,7 @@ const splitStack = function (lines, error) {
 // prints `{error.constructor.name} {error.name}`
 const isMessageLine = function (line, error) {
   return (
+    line === error.name ||
     line.startsWith(`${error.name}: `) ||
     line.startsWith(`${error.constructor.name} [`)
   )

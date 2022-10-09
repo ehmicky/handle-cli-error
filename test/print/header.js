@@ -47,7 +47,7 @@ test.serial('"header" works with empty messages', (t) => {
   const error = new Error('')
   const header = 'green'
   const { consoleArg } = handleError(error, { ...testOpts, header })
-  t.true(consoleArg.startsWith(chalk[header](error.name)))
+  t.true(consoleArg.includes(chalk[header](error.name)))
 })
 
 test.serial('"header" colorizes the icon', (t) => {
