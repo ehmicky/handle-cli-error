@@ -13,7 +13,7 @@ Error handler for CLI applications.
 
 # Features
 
-- 🖍️ Pretty: [colors](#-colors)
+- 🖍️ Pretty: [colors](#%EF%B8%8F-colors)
 - 💣 [Error class-specific](#-classes) handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors

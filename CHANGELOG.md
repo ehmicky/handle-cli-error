@@ -21,7 +21,8 @@ handleCliError(error, { stack: false })
 
 ## Features
 
-- The [`colors` option](README.md#-colors) has been added to hide colors
+- The [`colors` option](README.md#%EF%B8%8F-colors) has been added to hide
+  colors
 - The [`props` option](README.md#-props) has been added to hide error properties
 
 # 2.5.1
