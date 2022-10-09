@@ -39,7 +39,9 @@ const splitStack = function (lines, error) {
 }
 
 // Find first line with `error.name` and `error.message`, excluding the preview
-// added by `--enable-source-maps`
+// added by `--enable-source-maps`.
+// When `error.name` does not match `error.constructor.name`, `util.inspect()`
+// prints `{error.constructor.name} {error.name}`
 const isMessageLine = function (line, error) {
   return (
     line.startsWith(`${error.name}: `) ||
