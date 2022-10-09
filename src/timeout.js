@@ -1,3 +1,23 @@
+import { handleInvalidOpts } from './options/invalid.js'
+
+// Validate `timeout` option
+export const validateTimeout = function (timeout, optName) {
+  if (
+    (!Number.isInteger(timeout) || timeout <= 0) &&
+    !isSpecialTimeout(timeout)
+  ) {
+    handleInvalidOpts(
+      'must be 0, a positive integer or Infinity',
+      timeout,
+      optName,
+    )
+  }
+}
+
+const isSpecialTimeout = function (timeout) {
+  return timeout === INFINITE_TIMEOUT || timeout === NO_TIMEOUT
+}
+
 // Wait for a timeout to complete.
 // We still recommend users to perform cleanup logic in try/catch blocks,
 // preventing the need for this option.

@@ -1,6 +1,22 @@
 import process from 'process'
 
+import { handleInvalidOpts } from './options/invalid.js'
 import { waitForTimeout } from './timeout.js'
+
+// Validate `exitCode` option
+export const validateExitCode = function (exitCode, optName) {
+  if (
+    !Number.isInteger(exitCode) ||
+    exitCode < MIN_EXIT_CODE ||
+    exitCode > MAX_EXIT_CODE
+  ) {
+    handleInvalidOpts(
+      `must be between ${MIN_EXIT_CODE} and ${MAX_EXIT_CODE}`,
+      exitCode,
+      optName,
+    )
+  }
+}
 
 // We use `process.exitCode` instead of `process.exit()` to let any pending
 // tasks complete, with a timeout.
@@ -13,9 +29,9 @@ export const exitProcess = function (exitCode, timeout) {
 }
 
 // Minimum exit code
-export const MIN_EXIT_CODE = 0
+const MIN_EXIT_CODE = 0
 // 126-255 have special meaning in Bash.
-export const MAX_EXIT_CODE = 124
+const MAX_EXIT_CODE = 124
 // 125 is reserved for invalid options with `handle-cli-error` itself.
 export const INVALID_OPTS_EXIT_CODE = 125
 // `options.exitCode` default value

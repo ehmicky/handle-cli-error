@@ -2,7 +2,8 @@ import normalizeException from 'normalize-exception'
 
 import { INVALID_OPTS_EXIT_CODE } from '../exit.js'
 
-import { removeUndefined, applyDefaultOpts, DEFAULT_OPTS } from './default.js'
+import { applyClassesOpts } from './classes.js'
+import { applyDefaultOpts, DEFAULT_OPTS } from './default.js'
 import { validateOptions } from './validate.js'
 
 // Normalize and validate options
@@ -22,13 +23,6 @@ const safeGetOpts = function (opts, error) {
   const optsA = applyClassesOpts(error, opts)
   const optsB = applyDefaultOpts(optsA)
   return { error, opts: optsB }
-}
-
-// `options.classes.{ErrorName}.*` is like `options.*` but only applies if
-// `error.name` matches.
-const applyClassesOpts = function ({ name }, { classes = {}, ...opts } = {}) {
-  const classesOpts = classes[name] || classes.default || {}
-  return { ...opts, ...removeUndefined(classesOpts) }
 }
 
 // Options used when invalid input is passed
