@@ -16,7 +16,8 @@ Error handler for CLI applications.
 - 💣 [Error class-specific](#-classes) handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
-- 📕 Log verbosity: full, [no stack](#-stack) or [silent](#-silent)
+- 🧯 Log verbosity: full, [no stack](#-stack), [no properties](#-properties) or
+  [silent](#-silent)
 - 🚨 Custom [exit code](#-exitcode)
 - 💥 Exception-safe
 
@@ -90,7 +91,14 @@ Note: when passing invalid [`options`](#options), the exit code is always `125`.
 _Type_: `boolean`\
 _Default_: `true`
 
-Whether to log the `error` stack trace.
+Whether to log the error's stack trace.
+
+#### 🧯 props
+
+_Type_: `boolean`\
+_Default_: `true`
+
+Whether to log the error's additional properties.
 
 #### 🔕 silent
 
