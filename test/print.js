@@ -35,6 +35,9 @@ const recursiveError = new Error('test')
 // eslint-disable-next-line fp/no-mutation
 recursiveError.self = recursiveError
 const deepErrors = createDeepErrors()
+const propsError = new Error('test')
+// eslint-disable-next-line fp/no-mutation
+propsError.prop = 'propValue'
 
 test.serial('Does not log if "silent" is true', (t) => {
   t.is(handleError(testError, { silent: true }).consoleArg, undefined)
@@ -70,3 +73,14 @@ each(
     })
   },
 )
+
+each([true, false], [true, false], ({ title }, stack, props) => {
+  test.serial(`Prints properties providing "props" is true | ${title}`, (t) => {
+    t.is(
+      handleError(propsError, { stack, props }).consoleArg.includes(
+        propsError.prop,
+      ),
+      props,
+    )
+  })
+})
