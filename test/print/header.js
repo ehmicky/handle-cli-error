@@ -50,14 +50,22 @@ test.serial('"header" is not added to preview lines', (t) => {
   t.true(consoleArg.startsWith(preview))
 })
 
+test.serial('"header" works with empty messages', (t) => {
+  const error = new Error('')
+  const header = 'green'
+  const { consoleArg } = handleError(error, { colors: true, icon: '', header })
+  t.true(consoleArg.startsWith(chalk[header](error.name)))
+})
+
 test.serial('"header" colorizes the icon', (t) => {
   const error = new Error('test')
+  const header = 'green'
   const { consoleArg } = handleError(error, {
     colors: true,
     icon: 'warning',
-    header: 'green',
+    header,
   })
   t.true(
-    consoleArg.startsWith(chalk.green(`${figures.warning} ${error.name}:`)),
+    consoleArg.startsWith(chalk[header](`${figures.warning} ${error.name}:`)),
   )
 })
