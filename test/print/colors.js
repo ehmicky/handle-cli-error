@@ -34,9 +34,7 @@ each(
       t.not(
         handleError(
           new Error(`a ${quote}b${newline}${quote} c ${quote}d${quote}`),
-          {
-            colors: true,
-          },
+          { colors: true },
         ).consoleArg.includes(
           `a ${quote}${chalk[style]('b')}${newline}${quote} c ${quote}${chalk[
             style
@@ -68,3 +66,16 @@ each(['Error: ', 'Error [TypeError]: '], ({ title }, name) => {
     },
   )
 })
+
+test.serial(
+  '"colors" does not colorize quoted strings without preview nor lines',
+  (t) => {
+    const error = new Error('test')
+    error.stack = '"a"'
+    t.true(
+      handleError(error, { colors: true }).consoleArg.includes(
+        `"${chalk.bold('a')}"`,
+      ),
+    )
+  },
+)
