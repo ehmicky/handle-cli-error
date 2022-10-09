@@ -92,6 +92,7 @@ const VALIDATORS = {
   silent: validateBooleanOpt,
   stack: validateBooleanOpt,
   props: validateBooleanOpt,
+  colors: validateBooleanOpt,
   exitCode: validateExitCode,
   timeout: validateTimeout,
   classes: validateClasses,

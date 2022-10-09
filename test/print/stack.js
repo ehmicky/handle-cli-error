@@ -31,7 +31,6 @@ const setDeepError = function (error, depth) {
   setDeepError(error.cause, depth - 1)
 }
 
-const testError = new TypeError('test')
 const recursiveError = new TypeError('test')
 // eslint-disable-next-line fp/no-mutation
 recursiveError.self = recursiveError
@@ -40,20 +39,16 @@ const ownNameError = new Error('test')
 // eslint-disable-next-line fp/no-mutation
 ownNameError.name = 'TypeError'
 
-test.serial('Print stack by default', (t) => {
-  t.true(handleError(testError).consoleArg.includes('at '))
-})
-
 each(
   [recursiveError, ...deepErrors],
-  [true, false],
-  [true, false],
+  [true, false, undefined],
+  [true, false, undefined],
   // eslint-disable-next-line max-params
   ({ title }, error, stack, props) => {
-    test.serial(`Prints stack providing "stack" is true | ${title}`, (t) => {
+    test.serial(`Prints stack unless "stack" is false | ${title}`, (t) => {
       t.is(
         handleError(error, { stack, props }).consoleArg.includes('at '),
-        stack,
+        stack !== false,
       )
     })
 
