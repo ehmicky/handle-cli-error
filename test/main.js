@@ -19,10 +19,10 @@ each(
   },
 )
 
-test('validateOpts() throws on invalid options', (t) => {
+test.serial('validateOpts() throws on invalid options', (t) => {
   t.throws(validateOptions.bind(undefined, { silent: 'true' }))
 })
 
-test('validateOpts() does not throw on valid options', (t) => {
+test.serial('validateOpts() does not throw on valid options', (t) => {
   t.notThrows(validateOptions.bind(undefined, { silent: true }))
 })

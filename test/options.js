@@ -32,7 +32,7 @@ each(
     { classes: { default: { classes: {} } } },
   ],
   ({ title }, options) => {
-    test(`Handle invalid options | ${title}`, (t) => {
+    test.serial(`Handle invalid options | ${title}`, (t) => {
       const { consoleArg, exitCode } = handleError('', options)
       t.true(consoleArg.includes(PACKAGE_NAME))
       t.is(exitCode, INVALID_OPTS_EXIT_CODE)
@@ -53,7 +53,7 @@ each(
     ]),
   ],
   ({ title }, options) => {
-    test(`Allow undefined options | ${title}`, (t) => {
+    test.serial(`Allow undefined options | ${title}`, (t) => {
       t.not(handleError('', options), INVALID_OPTS_EXIT_CODE)
     })
   },
@@ -68,7 +68,7 @@ each(
     },
   ],
   ({ title }, { options, expectedCode }) => {
-    test(`Undefined options are ignored | ${title}`, (t) => {
+    test.serial(`Undefined options are ignored | ${title}`, (t) => {
       t.is(handleError('', options).exitCode, expectedCode)
     })
   },
@@ -84,7 +84,7 @@ each(
     { exitCode: 2, classes: { typeerror: { exitCode: 1 } } },
   ],
   ({ title }, options) => {
-    test(`Apply option "classes" | ${title}`, (t) => {
+    test.serial(`Apply option "classes" | ${title}`, (t) => {
       const typeError = new TypeError('test')
       const { exitCode } = handleError(typeError, options)
       t.is(exitCode, 2)

@@ -18,7 +18,7 @@ each(
     { handlerTimeout: 1e8, logicTimeout: 1 },
   ],
   ({ title }, { handlerTimeout, logicTimeout }) => {
-    test(`Process is not held | ${title}`, async (t) => {
+    test.serial(`Process is not held | ${title}`, async (t) => {
       const { exitCode, stderr, timedOut } = await execa(
         'node',
         [FIXTURE_PATH, String(handlerTimeout), String(logicTimeout)],
