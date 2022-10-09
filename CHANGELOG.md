@@ -19,6 +19,11 @@ After:
 handleCliError(error, { stack: false })
 ```
 
+## Features
+
+- The [`props` option](README.md#-props) has been added. When `false`, error
+  properties are not logged.
+
 # 2.5.1
 
 ## Bug fixes
