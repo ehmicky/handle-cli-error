@@ -8,7 +8,7 @@ const createDeepErrors = function () {
 }
 
 const createDeepError = function (_, depth) {
-  const error = new Error('test')
+  const error = new TypeError('test')
   setDeepError(error, depth)
   return error
 }
@@ -20,7 +20,7 @@ const setDeepError = function (error, depth) {
 
   // eslint-disable-next-line fp/no-mutating-methods
   Object.defineProperty(error, 'cause', {
-    value: new Error('test'),
+    value: new TypeError('test'),
     enumerable: false,
     writable: true,
     configurable: true,
@@ -30,17 +30,17 @@ const setDeepError = function (error, depth) {
   setDeepError(error.cause, depth - 1)
 }
 
-const testError = new Error('test')
-const recursiveError = new Error('test')
+const testError = new TypeError('test')
+const recursiveError = new TypeError('test')
 // eslint-disable-next-line fp/no-mutation
 recursiveError.self = recursiveError
 const deepErrors = createDeepErrors()
-const propsError = new Error('test')
+const propsError = new TypeError('test')
 // eslint-disable-next-line fp/no-mutation
 propsError.prop = 'propValue'
 const ownNameError = new Error('test')
 // eslint-disable-next-line fp/no-mutation
-ownNameError.name = 'OtherError'
+ownNameError.name = 'TypeError'
 
 test.serial('Does not log if "silent" is true', (t) => {
   t.is(handleError(testError, { silent: true }).consoleArg, undefined)
