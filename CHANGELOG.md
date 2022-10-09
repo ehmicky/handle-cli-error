@@ -21,8 +21,8 @@ handleCliError(error, { stack: false })
 
 ## Features
 
-- The [`props` option](README.md#-props) has been added. When `false`, error
-  properties are not logged.
+- The [`colors` option](README.md#-colors) has been added to hide colors
+- The [`props` option](README.md#-props) has been added to hide error properties
 
 # 2.5.1
 

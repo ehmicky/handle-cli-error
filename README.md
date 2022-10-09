@@ -13,6 +13,7 @@ Error handler for CLI applications.
 
 # Features
 
+- 🖍️ Pretty: [colors](#-colors)
 - 💣 [Error class-specific](#-classes) handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
@@ -105,6 +106,13 @@ _Type_: `boolean`\
 _Default_: `false`
 
 Exits the process without logging anything on the console.
+
+#### 🖍️ colors
+
+_Type_: `boolean`\
+_Default_: `true`
+
+Whether to log with colors.
 
 #### 🚒 timeout
 
