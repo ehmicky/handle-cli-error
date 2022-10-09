@@ -1,6 +1,8 @@
 import test from 'ava'
 
 // eslint-disable-next-line no-restricted-imports
+import { DEFAULT_EXIT_CODE } from '../src/exit.js'
+// eslint-disable-next-line no-restricted-imports
 import { NO_TIMEOUT, INFINITE_TIMEOUT } from '../src/timeout.js'
 
 import { handleError } from './helpers/main.js'
@@ -8,15 +10,15 @@ import { handleError } from './helpers/main.js'
 test.serial('Default timeout', (t) => {
   const { exitCodeBefore, exitCodeAfter } = handleError()
   t.is(exitCodeBefore, undefined)
-  t.not(exitCodeAfter, undefined)
+  t.is(exitCodeAfter, DEFAULT_EXIT_CODE)
 })
 
 test.serial('No timeout', (t) => {
   const { exitCodeBefore, exitCodeAfter } = handleError('', {
     timeout: NO_TIMEOUT,
   })
-  t.not(exitCodeBefore, undefined)
-  t.not(exitCodeAfter, undefined)
+  t.is(exitCodeBefore, DEFAULT_EXIT_CODE)
+  t.is(exitCodeAfter, DEFAULT_EXIT_CODE)
 })
 
 test.serial('Infinite timeout', (t) => {
