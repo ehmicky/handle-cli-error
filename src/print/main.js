@@ -1,6 +1,7 @@
 import { inspect } from 'util'
 
-import { getColors, colorizeError } from './colors.js'
+import { getColors } from './colors.js'
+import { prettifyError } from './pretty.js'
 import { omitProps } from './props.js'
 import {
   omitStack,
@@ -22,7 +23,7 @@ export const printError = function ({ error, silent, stack, props, colors }) {
 
   const { chalk, useColors } = getColors(colors)
   const errorString = serializeError({ error, stack, props, useColors })
-  const errorStringA = colorizeError({ error, errorString, chalk, useColors })
+  const errorStringA = prettifyError({ error, errorString, chalk, useColors })
   // eslint-disable-next-line no-restricted-globals, no-console
   console.error(errorStringA)
 }
