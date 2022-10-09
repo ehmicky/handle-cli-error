@@ -128,12 +128,13 @@ Can be disabled by passing an empty string.
 
 #### 💄 header
 
-_Type_: `string[]`\
-_Default_: `['red']`
+_Type_: `string`\
+_Default_: `'red bold'`
 
 Color/style of the error's [icon](#-icon) and name. The available values are
-listed [here](https://github.com/chalk/chalk#styles). Can be disabled by passing
-an empty array.
+listed [here](https://github.com/ehmicky/chalk-string#available-styles). Several
+styles can be specified by using spaces like `"red bold"`. Can be disabled by
+passing an empty string.
 
 #### 🚒 timeout
 

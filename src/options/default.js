@@ -14,7 +14,7 @@ export const DEFAULT_OPTS = {
   stack: true,
   props: true,
   icon: 'cross',
-  header: 'red',
+  header: 'red bold',
   exitCode: DEFAULT_EXIT_CODE,
   timeout: DEFAULT_TIMEOUT,
 }

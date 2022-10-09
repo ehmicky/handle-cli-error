@@ -10,7 +10,7 @@ const testOpts = { icon: '', colors: true }
 
 each(
   [
-    { header: undefined, styles: 'red' },
+    { header: undefined, styles: 'red bold' },
     { header: 'bold', styles: 'bold' },
     { header: 'red bold', styles: 'red bold' },
   ],

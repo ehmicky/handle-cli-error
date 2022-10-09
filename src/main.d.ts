@@ -1,4 +1,5 @@
 import figures from 'figures'
+import type { Styles } from 'chalk-string'
 
 /**
  * `handle-cli-error` options
@@ -55,12 +56,13 @@ export interface Options {
 
   /**
    * Color/style of the error's icon and name. The available values are listed
-   * [here](https://github.com/chalk/chalk#styles).
-   * Can be disabled by passing an empty array.
+   * [here](https://github.com/ehmicky/chalk-string#available-styles).
+   * Several styles can be specified by using spaces like `"red bold"`.
+   * Can be disabled by passing an empty string.
    *
-   * @default ['red']
+   * @default 'red bold'
    */
-  readonly header?: string[]
+  readonly header?: Styles | ''
 
   /**
    * The process exits gracefully: it waits for any ongoing tasks (callbacks,
