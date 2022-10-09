@@ -13,7 +13,7 @@ Error handler for CLI applications.
 
 # Features
 
-- 🖍️ Pretty: [colors](#%EF%B8%8F-colors)
+- 🖍️ Pretty: [colors](#%EF%B8%8F-colors), [icons](#-icon)
 - 💣 [Error class-specific](#-classes) handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
@@ -116,6 +116,16 @@ Whether to colorize the error's message, stack trace and additional properties.
 
 Quoted strings in the error's message are printed in bold (for `"..."` and
 `'...'`) and in italic (for `` `...` ``).
+
+#### ❌ icon
+
+_Type_: `string`\
+_Default_: `"cross"`
+
+Icon prepended to the error's name. The available icons are listed
+[here](https://github.com/sindresorhus/figures/blob/main/readme.md#figures-1).
+
+This can be disabled by passing an empty string.
 
 #### 🚒 timeout
 
