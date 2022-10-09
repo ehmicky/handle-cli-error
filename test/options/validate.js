@@ -2,9 +2,8 @@ import test from 'ava'
 import { each } from 'test-each'
 
 // eslint-disable-next-line no-restricted-imports
-import { INVALID_OPTS_EXIT_CODE, DEFAULT_EXIT_CODE } from '../src/exit.js'
-
-import { handleError } from './helpers/main.js'
+import { INVALID_OPTS_EXIT_CODE } from '../../src/exit.js'
+import { handleError } from '../helpers/main.js'
 
 const PACKAGE_NAME = 'handle-cli-error'
 
@@ -61,39 +60,6 @@ each(
   ({ title }, options) => {
     test.serial(`Allow undefined options | ${title}`, (t) => {
       t.not(handleError('', options), INVALID_OPTS_EXIT_CODE)
-    })
-  },
-)
-
-each(
-  [
-    { options: { exitCode: undefined }, expectedCode: DEFAULT_EXIT_CODE },
-    {
-      options: { exitCode: 2, classes: { default: { exitCode: undefined } } },
-      expectedCode: 2,
-    },
-  ],
-  ({ title }, { options, expectedCode }) => {
-    test.serial(`Undefined options are ignored | ${title}`, (t) => {
-      t.is(handleError('', options).exitCode, expectedCode)
-    })
-  },
-)
-
-each(
-  [
-    { classes: { TypeError: { exitCode: 2 } } },
-    { exitCode: 2, classes: { Error: { exitCode: 1 } } },
-    { classes: { Error: { exitCode: 1 }, default: { exitCode: 2 } } },
-    { classes: { TypeError: { exitCode: 2 }, default: { exitCode: 1 } } },
-    { exitCode: 1, classes: { default: { exitCode: 2 } } },
-    { exitCode: 2, classes: { typeerror: { exitCode: 1 } } },
-  ],
-  ({ title }, options) => {
-    test.serial(`Apply option "classes" | ${title}`, (t) => {
-      const typeError = new TypeError('test')
-      const { exitCode } = handleError(typeError, options)
-      t.is(exitCode, 2)
     })
   },
 )
