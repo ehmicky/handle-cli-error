@@ -27,16 +27,22 @@ each(
     { quote: "'", style: 'bold' },
     { quote: '`', style: 'italic' },
   ],
-  ({ title }, { quote, style }) => {
+  [true, false],
+  ({ title }, { quote, style }, hasNewline) => {
     test.serial(`"colors" colorize quoted strings | ${title}`, (t) => {
-      t.true(
-        handleError(new Error(`a ${quote}b${quote} c ${quote}d${quote}`), {
-          colors: true,
-        }).consoleArg.includes(
-          `a ${quote}${chalk[style]('b')}${quote} c ${quote}${chalk[style](
-            'd',
-          )}${quote}`,
+      const newline = hasNewline ? '\n' : ''
+      t.not(
+        handleError(
+          new Error(`a ${quote}b${newline}${quote} c ${quote}d${quote}`),
+          {
+            colors: true,
+          },
+        ).consoleArg.includes(
+          `a ${quote}${chalk[style]('b')}${newline}${quote} c ${quote}${chalk[
+            style
+          ]('d')}${quote}`,
         ),
+        hasNewline,
       )
     })
   },
