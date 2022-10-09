@@ -17,7 +17,7 @@ each(
     test.serial(`"header" is applied | ${title}`, (t) => {
       const error = new Error('test')
       const { consoleArg } = handleError(error, { ...testOpts, header })
-      t.true(consoleArg.startsWith(chalk[style](`${error.name}:`)))
+      t.true(consoleArg.includes(chalk[style](`${error.name}:`)))
       t.pass()
     })
   },
@@ -29,7 +29,7 @@ each([{ colors: false }, { header: '' }], ({ title }, opts) => {
     (t) => {
       const error = new Error('test')
       const { consoleArg } = handleError(error, { ...testOpts, ...opts })
-      t.true(consoleArg.startsWith(`${error.name}:`))
+      t.true(consoleArg.includes(`${error.name}: `))
       t.pass()
     },
   )
@@ -59,6 +59,6 @@ test.serial('"header" colorizes the icon', (t) => {
     header,
   })
   t.true(
-    consoleArg.startsWith(chalk[header](`${figures.warning} ${error.name}:`)),
+    consoleArg.includes(chalk[header](`${figures.warning} ${error.name}:`)),
   )
 })
