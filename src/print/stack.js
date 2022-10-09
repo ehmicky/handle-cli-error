@@ -11,11 +11,7 @@ export const omitStack = function (error, stack) {
 }
 
 const omitStackProp = function (object) {
-  if (
-    !isErrorInstance(object) ||
-    typeof object.stack !== 'string' ||
-    object.stack === ''
-  ) {
+  if (!isErrorInstance(object)) {
     return
   }
 
