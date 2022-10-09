@@ -14,7 +14,7 @@ each(
     test.serial(`"icon" prepends an icon | ${title}`, (t) => {
       const error = new Error('test')
       const { consoleArg } = handleError(error, { icon })
-      t.true(consoleArg.startsWith(`${output}${error.name}`))
+      t.true(consoleArg.includes(`${output}${error.name}`))
     })
   },
 )
