@@ -1,3 +1,5 @@
+import { inspect } from 'util'
+
 import test from 'ava'
 import { each } from 'test-each'
 
@@ -7,7 +9,7 @@ const testError = new Error('test')
 
 each(
   [
-    { options: {}, expectedArg: testError },
+    { options: {}, expectedArg: inspect(testError, { colors: true }) },
     {
       options: { stack: false },
       expectedArg: `${testError.name}: ${testError.message}`,
