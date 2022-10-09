@@ -7,6 +7,10 @@ const propsError = new TypeError('test')
 // eslint-disable-next-line fp/no-mutation
 propsError.prop = 'propValue'
 
+test.serial('Print properties by default', (t) => {
+  t.true(handleError(propsError).consoleArg.includes(propsError.prop))
+})
+
 each([true, false], [true, false], ({ title }, stack, props) => {
   test.serial(`Prints properties providing "props" is true | ${title}`, (t) => {
     t.is(
@@ -16,8 +20,4 @@ each([true, false], [true, false], ({ title }, stack, props) => {
       props,
     )
   })
-})
-
-test.serial('Print properties by default', (t) => {
-  t.true(handleError(propsError).consoleArg.includes(propsError.prop))
 })

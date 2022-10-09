@@ -40,6 +40,10 @@ const ownNameError = new Error('test')
 // eslint-disable-next-line fp/no-mutation
 ownNameError.name = 'TypeError'
 
+test.serial('Print stack by default', (t) => {
+  t.true(handleError(testError).consoleArg.includes('at '))
+})
+
 each(
   [recursiveError, ...deepErrors],
   [true, false],
@@ -95,8 +99,4 @@ test.serial('Does not remove stacks from non-errors', (t) => {
       error.prop.stack,
     ),
   )
-})
-
-test.serial('Print stack by default', (t) => {
-  t.true(handleError(testError).consoleArg.includes('at '))
 })
