@@ -1,10 +1,10 @@
 import test from 'ava'
-import colorsOption from 'colors-option'
+import chalkString from 'chalk-string'
 import { each } from 'test-each'
 
 import { handleError } from '../helpers/main.js'
 
-const chalk = colorsOption({ colors: true })
+const addStyles = chalkString({ colors: true })
 
 test.serial('"colors" does not colorize quoted strings in stack line', (t) => {
   const error = new Error('test')
@@ -23,7 +23,7 @@ each(['Error: ', 'Error [TypeError]: '], ({ title }, name) => {
       error.stack = `${previewLines}\n${name}${error.stack}`
       const { consoleArg } = handleError(error, { colors: true })
       t.true(consoleArg.startsWith(previewLines))
-      t.true(consoleArg.includes(`"${chalk.bold('b')}"`))
+      t.true(consoleArg.includes(`"${addStyles('bold', 'b')}"`))
     },
   )
 })
@@ -34,6 +34,6 @@ test.serial(
     const error = new Error('test')
     error.stack = '"a"'
     const { consoleArg } = handleError(error, { colors: true })
-    t.true(consoleArg.includes(`"${chalk.bold('a')}"`))
+    t.true(consoleArg.includes(`"${addStyles('bold', 'a')}"`))
   },
 )

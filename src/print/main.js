@@ -29,12 +29,12 @@ export const printError = function ({
     return
   }
 
-  const { chalk, useColors } = getColors(colors)
+  const { addStyles, useColors } = getColors(colors)
   const errorString = serializeError({ error, stack, props, useColors })
   const errorStringA = prettifyError({
     error,
     errorString,
-    chalk,
+    addStyles,
     useColors,
     icon,
     header,

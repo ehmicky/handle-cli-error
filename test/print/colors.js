@@ -1,12 +1,12 @@
 import test from 'ava'
-import colorsOption from 'colors-option'
+import chalkString from 'chalk-string'
 import hasAnsi from 'has-ansi'
 import { each } from 'test-each'
 
 import { handleError } from '../helpers/main.js'
 
 const testError = new TypeError('test')
-const chalk = colorsOption({ colors: true })
+const addStyles = chalkString({ colors: true })
 
 each([true, false], ({ title }, colors) => {
   test.serial(`Add colors unless "colors" is false | ${title}`, (t) => {
@@ -22,12 +22,12 @@ test.serial('"colors" defaults to TTY color support', (t) => {
 
 each(
   [
-    { quote: '"', style: 'bold' },
-    { quote: "'", style: 'bold' },
-    { quote: '`', style: 'italic' },
+    { quote: '"', styles: 'bold' },
+    { quote: "'", styles: 'bold' },
+    { quote: '`', styles: 'italic' },
   ],
   [true, false],
-  ({ title }, { quote, style }, hasNewline) => {
+  ({ title }, { quote, styles }, hasNewline) => {
     test.serial(`"colors" colorize quoted strings | ${title}`, (t) => {
       const newline = hasNewline ? '\n' : ''
       const error = new Error(
@@ -36,9 +36,10 @@ each(
       const { consoleArg } = handleError(error, { colors: true })
       t.not(
         consoleArg.includes(
-          `a ${quote}${chalk[style]('b')}${newline}${quote} c ${quote}${chalk[
-            style
-          ]('d')}${quote}`,
+          `a ${quote}${addStyles(
+            styles,
+            'b',
+          )}${newline}${quote} c ${quote}${addStyles(styles, 'd')}${quote}`,
         ),
         hasNewline,
       )

@@ -10,20 +10,27 @@ import { addIcon } from './icon.js'
 export const prettifyError = function ({
   error,
   errorString,
-  chalk,
+  addStyles,
   useColors,
   icon,
   header,
 }) {
   const lines = errorString.split('\n')
-  const linesA = prettifyLines({ error, lines, chalk, useColors, icon, header })
+  const linesA = prettifyLines({
+    error,
+    lines,
+    addStyles,
+    useColors,
+    icon,
+    header,
+  })
   return linesA.join('\n')
 }
 
 const prettifyLines = function ({
   error,
   lines,
-  chalk,
+  addStyles,
   useColors,
   icon,
   header,
@@ -34,11 +41,11 @@ const prettifyLines = function ({
     messageLines: messageLinesA,
     header,
     useColors,
-    chalk,
+    addStyles,
     error,
   })
   const messageLinesC = messageLinesB.map((line) =>
-    colorizeLine(line, useColors, chalk),
+    colorizeLine(line, useColors, addStyles),
   )
   return [...previewLines, ...messageLinesC, ...stackLines]
 }

@@ -12,7 +12,7 @@ export const applyHeader = function ({
   messageLines,
   header,
   useColors,
-  chalk,
+  addStyles,
   error,
 }) {
   if (header === '' || !useColors) {
@@ -23,13 +23,18 @@ export const applyHeader = function ({
   const firstMessageLineA = applyHeaderLine({
     firstMessageLine,
     header,
-    chalk,
+    addStyles,
     error,
   })
   return [firstMessageLineA, ...messageLinesA]
 }
 
-const applyHeaderLine = function ({ firstMessageLine, header, chalk, error }) {
+const applyHeaderLine = function ({
+  firstMessageLine,
+  header,
+  addStyles,
+  error,
+}) {
   const endIndex = getEndIndex(firstMessageLine, error)
 
   if (endIndex === -1) {
@@ -38,7 +43,7 @@ const applyHeaderLine = function ({ firstMessageLine, header, chalk, error }) {
 
   const start = firstMessageLine.slice(0, endIndex)
   const end = firstMessageLine.slice(endIndex)
-  return `${chalk[header](start)}${end}`
+  return `${addStyles(header, start)}${end}`
 }
 
 const getEndIndex = function (firstMessageLine, error) {

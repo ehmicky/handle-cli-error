@@ -1,23 +1,24 @@
 import test from 'ava'
-import colorsOption from 'colors-option'
+import chalkString from 'chalk-string'
 import figures from 'figures'
 import { each } from 'test-each'
 
 import { handleError } from '../helpers/main.js'
 
-const chalk = colorsOption({ colors: true })
+const addStyles = chalkString({ colors: true })
 const testOpts = { icon: '', colors: true }
 
 each(
   [
-    { header: undefined, style: 'red' },
-    { header: 'bold', style: 'bold' },
+    { header: undefined, styles: 'red' },
+    { header: 'bold', styles: 'bold' },
+    { header: 'red bold', styles: 'red bold' },
   ],
-  ({ title }, { header, style }) => {
+  ({ title }, { header, styles }) => {
     test.serial(`"header" is applied | ${title}`, (t) => {
       const error = new Error('test')
       const { consoleArg } = handleError(error, { ...testOpts, header })
-      t.true(consoleArg.includes(chalk[style](`${error.name}:`)))
+      t.true(consoleArg.includes(addStyles(styles, `${error.name}:`)))
       t.pass()
     })
   },
@@ -47,7 +48,7 @@ test.serial('"header" works with empty messages', (t) => {
   const error = new Error('')
   const header = 'green'
   const { consoleArg } = handleError(error, { ...testOpts, header })
-  t.true(consoleArg.includes(chalk[header](error.name)))
+  t.true(consoleArg.includes(addStyles(header, error.name)))
 })
 
 test.serial('"header" colorizes the icon', (t) => {
@@ -59,6 +60,6 @@ test.serial('"header" colorizes the icon', (t) => {
     header,
   })
   t.true(
-    consoleArg.includes(chalk[header](`${figures.warning} ${error.name}:`)),
+    consoleArg.includes(addStyles(header, `${figures.warning} ${error.name}:`)),
   )
 })
