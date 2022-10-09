@@ -11,16 +11,21 @@ export const prettifyError = function ({
   useColors,
 }) {
   const lines = errorString.split('\n')
+  const linesA = prettifyLines({ error, lines, chalk, useColors })
+  return linesA.join('\n')
+}
+
+const prettifyLines = function ({ error, lines, chalk, useColors }) {
   const { previewLines, messageLines, stackLines } = splitStack(lines, error)
 
   if (messageLines === undefined) {
-    return errorString
+    return lines
   }
 
   const messageLinesA = messageLines.map((line) =>
     colorizeLine(line, useColors, chalk),
   )
-  return [...previewLines, ...messageLinesA, ...stackLines].join('\n')
+  return [...previewLines, ...messageLinesA, ...stackLines]
 }
 
 const splitStack = function (lines, error) {
@@ -45,7 +50,10 @@ const splitStack = function (lines, error) {
 // Find first line with `error.name` and `error.message`, excluding the preview
 // added by `--enable-source-maps`
 const isFirstLine = function (line, error) {
-  return line.startsWith(`${error.name}: `)
+  return (
+    line.startsWith(`${error.name}: `) ||
+    line.startsWith(`${error.constructor.name} [`)
+  )
 }
 
 // Find first line with stack trace
