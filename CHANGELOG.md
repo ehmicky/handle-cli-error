@@ -25,6 +25,8 @@ handleCliError(error, { stack: false })
   colors. It defaults to `true` in terminals.
 - Quoted strings in the error message are now
   [colorized](README.md#%EF%B8%8F-colors).
+- An icon is now prepended to the error's name. It can be configured using the
+  [`icon` option](README.md#-icon)
 - The [`props` option](README.md#-props) has been added to hide error properties
 
 # 2.5.1
