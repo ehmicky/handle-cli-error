@@ -76,7 +76,7 @@ _Return value_: `undefined`
 
 Logs `error` on the console (`stderr`) then exits the process.
 
-This never throws. Invalid `error`s are silently
+This never throws. Invalid errors are silently
 [normalized](https://github.com/ehmicky/normalize-exception).
 
 ### Options
