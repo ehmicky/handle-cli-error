@@ -1,5 +1,3 @@
-import { inspect } from 'util'
-
 import test from 'ava'
 import { each } from 'test-each'
 
@@ -7,18 +5,25 @@ import { handleError } from './helpers/main.js'
 
 const testError = new Error('test')
 
-each(
-  [
-    { options: {}, expectedArg: inspect(testError, { colors: true }) },
-    {
-      options: { stack: false },
-      expectedArg: `${testError.name}: ${testError.message}`,
+test.serial('Does not log if "silent" is true', (t) => {
+  t.is(handleError(testError, { silent: true }).consoleArg, undefined)
+})
+
+each([true, false], ({ title }, stack) => {
+  test.serial(
+    `Prints top-level stack providing "stack" is true | ${title}`,
+    (t) => {
+      t.is(handleError(testError, { stack }).consoleArg.includes('at '), stack)
     },
-    { options: { silent: true }, expectedArg: undefined },
-  ],
-  ({ title }, { options, expectedArg }) => {
-    test.serial(`Prints error on console | ${title}`, (t) => {
-      t.is(handleError(testError, options).consoleArg, expectedArg)
-    })
-  },
-)
+  )
+})
+
+each([true, false], [true, false], ({ title }, stack, props) => {
+  test.serial(`Prints error name and message | ${title}`, (t) => {
+    t.true(
+      handleError(testError, { stack, props }).consoleArg.includes(
+        `${testError.name}: ${testError.message}`,
+      ),
+    )
+  })
+})
