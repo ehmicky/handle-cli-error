@@ -19,24 +19,32 @@ const clock = install()
 // `handle-cli-error` use global variables `process.exitCode`, `process.exit()`
 // and `console.error()` so we need to mock them.
 // It also relies on timeout, which we need to mock as well.
-// eslint-disable-next-line max-statements
 export const handleError = function (error, options) {
   try {
-    // eslint-disable-next-line no-restricted-globals, no-console
-    console.error.resetHistory()
-    process.exit.resetHistory()
-    clock.reset()
+    resetMocks()
     handleCliError(error, options)
     // eslint-disable-next-line no-restricted-globals, no-console
     const consoleArg = getStubArg(console.error)
-    const { exitCode, exit } = process
-    const exitCodeBefore = getStubArg(exit)
-    advanceTimeout(options)
-    const exitCodeAfter = getStubArg(exit)
-    return { consoleArg, exitCode, exitCodeBefore, exitCodeAfter }
+    const processExitArgs = getProcessExitArgs(options)
+    return { consoleArg, ...processExitArgs }
   } finally {
     process.exitCode = undefined
   }
+}
+
+const resetMocks = function () {
+  // eslint-disable-next-line no-restricted-globals, no-console
+  console.error.resetHistory()
+  process.exit.resetHistory()
+  clock.reset()
+}
+
+const getProcessExitArgs = function (options) {
+  const { exitCode, exit } = process
+  const exitCodeBefore = getStubArg(exit)
+  advanceTimeout(options)
+  const exitCodeAfter = getStubArg(exit)
+  return { exitCode, exitCodeBefore, exitCodeAfter }
 }
 
 const advanceTimeout = function ({ timeout = DEFAULT_TIMEOUT } = {}) {
