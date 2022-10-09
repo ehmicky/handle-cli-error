@@ -38,6 +38,9 @@ const deepErrors = createDeepErrors()
 const propsError = new Error('test')
 // eslint-disable-next-line fp/no-mutation
 propsError.prop = 'propValue'
+const ownNameError = new Error('test')
+// eslint-disable-next-line fp/no-mutation
+ownNameError.name = 'OtherError'
 
 test.serial('Does not log if "silent" is true', (t) => {
   t.is(handleError(testError, { silent: true }).consoleArg, undefined)
@@ -81,6 +84,14 @@ each([true, false], [true, false], ({ title }, stack, props) => {
         propsError.prop,
       ),
       props,
+    )
+  })
+
+  test.serial(`Prints error name consistently | ${title}`, (t) => {
+    t.true(
+      handleError(ownNameError, { stack, props }).consoleArg.includes(
+        `Error [${ownNameError.name}`,
+      ),
     )
   })
 })
