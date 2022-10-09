@@ -4,6 +4,7 @@ import stripAnsi from 'strip-ansi'
 
 import { colorizeLine } from './colors.js'
 
+// Apply the `colors` option to make the error prettier
 export const prettifyError = function ({
   error,
   errorString,
