@@ -1,3 +1,7 @@
+# 2.5.0
+
+- Switch to MIT license
+
 # 2.4.2
 
 ## Bug fixes
