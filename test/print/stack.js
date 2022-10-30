@@ -51,7 +51,7 @@ each(
     })
 
     test.serial(`Does not put the error in brackets | ${title}`, (t) => {
-      const { consoleArg } = handleError(error, { stack, props })
+      const { consoleArg } = handleError(error, { stack, props, icon: '' })
       t.false(consoleArg.startsWith(`[${error.name}: ${error.message}]`))
     })
 
