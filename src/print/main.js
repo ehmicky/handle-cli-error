@@ -51,6 +51,6 @@ const serializeError = function ({ error, stack, props, useColors }) {
     depth: PRINT_MAX_DEPTH,
   })
   restoreStack(errorA, stack)
-  const errorStringA = omitStackBracket(errorString, stack)
+  const errorStringA = omitStackBracket(errorString)
   return errorStringA
 }

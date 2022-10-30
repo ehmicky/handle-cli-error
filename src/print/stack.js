@@ -83,8 +83,8 @@ export const PRINT_MAX_DEPTH = 2
 //  - Are less frequent
 //  - Do not look as weird with `[...]`
 //  - Would be harder to fix
-export const omitStackBracket = function (errorString, stack) {
-  return stack ? errorString : errorString.replace(STACK_BRACKET_REGEXP, '$1')
+export const omitStackBracket = function (errorString) {
+  return errorString.replace(STACK_BRACKET_REGEXP, '$1')
 }
 
 const STACK_BRACKET_REGEXP = /^\[([^\]]+)\]/u

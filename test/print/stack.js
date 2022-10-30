@@ -38,21 +38,27 @@ const deepErrors = createDeepErrors()
 const ownNameError = new Error('test')
 // eslint-disable-next-line fp/no-mutation
 ownNameError.name = 'TypeError'
+const noStackError = new Error('test')
+// eslint-disable-next-line fp/no-mutation
+noStackError.stack = noStackError.toString()
 
 each(
-  [recursiveError, ...deepErrors],
+  [recursiveError, noStackError, ...deepErrors],
   [true, false, undefined],
   [true, false, undefined],
   // eslint-disable-next-line max-params
   ({ title }, error, stack, props) => {
     test.serial(`Prints stack unless "stack" is false | ${title}`, (t) => {
       const { consoleArg } = handleError(error, { stack, props })
-      t.is(consoleArg.includes('at '), stack !== false)
+      t.is(
+        consoleArg.includes('at '),
+        stack !== false && error.stack.includes('at '),
+      )
     })
 
     test.serial(`Does not put the error in brackets | ${title}`, (t) => {
       const { consoleArg } = handleError(error, { stack, props, icon: '' })
-      t.false(consoleArg.startsWith(`[${error.name}: ${error.message}]`))
+      t.false(consoleArg.startsWith('['))
     })
 
     test.serial(`Does not modify the error | ${title}`, (t) => {

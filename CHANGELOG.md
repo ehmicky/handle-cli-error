@@ -1,3 +1,9 @@
+# 3.0.1
+
+## Bug fixes
+
+- Fix handling of errors that do not have any stack trace
+
 # 3.0.0
 
 ## Breaking changes
