@@ -57,7 +57,7 @@
     "execa": "^6.1.0",
     "has-ansi": "^5.0.1",
     "sinon": "^14.0.1",
-    "test-each": "^5.5.0"
+    "test-each": "^5.6.0"
   },
   "engines": {
     "node": ">=14.18.0"
