@@ -1,4 +1,4 @@
-import process from 'process'
+import process from 'node:process'
 
 import { install } from '@sinonjs/fake-timers'
 import handleCliError from 'handle-cli-error'

@@ -1,4 +1,4 @@
-import { inspect } from 'util'
+import { inspect } from 'node:util'
 
 import { getColors } from './colors.js'
 import { prettifyError } from './pretty.js'

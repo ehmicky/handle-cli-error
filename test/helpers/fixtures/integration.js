@@ -1,4 +1,4 @@
-import { argv } from 'process'
+import { argv } from 'node:process'
 
 import handleCliError from 'handle-cli-error'
 

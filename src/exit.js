@@ -1,4 +1,4 @@
-import process from 'process'
+import process from 'node:process'
 
 import { handleInvalidOpts } from './options/invalid.js'
 import { waitForTimeout } from './timeout.js'
