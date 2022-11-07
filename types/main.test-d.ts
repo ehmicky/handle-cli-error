@@ -5,7 +5,7 @@ import {
   expectNotAssignable,
 } from 'tsd'
 
-import handleCliError, { Options } from './main.js'
+import handleCliError, { Options } from 'handle-cli-error'
 
 expectType<void>(handleCliError(new Error('test')))
 handleCliError('error')
