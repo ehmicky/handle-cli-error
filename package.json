@@ -51,7 +51,7 @@
     "test": "test"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^1.0.113",
+    "@ehmicky/dev-tasks": "^1.0.114",
     "@sinonjs/fake-timers": "^9.1.2",
     "error-serializer": "^5.1.0",
     "execa": "^6.1.0",
