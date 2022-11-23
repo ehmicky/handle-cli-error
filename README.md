@@ -201,6 +201,8 @@ Specify [different options per error class](#error-class-specific). The object:
   some ❤ to Node.js process errors
 - [`error-http-response`](https://github.com/ehmicky/error-http-response):
   Create HTTP error responses
+- [`winston-error-format`](https://github.com/ehmicky/winston-error-format): Log
+  errors with Winston
 
 # Credits
 
