@@ -169,8 +169,8 @@ Specify [different options per error class](#error-class-specific). The object:
 
 # Related projects
 
-- [`modern-errors`](https://github.com/ehmicky/modern-errors): Handle errors
-  like it's 2023 🔮
+- [`modern-errors`](https://github.com/ehmicky/modern-errors): Handle errors in
+  a simple, stable, consistent way
 - [`modern-errors-cli`](https://github.com/ehmicky/modern-errors-cli): Handle
   errors in CLI modules
 - [`error-custom-class`](https://github.com/ehmicky/error-custom-class): Create
