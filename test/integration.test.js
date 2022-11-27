@@ -5,7 +5,7 @@ import { execa } from 'execa'
 import { each } from 'test-each'
 
 const FIXTURE_PATH = fileURLToPath(
-  new URL('helpers/fixtures/integration.test.js', import.meta.url),
+  new URL('fixtures/integration.test.js', import.meta.url),
 )
 
 each(
