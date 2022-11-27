@@ -2,8 +2,7 @@ import test from 'ava'
 import { validateOptions } from 'handle-cli-error'
 import { each } from 'test-each'
 
-// eslint-disable-next-line no-restricted-imports
-import { INVALID_OPTS_EXIT_CODE } from '../../src/exit.js'
+import { INVALID_OPTS_EXIT_CODE } from '../exit.js'
 import { handleError } from '../helpers/main.test.js'
 
 const PACKAGE_NAME = 'handle-cli-error'
