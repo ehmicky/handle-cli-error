@@ -3,7 +3,7 @@ import test from 'ava'
 // eslint-disable-next-line no-restricted-imports
 import { DEFAULT_EXIT_CODE } from '../src/exit.js'
 
-import { handleError } from './helpers/main.js'
+import { handleError } from './helpers/main.test.js'
 
 test.serial('Default exit code', (t) => {
   const { exitCode, exitCodeAfter } = handleError()

@@ -3,7 +3,7 @@ import chalkString from 'chalk-string'
 import hasAnsi from 'has-ansi'
 import { each } from 'test-each'
 
-import { handleError } from '../helpers/main.js'
+import { handleError } from '../helpers/main.test.js'
 
 const testError = new TypeError('test')
 const addStyles = chalkString({ colors: true })

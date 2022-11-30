@@ -4,7 +4,7 @@ import { each } from 'test-each'
 
 // eslint-disable-next-line no-restricted-imports
 import { INVALID_OPTS_EXIT_CODE } from '../../src/exit.js'
-import { handleError } from '../helpers/main.js'
+import { handleError } from '../helpers/main.test.js'
 
 const PACKAGE_NAME = 'handle-cli-error'
 

@@ -2,7 +2,7 @@ import test from 'ava'
 import { serialize } from 'error-serializer'
 import { each } from 'test-each'
 
-import { handleError } from '../helpers/main.js'
+import { handleError } from '../helpers/main.test.js'
 
 const createDeepErrors = function () {
   return Array.from({ length: 5 }, createDeepError)

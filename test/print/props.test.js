@@ -1,7 +1,7 @@
 import test from 'ava'
 import { each } from 'test-each'
 
-import { handleError } from '../helpers/main.js'
+import { handleError } from '../helpers/main.test.js'
 
 const propsError = new TypeError('test')
 // eslint-disable-next-line fp/no-mutation

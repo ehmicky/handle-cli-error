@@ -2,7 +2,7 @@ import test from 'ava'
 import chalkString from 'chalk-string'
 import { each } from 'test-each'
 
-import { handleError } from '../helpers/main.js'
+import { handleError } from '../helpers/main.test.js'
 
 const addStyles = chalkString({ colors: true })
 

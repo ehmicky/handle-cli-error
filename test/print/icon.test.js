@@ -2,7 +2,7 @@ import test from 'ava'
 import figures from 'figures'
 import { each } from 'test-each'
 
-import { handleError } from '../helpers/main.js'
+import { handleError } from '../helpers/main.test.js'
 
 each(
   [

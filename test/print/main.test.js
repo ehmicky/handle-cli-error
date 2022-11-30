@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import { handleError } from '../helpers/main.js'
+import { handleError } from '../helpers/main.test.js'
 
 const testError = new TypeError('test')
 
