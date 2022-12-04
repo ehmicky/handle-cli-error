@@ -1,6 +1,5 @@
+import handleCliError, { type Options } from 'handle-cli-error'
 import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
-
-import handleCliError, { Options } from 'handle-cli-error'
 
 expectType<void>(handleCliError(new Error('test')))
 handleCliError('error')
