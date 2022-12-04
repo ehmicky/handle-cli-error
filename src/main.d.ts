@@ -1,5 +1,5 @@
 import type { Styles } from 'chalk-string'
-import figures from 'figures'
+import type figures from 'figures'
 
 /**
  * `handle-cli-error` options
