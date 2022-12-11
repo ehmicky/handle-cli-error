@@ -1,4 +1,4 @@
-import handleCliError, { type Options } from 'handle-cli-error'
+import handleCliError, { validateOptions, type Options } from 'handle-cli-error'
 import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 
 expectType<void>(handleCliError(new Error('test')))
@@ -100,3 +100,8 @@ expectNotAssignable<Options>({ classes: { Error: undefined } })
 // @ts-expect-error
 handleCliError('', { classes: { default: { exitCode: '0' } } })
 expectNotAssignable<Options>({ classes: { default: { exitCode: '0' } } })
+
+expectType<void>(validateOptions({}))
+validateOptions(0)
+// @ts-expect-error
+validateOptions()

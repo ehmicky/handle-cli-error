@@ -2,6 +2,11 @@ import type { Styles } from 'chalk-string'
 import type figures from 'figures'
 
 /**
+ * Validate `handle-cli-error` options
+ */
+export function validateOptions(options: unknown): asserts options is Options
+
+/**
  * `handle-cli-error` options
  */
 export interface Options {
