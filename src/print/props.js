@@ -10,6 +10,7 @@ export const omitProps = function (error, props) {
     return error
   }
 
+  // eslint-disable-next-line unicorn/error-message
   const errorCopy = new Error('')
   // eslint-disable-next-line fp/no-mutating-methods
   Object.setPrototypeOf(errorCopy, Object.getPrototypeOf(error))
