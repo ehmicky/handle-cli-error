@@ -14,7 +14,7 @@ const clock = install()
 // `handle-cli-error` use global variables `process.exitCode`, `process.exit()`
 // and `console.error()` so we need to mock them.
 // It also relies on timeout, which we need to mock as well.
-export const handleError = function (error, options) {
+export const handleError = (error, options) => {
   try {
     resetMocks()
     handleCliError(error, options)
@@ -27,14 +27,14 @@ export const handleError = function (error, options) {
   }
 }
 
-const resetMocks = function () {
+const resetMocks = () => {
   // eslint-disable-next-line no-restricted-globals, no-console
   console.error.resetHistory()
   process.exit.resetHistory()
   clock.reset()
 }
 
-const getProcessExitArgs = function (options) {
+const getProcessExitArgs = (options) => {
   const { exitCode, exit } = process
   const exitCodeBefore = getStubArg(exit)
   advanceTimeout(options)
@@ -42,12 +42,10 @@ const getProcessExitArgs = function (options) {
   return { exitCode, exitCodeBefore, exitCodeAfter }
 }
 
-const advanceTimeout = function ({ timeout = DEFAULT_TIMEOUT } = {}) {
+const advanceTimeout = ({ timeout = DEFAULT_TIMEOUT } = {}) => {
   if (timeout !== NO_TIMEOUT && timeout !== INFINITE_TIMEOUT && timeout >= 0) {
     clock.tick(timeout)
   }
 }
 
-const getStubArg = function ({ args: [[firstCallFirstArg] = []] }) {
-  return firstCallFirstArg
-}
+const getStubArg = ({ args: [[firstCallFirstArg] = []] }) => firstCallFirstArg

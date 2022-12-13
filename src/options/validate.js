@@ -10,11 +10,11 @@ import { handleInvalidOpts } from './invalid.js'
 
 // Validate option values.
 // This is exported, although not documented.
-export const validateOptions = function (opts) {
+export const validateOptions = (opts) => {
   validateAllOpts(opts, [])
 }
 
-const validateAllOpts = function (opts, optName) {
+const validateAllOpts = (opts, optName) => {
   if (opts === undefined) {
     return
   }
@@ -28,7 +28,7 @@ const validateAllOpts = function (opts, optName) {
   })
 }
 
-const validateOpt = function (optValue, optName) {
+const validateOpt = (optValue, optName) => {
   if (optValue === undefined) {
     return
   }
@@ -42,7 +42,7 @@ const validateOpt = function (optValue, optName) {
   validator(optValue, optName, validateAllOpts)
 }
 
-const validateBooleanOpt = function (value, optName) {
+const validateBooleanOpt = (value, optName) => {
   if (typeof value !== 'boolean') {
     handleInvalidOpts('must be a boolean', value, optName)
   }

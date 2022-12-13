@@ -1,7 +1,7 @@
 import { handleInvalidOpts } from './options/invalid.js'
 
 // Validate `timeout` option
-export const validateTimeout = function (timeout, optName) {
+export const validateTimeout = (timeout, optName) => {
   if (
     (!Number.isInteger(timeout) || timeout <= 0) &&
     !isSpecialTimeout(timeout)
@@ -14,15 +14,14 @@ export const validateTimeout = function (timeout, optName) {
   }
 }
 
-const isSpecialTimeout = function (timeout) {
-  return timeout === INFINITE_TIMEOUT || timeout === NO_TIMEOUT
-}
+const isSpecialTimeout = (timeout) =>
+  timeout === INFINITE_TIMEOUT || timeout === NO_TIMEOUT
 
 // Wait for a timeout to complete.
 // We still recommend users to perform cleanup logic in try/catch blocks,
 // preventing the need for this option.
 // eslint-disable-next-line promise/prefer-await-to-callbacks
-export const waitForTimeout = function (timeout, callback) {
+export const waitForTimeout = (timeout, callback) => {
   if (timeout === NO_TIMEOUT) {
     // eslint-disable-next-line promise/prefer-await-to-callbacks
     callback()

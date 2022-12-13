@@ -3,7 +3,7 @@ import figures from 'figures'
 import { handleInvalidOpts } from '../options/invalid.js'
 
 // Validate `icon` option
-export const validateIcon = function (value, optName) {
+export const validateIcon = (value, optName) => {
   if (value !== '' && figures[value] === undefined) {
     handleInvalidOpts(
       `must be an icon name like "cross", "info" or "warning"`,
@@ -14,7 +14,7 @@ export const validateIcon = function (value, optName) {
 }
 
 // Adds `icon` option before the error name
-export const addIcon = function (messageLines, icon) {
+export const addIcon = (messageLines, icon) => {
   if (icon === '') {
     return messageLines
   }

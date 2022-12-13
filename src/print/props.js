@@ -5,7 +5,7 @@
 //  - Keep stack trace colors
 //  - Keep `error.name` output consistent regardless of `props` and `stack`
 //    since `util.inspect()` sometimes print it differently
-export const omitProps = function (error, props) {
+export const omitProps = (error, props) => {
   if (props) {
     return error
   }
@@ -18,7 +18,7 @@ export const omitProps = function (error, props) {
   return errorCopy
 }
 
-const copyDescriptors = function (errorCopy, error) {
+const copyDescriptors = (errorCopy, error) => {
   COPIED_PROPS.forEach((propName) => {
     copyDescriptor(errorCopy, error, propName)
   })
@@ -26,7 +26,7 @@ const copyDescriptors = function (errorCopy, error) {
 
 const COPIED_PROPS = ['name', 'message', 'stack']
 
-const copyDescriptor = function (errorCopy, error, propName) {
+const copyDescriptor = (errorCopy, error, propName) => {
   const descriptor = Object.getOwnPropertyDescriptor(error, propName)
 
   if (descriptor !== undefined) {

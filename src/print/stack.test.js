@@ -4,17 +4,15 @@ import { each } from 'test-each'
 
 import { handleError } from '../helpers/main.test.js'
 
-const createDeepErrors = function () {
-  return Array.from({ length: 5 }, createDeepError)
-}
+const createDeepErrors = () => Array.from({ length: 5 }, createDeepError)
 
-const createDeepError = function (_, depth) {
+const createDeepError = (_, depth) => {
   const error = new TypeError('test')
   setDeepError(error, depth)
   return error
 }
 
-const setDeepError = function (error, depth) {
+const setDeepError = (error, depth) => {
   if (depth === 0) {
     return
   }

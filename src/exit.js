@@ -4,7 +4,7 @@ import { handleInvalidOpts } from './options/invalid.js'
 import { waitForTimeout } from './timeout.js'
 
 // Validate `exitCode` option
-export const validateExitCode = function (exitCode, optName) {
+export const validateExitCode = (exitCode, optName) => {
   if (
     !Number.isInteger(exitCode) ||
     exitCode < MIN_EXIT_CODE ||
@@ -20,7 +20,7 @@ export const validateExitCode = function (exitCode, optName) {
 
 // We use `process.exitCode` instead of `process.exit()` to let any pending
 // tasks complete, with a timeout.
-export const exitProcess = function (exitCode, timeout) {
+export const exitProcess = (exitCode, timeout) => {
   process.exitCode = exitCode
   waitForTimeout(timeout, () => {
     // eslint-disable-next-line unicorn/no-process-exit, n/no-process-exit

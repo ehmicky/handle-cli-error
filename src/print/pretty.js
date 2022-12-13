@@ -7,14 +7,14 @@ import { applyHeader } from './header.js'
 import { addIcon } from './icon.js'
 
 // Apply the `colors` option to make the error prettier
-export const prettifyError = function ({
+export const prettifyError = ({
   error,
   errorString,
   addStyles,
   useColors,
   icon,
   header,
-}) {
+}) => {
   const lines = errorString.split('\n')
   const linesA = prettifyLines({
     error,
@@ -27,14 +27,14 @@ export const prettifyError = function ({
   return linesA.join('\n')
 }
 
-const prettifyLines = function ({
+const prettifyLines = ({
   error,
   lines,
   addStyles,
   useColors,
   icon,
   header,
-}) {
+}) => {
   const { previewLines, messageLines, stackLines } = splitStack(lines, error)
   const messageLinesA = addIcon(messageLines, icon)
   const messageLinesB = applyHeader({
@@ -50,7 +50,7 @@ const prettifyLines = function ({
   return [...previewLines, ...messageLinesC, ...stackLines]
 }
 
-const splitStack = function (lines, error) {
+const splitStack = (lines, error) => {
   const messageLineIndex = lines.findIndex((line) => isMessageLine(line, error))
   const messageLineIndexA = messageLineIndex === -1 ? 0 : messageLineIndex
   const previewLines = lines.slice(0, messageLineIndexA)
@@ -69,15 +69,10 @@ const splitStack = function (lines, error) {
 // added by `--enable-source-maps`.
 // When `error.name` does not match `error.constructor.name`, `util.inspect()`
 // prints `{error.constructor.name} {error.name}`
-const isMessageLine = function (line, error) {
-  return (
-    line === error.name ||
-    line.startsWith(`${error.name}: `) ||
-    line.startsWith(`${error.constructor.name} [`)
-  )
-}
+const isMessageLine = (line, error) =>
+  line === error.name ||
+  line.startsWith(`${error.name}: `) ||
+  line.startsWith(`${error.constructor.name} [`)
 
 // Find first line with stack trace
-const isStackLine = function (line) {
-  return stripAnsi(line).trimStart().startsWith('at ')
-}
+const isStackLine = (line) => stripAnsi(line).trimStart().startsWith('at ')

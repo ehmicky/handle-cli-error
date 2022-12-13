@@ -111,7 +111,7 @@ export interface Options {
  * #!/usr/bin/env node
  * import handleCliError from 'handle-cli-error'
  *
- * const cliMain = function () {
+ * const cliMain = () => {
  *   try {
  *     // ...
  *   } catch (error) {

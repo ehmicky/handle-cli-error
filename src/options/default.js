@@ -4,9 +4,10 @@ import { DEFAULT_EXIT_CODE } from '../exit.js'
 import { DEFAULT_TIMEOUT } from '../timeout.js'
 
 // Apply default options
-export const applyDefaultOpts = function (opts) {
-  return { ...DEFAULT_OPTS, ...removeUndefined(opts) }
-}
+export const applyDefaultOpts = (opts) => ({
+  ...DEFAULT_OPTS,
+  ...removeUndefined(opts),
+})
 
 // Default values of options
 export const DEFAULT_OPTS = {
@@ -20,10 +21,6 @@ export const DEFAULT_OPTS = {
 }
 
 // Remove `undefined` values of an object
-export const removeUndefined = function (object) {
-  return excludeKeys(object, isUndefined)
-}
+export const removeUndefined = (object) => excludeKeys(object, isUndefined)
 
-const isUndefined = function (key, value) {
-  return value === undefined
-}
+const isUndefined = (key, value) => value === undefined

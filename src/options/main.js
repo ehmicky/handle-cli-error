@@ -7,7 +7,7 @@ import { applyDefaultOpts, DEFAULT_OPTS } from './default.js'
 import { validateOptions } from './validate.js'
 
 // Normalize and validate options
-export const getOpts = function (opts, error) {
+export const getOpts = (opts, error) => {
   try {
     return safeGetOpts(opts, error)
   } catch (error_) {
@@ -18,7 +18,7 @@ export const getOpts = function (opts, error) {
   }
 }
 
-const safeGetOpts = function (opts, error) {
+const safeGetOpts = (opts, error) => {
   validateOptions(opts)
   const optsA = applyClassesOpts(error, opts)
   const optsB = applyDefaultOpts(optsA)

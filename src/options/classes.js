@@ -4,7 +4,7 @@ import { removeUndefined } from './default.js'
 import { handleInvalidOpts } from './invalid.js'
 
 // Validate `classes` option
-export const validateClasses = function (classes, optName, validateAllOpts) {
+export const validateClasses = (classes, optName, validateAllOpts) => {
   if (!isPlainObj(classes)) {
     handleInvalidOpts('must be a plain object', classes, optName)
   }
@@ -20,10 +20,7 @@ export const validateClasses = function (classes, optName, validateAllOpts) {
 
 // `options.classes.{ErrorName}.*` is like `options.*` but only applies if
 // `error.name` matches.
-export const applyClassesOpts = function (
-  { name },
-  { classes = {}, ...opts } = {},
-) {
+export const applyClassesOpts = ({ name }, { classes = {}, ...opts } = {}) => {
   const classesOpts = classes[name] || classes.default || {}
   return { ...opts, ...removeUndefined(classesOpts) }
 }

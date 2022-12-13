@@ -5,7 +5,7 @@ import { handleInvalidOpts } from '../options/invalid.js'
 const globalAddStyles = chalkString({ colors: true })
 
 // Validate `header` option
-export const validateHeader = function (value, optName) {
+export const validateHeader = (value, optName) => {
   if (typeof value !== 'string') {
     handleInvalidOpts('must be a string', value, optName)
   }
@@ -22,13 +22,13 @@ export const validateHeader = function (value, optName) {
 }
 
 // Apply `header` option to colorize the error's icon and name
-export const applyHeader = function ({
+export const applyHeader = ({
   messageLines,
   header,
   useColors,
   addStyles,
   error,
-}) {
+}) => {
   if (header === '' || !useColors) {
     return messageLines
   }
@@ -43,12 +43,7 @@ export const applyHeader = function ({
   return [firstMessageLineA, ...messageLinesA]
 }
 
-const applyHeaderLine = function ({
-  firstMessageLine,
-  header,
-  addStyles,
-  error,
-}) {
+const applyHeaderLine = ({ firstMessageLine, header, addStyles, error }) => {
   const endIndex = getEndIndex(firstMessageLine, error)
 
   if (endIndex === -1) {
@@ -60,7 +55,7 @@ const applyHeaderLine = function ({
   return `${addStyles(header, start)}${end}`
 }
 
-const getEndIndex = function (firstMessageLine, error) {
+const getEndIndex = (firstMessageLine, error) => {
   const endIndex = firstMessageLine.indexOf(':')
 
   if (endIndex !== -1) {

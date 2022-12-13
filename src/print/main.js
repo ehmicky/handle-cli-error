@@ -16,7 +16,7 @@ import {
 // Otherwise, we pass the `error` instance to `console.error()`, so it prints
 // not only its `message` and `stack` but also its properties, `cause`,
 // aggregate `errors`, add colors, inline preview, etc. using `util.inspect()`.
-export const printError = function ({
+export const printError = ({
   error,
   silent,
   stack,
@@ -24,7 +24,7 @@ export const printError = function ({
   colors,
   icon,
   header,
-}) {
+}) => {
   if (silent) {
     return
   }
@@ -43,7 +43,7 @@ export const printError = function ({
   console.error(errorStringA)
 }
 
-const serializeError = function ({ error, stack, props, useColors }) {
+const serializeError = ({ error, stack, props, useColors }) => {
   const errorA = omitProps(error, props)
   omitStack(errorA, stack)
   const errorString = inspect(errorA, {

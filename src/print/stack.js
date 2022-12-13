@@ -4,13 +4,13 @@ import isErrorInstance from 'is-error-instance'
 // We do it by temporarily removing `error.stack` recursively.
 // We prefer this over using some string replacement logic since this is less
 // brittle.
-export const omitStack = function (error, stack) {
+export const omitStack = (error, stack) => {
   if (!stack) {
     recurseObject(error, omitStackProp)
   }
 }
 
-const omitStackProp = function (object) {
+const omitStackProp = (object) => {
   if (
     !isErrorInstance(object) ||
     typeof object.stack !== 'string' ||
@@ -24,13 +24,13 @@ const omitStackProp = function (object) {
   delete object.stack
 }
 
-export const restoreStack = function (error, stack) {
+export const restoreStack = (error, stack) => {
   if (!stack) {
     recurseObject(error, restoreStackProp)
   }
 }
 
-const restoreStackProp = function (object) {
+const restoreStackProp = (object) => {
   if (object[STACK_SYM] === undefined) {
     return
   }
@@ -42,7 +42,7 @@ const restoreStackProp = function (object) {
 
 const STACK_SYM = Symbol('stack')
 
-const setNonEnumProp = function (object, propName, value) {
+const setNonEnumProp = (object, propName, value) => {
   // eslint-disable-next-line fp/no-mutating-methods
   Object.defineProperty(object, propName, {
     value,
@@ -53,11 +53,11 @@ const setNonEnumProp = function (object, propName, value) {
 }
 
 // Calls `callFunc(object)` on any object, recursively
-const recurseObject = function (value, callFunc) {
+const recurseObject = (value, callFunc) => {
   recurseValue(value, callFunc, 0)
 }
 
-const recurseValue = function (value, callFunc, depth) {
+const recurseValue = (value, callFunc, depth) => {
   if (
     typeof value !== 'object' ||
     value === null ||
@@ -83,8 +83,7 @@ export const PRINT_MAX_DEPTH = 2
 //  - Are less frequent
 //  - Do not look as weird with `[...]`
 //  - Would be harder to fix
-export const omitStackBracket = function (errorString) {
-  return errorString.replace(STACK_BRACKET_REGEXP, '$1')
-}
+export const omitStackBracket = (errorString) =>
+  errorString.replace(STACK_BRACKET_REGEXP, '$1')
 
 const STACK_BRACKET_REGEXP = /^\[([^\]]+)\]/u
