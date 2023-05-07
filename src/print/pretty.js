@@ -1,5 +1,3 @@
-// Replace with `util.stripVTControlCharacters()` after dropping support for
-// Node <16.11.0
 import stripAnsi from 'strip-ansi'
 
 import { colorizeLine } from './colors.js'
