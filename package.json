@@ -1,6 +1,6 @@
 {
   "name": "handle-cli-error",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "type": "module",
   "exports": {
     "types": "./build/src/main.d.ts",
