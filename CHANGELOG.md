@@ -1,3 +1,9 @@
+# 4.0.1
+
+## Dependencies
+
+- Upgrade internal dependencies
+
 # 4.0.0
 
 ## Breaking changes
