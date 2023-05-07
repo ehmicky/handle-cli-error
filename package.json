@@ -56,7 +56,7 @@
     "error-serializer": "^5.1.0",
     "execa": "^7.1.1",
     "has-ansi": "^5.0.1",
-    "sinon": "^15.0.2",
+    "sinon": "^15.0.4",
     "test-each": "^5.7.1"
   },
   "engines": {
