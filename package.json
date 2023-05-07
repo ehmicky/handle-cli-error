@@ -51,7 +51,7 @@
     "lib": "src"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^2.0.77",
+    "@ehmicky/dev-tasks": "^2.0.79",
     "@sinonjs/fake-timers": "^10.0.0",
     "error-serializer": "^5.1.0",
     "execa": "^7.1.1",
