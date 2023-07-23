@@ -63,7 +63,7 @@
     "@ehmicky/dev-tasks": "^2.0.90",
     "@sinonjs/fake-timers": "^11.0.0",
     "error-serializer": "^6.0.1",
-    "execa": "^7.1.1",
+    "execa": "^7.2.0",
     "has-ansi": "^5.0.1",
     "sinon": "^15.2.0",
     "test-each": "^6.0.1"
