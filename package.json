@@ -42,7 +42,10 @@
   ],
   "license": "MIT",
   "homepage": "https://www.github.com/ehmicky/handle-cli-error",
-  "repository": "ehmicky/handle-cli-error",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehmicky/handle-cli-error.git"
+  },
   "bugs": {
     "url": "https://github.com/ehmicky/handle-cli-error/issues"
   },
