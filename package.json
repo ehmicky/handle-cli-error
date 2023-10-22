@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "chalk-string": "^3.0.0",
-    "figures": "^5.0.0",
+    "figures": "^6.0.0",
     "filter-obj": "^5.1.0",
     "is-error-instance": "^3.0.0",
     "is-plain-obj": "^4.1.0",
