@@ -37,8 +37,8 @@ const ownNameError = new Error('test')
 // eslint-disable-next-line fp/no-mutation
 ownNameError.name = 'TypeError'
 const noStackError = new Error('test')
-// eslint-disable-next-line fp/no-mutation
-noStackError.stack = noStackError.toString()
+// eslint-disable-next-line fp/no-mutating-methods
+Object.defineProperty(noStackError, 'stack', { value: noStackError.toString() })
 
 each(
   [recursiveError, noStackError, ...deepErrors],
