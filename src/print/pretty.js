@@ -1,4 +1,4 @@
-import stripAnsi from 'strip-ansi'
+import { stripVTControlCharacters } from 'node:util'
 
 import { colorizeLine } from './colors.js'
 import { applyHeader } from './header.js'
@@ -73,4 +73,5 @@ const isMessageLine = (line, error) =>
   line.startsWith(`${error.constructor.name} [`)
 
 // Find first line with stack trace
-const isStackLine = (line) => stripAnsi(line).trimStart().startsWith('at ')
+const isStackLine = (line) =>
+  stripVTControlCharacters(line).trimStart().startsWith('at ')
