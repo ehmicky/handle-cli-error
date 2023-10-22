@@ -2,13 +2,13 @@ import process from 'node:process'
 
 import { install } from '@sinonjs/fake-timers'
 import handleCliError from 'handle-cli-error'
-import sinon from 'sinon'
+import { stub } from 'sinon'
 
 import { NO_TIMEOUT, INFINITE_TIMEOUT, DEFAULT_TIMEOUT } from '../timeout.js'
 
 // eslint-disable-next-line no-restricted-globals
-sinon.stub(console, 'error')
-sinon.stub(process, 'exit')
+stub(console, 'error')
+stub(process, 'exit')
 const clock = install()
 
 // `handle-cli-error` use global variables `process.exitCode`, `process.exit()`
