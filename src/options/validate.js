@@ -33,7 +33,7 @@ const validateOpt = (optValue, optName) => {
     return
   }
 
-  const validator = VALIDATORS[optName[optName.length - 1]]
+  const validator = VALIDATORS[optName.at(-1)]
 
   if (validator === undefined) {
     handleInvalidOpts('is an unknown option', '', optName)

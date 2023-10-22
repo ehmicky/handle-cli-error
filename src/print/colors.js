@@ -19,15 +19,15 @@ export const colorizeLine = (line, useColors, addStyles) => {
   }
 
   return line
-    .replace(
+    .replaceAll(
       DOUBLE_QUOTED_STRING,
       colorizeQuotedString.bind(undefined, addStyles, 'bold'),
     )
-    .replace(
+    .replaceAll(
       SINGLE_QUOTED_STRING,
       colorizeQuotedString.bind(undefined, addStyles, 'bold'),
     )
-    .replace(
+    .replaceAll(
       BACKTICK_QUOTED_STRING,
       colorizeQuotedString.bind(undefined, addStyles, 'italic'),
     )
