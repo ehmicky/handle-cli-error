@@ -54,7 +54,7 @@
     "lib": "src"
   },
   "dependencies": {
-    "chalk-string": "^2.0.0",
+    "chalk-string": "^3.0.0",
     "figures": "^5.0.0",
     "filter-obj": "^5.1.0",
     "is-error-instance": "^2.0.0",
