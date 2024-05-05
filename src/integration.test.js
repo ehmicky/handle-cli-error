@@ -1,12 +1,8 @@
-import { fileURLToPath } from 'node:url'
-
 import test from 'ava'
-import { execa } from 'execa'
+import { execaNode } from 'execa'
 import { each } from 'test-each'
 
-const FIXTURE_PATH = fileURLToPath(
-  new URL('fixtures/integration.test.js', import.meta.url),
-)
+const FIXTURE_PATH = new URL('fixtures/integration.test.js', import.meta.url)
 
 each(
   [
@@ -19,9 +15,9 @@ each(
   ],
   ({ title }, { handlerTimeout, logicTimeout }) => {
     test.serial(`Process is not held | ${title}`, async (t) => {
-      const { exitCode, stderr, timedOut } = await execa(
-        'node',
-        [FIXTURE_PATH, String(handlerTimeout), String(logicTimeout)],
+      const { exitCode, stderr, timedOut } = await execaNode(
+        FIXTURE_PATH,
+        [String(handlerTimeout), String(logicTimeout)],
         { reject: false, timeout: 1e4 },
       )
       t.is(exitCode, 1)
