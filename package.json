@@ -67,7 +67,7 @@
     "error-serializer": "^8.0.0",
     "execa": "^9.2.0",
     "has-ansi": "^5.0.1",
-    "sinon": "^17.0.0",
+    "sinon": "^18.0.0",
     "test-each": "^7.0.0"
   },
   "engines": {
