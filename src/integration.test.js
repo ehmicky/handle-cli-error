@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url'
+
 import test from 'ava'
 import spawn from 'nano-spawn'
 import { each } from 'test-each'
