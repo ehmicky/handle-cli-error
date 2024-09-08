@@ -1,8 +1,11 @@
+import { fileURLToPath } from 'node:url'
 import test from 'ava'
-import { execaNode } from 'execa'
+import spawn from 'nano-spawn'
 import { each } from 'test-each'
 
-const FIXTURE_PATH = new URL('fixtures/integration.test.js', import.meta.url)
+const FIXTURE_PATH = fileURLToPath(
+  new URL('fixtures/integration.test.js', import.meta.url),
+)
 
 each(
   [
@@ -15,14 +18,15 @@ each(
   ],
   ({ title }, { handlerTimeout, logicTimeout }) => {
     test.serial(`Process is not held | ${title}`, async (t) => {
-      const { exitCode, stderr, timedOut } = await execaNode(
-        FIXTURE_PATH,
-        [String(handlerTimeout), String(logicTimeout)],
-        { reject: false, timeout: 1e4 },
+      const { exitCode, stderr } = await t.throwsAsync(
+        spawn(
+          'node',
+          [FIXTURE_PATH, String(handlerTimeout), String(logicTimeout)],
+          { timeout: 1e4 },
+        ),
       )
       t.is(exitCode, 1)
       t.true(stderr.includes('test'))
-      t.false(timedOut)
     })
   },
 )
