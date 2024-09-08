@@ -67,7 +67,7 @@
     "error-serializer": "^8.0.0",
     "has-ansi": "^6.0.0",
     "nano-spawn": "^0.1.0",
-    "sinon": "^18.0.0",
+    "sinon": "^19.0.2",
     "test-each": "^7.0.0"
   },
   "engines": {
