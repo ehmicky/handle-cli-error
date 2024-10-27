@@ -62,7 +62,7 @@
     "normalize-exception": "^4.0.0"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^3.0.13",
+    "@ehmicky/dev-tasks": "^3.0.14",
     "@sinonjs/fake-timers": "^13.0.4",
     "error-serializer": "^8.0.0",
     "has-ansi": "^6.0.0",
