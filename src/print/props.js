@@ -12,7 +12,6 @@ export const omitProps = (error, props) => {
 
   // eslint-disable-next-line unicorn/error-message
   const errorCopy = new Error('')
-  // eslint-disable-next-line fp/no-mutating-methods
   Object.setPrototypeOf(errorCopy, Object.getPrototypeOf(error))
   copyDescriptors(errorCopy, error)
   return errorCopy
@@ -30,7 +29,6 @@ const copyDescriptor = (errorCopy, error, propName) => {
   const descriptor = Object.getOwnPropertyDescriptor(error, propName)
 
   if (descriptor !== undefined) {
-    // eslint-disable-next-line fp/no-mutating-methods
     Object.defineProperty(errorCopy, propName, descriptor)
   }
 }
