@@ -63,7 +63,7 @@
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^3.0.19",
-    "@ehmicky/eslint-config": "^20.0.1",
+    "@ehmicky/eslint-config": "^20.0.2",
     "@sinonjs/fake-timers": "^13.0.4",
     "error-serializer": "^8.0.0",
     "has-ansi": "^6.0.0",
