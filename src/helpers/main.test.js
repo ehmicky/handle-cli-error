@@ -4,7 +4,7 @@ import { install } from '@sinonjs/fake-timers'
 import handleCliError from 'handle-cli-error'
 import { stub } from 'sinon'
 
-import { NO_TIMEOUT, INFINITE_TIMEOUT, DEFAULT_TIMEOUT } from '../timeout.js'
+import { DEFAULT_TIMEOUT, INFINITE_TIMEOUT, NO_TIMEOUT } from '../timeout.js'
 
 // eslint-disable-next-line no-restricted-globals
 stub(console, 'error')

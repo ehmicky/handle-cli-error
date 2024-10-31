@@ -5,9 +5,9 @@ import { prettifyError } from './pretty.js'
 import { omitProps } from './props.js'
 import {
   omitStack,
-  restoreStack,
   omitStackBracket,
   PRINT_MAX_DEPTH,
+  restoreStack,
 } from './stack.js'
 
 // Print the error.
