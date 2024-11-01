@@ -17,6 +17,7 @@ const setDeepError = (error, depth) => {
     return
   }
 
+  // eslint-disable-next-line fp/no-mutating-methods
   Object.defineProperty(error, 'cause', {
     value: new TypeError('test'),
     enumerable: false,
@@ -36,6 +37,7 @@ const ownNameError = new Error('test')
 // eslint-disable-next-line fp/no-mutation
 ownNameError.name = 'TypeError'
 const noStackError = new Error('test')
+// eslint-disable-next-line fp/no-mutating-methods
 Object.defineProperty(noStackError, 'stack', { value: noStackError.toString() })
 
 each(
