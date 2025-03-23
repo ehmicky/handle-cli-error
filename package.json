@@ -69,7 +69,7 @@
     "error-serializer": "^8.0.0",
     "has-ansi": "^6.0.0",
     "nano-spawn": "^0.2.0",
-    "sinon": "^19.0.4",
+    "sinon": "^20.0.0",
     "test-each": "^7.0.0"
   },
   "engines": {
