@@ -68,7 +68,7 @@
     "@sinonjs/fake-timers": "^14.0.0",
     "error-serializer": "^8.0.1",
     "has-ansi": "^6.0.0",
-    "nano-spawn": "^0.2.0",
+    "nano-spawn": "^0.2.1",
     "sinon": "^20.0.0",
     "test-each": "^7.0.1"
   },
