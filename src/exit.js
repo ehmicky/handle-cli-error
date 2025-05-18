@@ -1,6 +1,5 @@
 import process from 'node:process'
 
-import { handleInvalidOpts } from './options/invalid.js'
 import { waitForTimeout } from './timeout.js'
 
 // Validate `exitCode` option
@@ -10,10 +9,8 @@ export const validateExitCode = (exitCode, optName) => {
     exitCode < MIN_EXIT_CODE ||
     exitCode > MAX_EXIT_CODE
   ) {
-    handleInvalidOpts(
-      `must be between ${MIN_EXIT_CODE} and ${MAX_EXIT_CODE}`,
-      exitCode,
-      optName,
+    throw new Error(
+      `"${optName}" must be between ${MIN_EXIT_CODE} and ${MAX_EXIT_CODE}: ${exitCode}`,
     )
   }
 }

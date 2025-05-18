@@ -1,26 +1,25 @@
 import isPlainObj from 'is-plain-obj'
 
 import { removeUndefined } from './default.js'
-import { handleInvalidOpts } from './invalid.js'
-
-// Validate `classes` option
-export const validateClasses = (classes, optName, validateAllOpts) => {
-  if (!isPlainObj(classes)) {
-    handleInvalidOpts('must be a plain object', classes, optName)
-  }
-
-  if (optName.length > 1) {
-    handleInvalidOpts('must not be defined', classes, optName)
-  }
-
-  Object.entries(classes).forEach(([className, classOpts]) => {
-    validateAllOpts(classOpts, [...optName, className])
-  })
-}
 
 // `options.classes.{ErrorName}.*` is like `options.*` but only applies if
 // `error.name` matches.
-export const applyClassesOpts = ({ name }, { classes = {}, ...opts } = {}) => {
+export const applyClassesOpts = ({ name }, opts = {}) => {
+  if (!isPlainObj(opts)) {
+    throw new Error(`options must be a plain object: ${opts}`)
+  }
+
+  const { classes = {}, ...optsA } = opts
+  validateObject(classes, 'classes')
+
   const classesOpts = classes[name] || classes.default || {}
-  return { ...opts, ...removeUndefined(classesOpts) }
+  validateObject(classesOpts, `classes.${name}`)
+
+  return { ...optsA, ...removeUndefined(classesOpts) }
+}
+
+const validateObject = (value, optName) => {
+  if (!isPlainObj(value)) {
+    throw new Error(`"${optName}" must be a plain object: ${value}`)
+  }
 }

@@ -1,48 +1,48 @@
+import { validateOptions as validateBeautifulOptions } from 'beautiful-error'
 import isPlainObj from 'is-plain-obj'
 
 import { validateExitCode } from '../exit.js'
 import { validateTimeout } from '../timeout.js'
 
-import { validateClasses } from './classes.js'
-import { handleInvalidOpts } from './invalid.js'
+import { applyClassesOpts } from './classes.js'
 
 // Validate option values.
 // This is exported, although not documented.
 export const validateOptions = (opts) => {
-  validateAllOpts(opts, [])
-}
-
-const validateAllOpts = (opts, optName) => {
-  if (opts === undefined) {
+  if (!isPlainObj(opts)) {
     return
   }
 
-  if (!isPlainObj(opts)) {
-    handleInvalidOpts('must be a plain object', opts, optName)
-  }
-
-  Object.entries(opts).forEach(([key, optValue]) => {
-    validateOpt(optValue, [...optName, key])
+  const { classes } = opts
+  const names =
+    isPlainObj(classes) && Object.keys(classes).length !== 0
+      ? Object.keys(classes)
+      : ['default']
+  names.forEach((name) => {
+    normalizeOptions(name, opts)
   })
 }
 
-const validateOpt = (optValue, optName) => {
-  if (optValue === undefined || BEAUTIFUL_ERROR_OPTS.has(optName)) {
-    return
+export const normalizeOptions = (name, opts) => {
+  const { silent, exitCode, timeout, ...beautifulErrorOpts } = applyClassesOpts(
+    name,
+    opts,
+  )
+  const optsA = { silent, exitCode, timeout }
+  Object.entries(optsA).forEach(validateOpt)
+  validateBeautifulOptions(beautifulErrorOpts)
+  return { opts: optsA, beautifulErrorOpts }
+}
+
+const validateOpt = ([optName, optValue]) => {
+  if (optValue !== undefined) {
+    VALIDATORS[optName](optValue, optName)
   }
-
-  const validator = VALIDATORS[optName.at(-1)]
-
-  if (validator === undefined) {
-    handleInvalidOpts('is an unknown option', '', optName)
-  }
-
-  validator(optValue, optName, validateAllOpts)
 }
 
 const validateBooleanOpt = (value, optName) => {
   if (typeof value !== 'boolean') {
-    handleInvalidOpts('must be a boolean', value, optName)
+    throw new TypeError(`"${optName}" must be a boolean: ${value}`)
   }
 }
 
@@ -50,13 +50,4 @@ const VALIDATORS = {
   silent: validateBooleanOpt,
   exitCode: validateExitCode,
   timeout: validateTimeout,
-  classes: validateClasses,
 }
-
-const BEAUTIFUL_ERROR_OPTS = new Set([
-  'stack',
-  'props',
-  'colors',
-  'icon',
-  'header',
-])

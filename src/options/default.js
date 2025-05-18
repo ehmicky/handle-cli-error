@@ -12,10 +12,6 @@ export const applyDefaultOpts = (opts) => ({
 // Default values of options
 export const DEFAULT_OPTS = {
   silent: false,
-  stack: true,
-  props: true,
-  icon: 'cross',
-  header: 'red bold',
   exitCode: DEFAULT_EXIT_CODE,
   timeout: DEFAULT_TIMEOUT,
 }

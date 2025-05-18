@@ -1,15 +1,11 @@
-import { handleInvalidOpts } from './options/invalid.js'
-
 // Validate `timeout` option
 export const validateTimeout = (timeout, optName) => {
   if (
     (!Number.isInteger(timeout) || timeout <= 0) &&
     !isSpecialTimeout(timeout)
   ) {
-    handleInvalidOpts(
-      'must be 0, a positive integer or Infinity',
-      timeout,
-      optName,
+    throw new Error(
+      `"${optName}" must be 0, a positive integer or Infinity: ${timeout}`,
     )
   }
 }
