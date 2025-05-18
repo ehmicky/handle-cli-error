@@ -1,3 +1,9 @@
+# 5.2.0
+
+## Features
+
+- Allow [exit codes](README.md#-exitcode) from 125 to 255.
+
 # 5.1.0
 
 ## Features
