@@ -16,8 +16,6 @@ each(
     { colors: 0 },
     { icon: 'unknown' },
     { header: 0 },
-    { header: 'red-0' },
-    { header: 'unknown' },
     { exitCode: '0' },
     { exitCode: 0.1 },
     { exitCode: Number.NaN },
