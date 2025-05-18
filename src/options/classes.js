@@ -18,7 +18,7 @@ export const applyClassesOpts = ({ name }, opts = {}) => {
   return { ...optsA, ...removeUndefined(classesOpts) }
 }
 
-const validateObject = (value, optName) => {
+export const validateObject = (value, optName) => {
   if (!isPlainObj(value)) {
     throw new Error(`"${optName}" must be a plain object: ${value}`)
   }

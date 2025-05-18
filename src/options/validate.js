@@ -4,14 +4,12 @@ import isPlainObj from 'is-plain-obj'
 import { validateExitCode } from '../exit.js'
 import { validateTimeout } from '../timeout.js'
 
-import { applyClassesOpts } from './classes.js'
+import { applyClassesOpts, validateObject } from './classes.js'
 
 // Validate option values.
 // This is exported, although not documented.
-export const validateOptions = (opts) => {
-  if (!isPlainObj(opts)) {
-    return
-  }
+export const validateOptions = (opts = {}) => {
+  validateObject(opts, 'options')
 
   const { classes } = opts
   const names =
