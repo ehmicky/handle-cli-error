@@ -4,7 +4,7 @@ import { removeUndefined } from './default.js'
 
 // `options.classes.{ErrorName}.*` is like `options.*` but only applies if
 // `error.name` matches.
-export const applyClassesOpts = ({ name }, opts = {}) => {
+export const applyClassesOpts = (name, opts = {}) => {
   if (!isPlainObj(opts)) {
     throw new Error(`options must be a plain object: ${opts}`)
   }
