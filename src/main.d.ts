@@ -1,5 +1,4 @@
-import type { Styles } from 'chalk-string'
-import type figures from 'figures'
+import type { Options as BeautifulErrorOptions } from 'beautiful-error'
 
 /**
  * Validate `handle-cli-error` options
@@ -9,7 +8,7 @@ export function validateOptions(options: unknown): asserts options is Options
 /**
  * `handle-cli-error` options
  */
-export interface Options {
+export type Options = BeautifulErrorOptions & {
   /**
    * Process [exit code](https://en.wikipedia.org/wiki/Exit_status).
    *
@@ -20,54 +19,11 @@ export interface Options {
   readonly exitCode?: number
 
   /**
-   * Whether to log the `error` stack trace.
-   *
-   * @default true
-   */
-  readonly stack?: boolean
-
-  /**
-   * Whether to log the error's additional properties.
-   *
-   * @default true
-   */
-  readonly props?: boolean
-
-  /**
    * Exits the process without logging anything on the console.
    *
    * @default false
    */
   readonly silent?: boolean
-
-  /**
-   * Whether to colorize the error's message, stack trace and additional properties.
-   *
-   * Quoted strings in the error's message are printed in bold (for `"..."` and
-   * `'...'`) and in italic (for `` `...` ``).
-   *
-   * @default `true` in terminals, `false` otherwise
-   */
-  readonly colors?: boolean
-
-  /**
-   * Icon prepended to the error's name. The available values are listed
-   * [here](https://github.com/sindresorhus/figures/blob/main/readme.md#figures-1).
-   * Can be disabled by passing an empty string.
-   *
-   * @default 'cross'
-   */
-  readonly icon?: keyof typeof figures | ''
-
-  /**
-   * Color/style of the error's icon and name. The available values are listed
-   * [here](https://github.com/ehmicky/chalk-string#available-styles).
-   * Several styles can be specified by using spaces.
-   * Can be disabled by passing an empty string.
-   *
-   * @default 'red bold'
-   */
-  readonly header?: Styles | ''
 
   /**
    * The process exits gracefully: it waits for any ongoing tasks (callbacks,

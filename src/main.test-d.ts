@@ -11,57 +11,23 @@ expectAssignable<Options>({})
 handleCliError('', true)
 expectNotAssignable<Options>(true)
 
-handleCliError('', { exitCode: 0 })
-expectAssignable<Options>({ exitCode: 0 })
-// @ts-expect-error
-handleCliError('', { exitCode: '0' })
-expectNotAssignable<Options>({ exitCode: '0' })
-
 handleCliError('', { stack: true })
 expectAssignable<Options>({ stack: true })
 // @ts-expect-error
 handleCliError('', { stack: 'true' })
 expectNotAssignable<Options>({ stack: 'true' })
 
-handleCliError('', { props: true })
-expectAssignable<Options>({ props: true })
+handleCliError('', { exitCode: 0 })
+expectAssignable<Options>({ exitCode: 0 })
 // @ts-expect-error
-handleCliError('', { props: 'true' })
-expectNotAssignable<Options>({ props: 'true' })
+handleCliError('', { exitCode: '0' })
+expectNotAssignable<Options>({ exitCode: '0' })
 
 handleCliError('', { silent: true })
 expectAssignable<Options>({ silent: true })
 // @ts-expect-error
 handleCliError('', { silent: 'true' })
 expectNotAssignable<Options>({ silent: 'true' })
-
-handleCliError('', { colors: true })
-expectAssignable<Options>({ colors: true })
-// @ts-expect-error
-handleCliError('', { colors: 'true' })
-expectNotAssignable<Options>({ colors: 'true' })
-
-handleCliError('', { icon: '' })
-expectAssignable<Options>({ icon: '' })
-handleCliError('', { icon: 'warning' })
-expectAssignable<Options>({ icon: 'warning' })
-// @ts-expect-error
-handleCliError('', { icon: 'warn' })
-expectNotAssignable<Options>({ icon: 'warn' })
-// @ts-expect-error
-handleCliError('', { icon: true })
-expectNotAssignable<Options>({ icon: true })
-
-handleCliError('', { header: '' })
-expectAssignable<Options>({ header: '' })
-handleCliError('', { header: 'red bold' })
-expectAssignable<Options>({ header: 'red bold' })
-// @ts-expect-error
-handleCliError('', { header: true })
-expectNotAssignable<Options>({ header: true })
-// @ts-expect-error
-handleCliError('', { header: 'unknown' })
-expectNotAssignable<Options>({ header: 'unknown' })
 
 handleCliError('', { timeout: 0 })
 expectAssignable<Options>({ timeout: 0 })
