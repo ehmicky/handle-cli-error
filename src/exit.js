@@ -25,10 +25,8 @@ export const exitProcess = (exitCode, timeout) => {
   })
 }
 
-// Minimum exit code
 const MIN_EXIT_CODE = 0
-// 126-255 have special meaning in Bash.
-const MAX_EXIT_CODE = 124
+export const MAX_EXIT_CODE = 255
 // 125 is reserved for invalid options with `handle-cli-error` itself.
 export const INVALID_OPTS_EXIT_CODE = 125
 // `options.exitCode` default value

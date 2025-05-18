@@ -92,7 +92,12 @@ _Default_: `1`
 
 Process [exit code](https://en.wikipedia.org/wiki/Exit_status).
 
-Note: when passing invalid [`options`](#options), the exit code is always `125`.
+We recommend values between 1 and 124 because the following exit codes have some
+special meaning:
+
+- 0: success
+- 125: invalid [`options`](#options)
+- 126 to 255: used by shells like Bash
 
 #### 📕 stack
 
