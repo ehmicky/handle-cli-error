@@ -1,3 +1,11 @@
+# 5.1.0
+
+## Features
+
+- Split the core logic into a separate package:
+  [`beautiful-error`](https://github.com/ehmicky/beautiful-error). It can be
+  used if you want to prettify an error but not exit the process.
+
 # 5.0.1
 
 ## Documentation
