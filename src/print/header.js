@@ -1,26 +1,3 @@
-import chalkString from 'chalk-string'
-
-import { handleInvalidOpts } from '../options/invalid.js'
-
-const globalAddStyles = chalkString({ colors: true })
-
-// Validate `header` option
-export const validateHeader = (value, optName) => {
-  if (typeof value !== 'string') {
-    handleInvalidOpts('must be a string', value, optName)
-  }
-
-  if (value === '') {
-    return
-  }
-
-  try {
-    globalAddStyles(value, '')
-  } catch (error) {
-    handleInvalidOpts(`must be a valid style: ${error.message}`, value, optName)
-  }
-}
-
 // Apply `header` option to colorize the error's icon and name
 export const applyHeader = ({
   messageLines,

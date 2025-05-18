@@ -1,8 +1,6 @@
 import isPlainObj from 'is-plain-obj'
 
 import { validateExitCode } from '../exit.js'
-import { validateHeader } from '../print/header.js'
-import { validateIcon } from '../print/icon.js'
 import { validateTimeout } from '../timeout.js'
 
 import { validateClasses } from './classes.js'
@@ -29,7 +27,7 @@ const validateAllOpts = (opts, optName) => {
 }
 
 const validateOpt = (optValue, optName) => {
-  if (optValue === undefined) {
+  if (optValue === undefined || BEAUTIFUL_ERROR_OPTS.has(optName)) {
     return
   }
 
@@ -50,12 +48,15 @@ const validateBooleanOpt = (value, optName) => {
 
 const VALIDATORS = {
   silent: validateBooleanOpt,
-  stack: validateBooleanOpt,
-  props: validateBooleanOpt,
-  colors: validateBooleanOpt,
-  icon: validateIcon,
-  header: validateHeader,
   exitCode: validateExitCode,
   timeout: validateTimeout,
   classes: validateClasses,
 }
+
+const BEAUTIFUL_ERROR_OPTS = new Set([
+  'stack',
+  'props',
+  'colors',
+  'icon',
+  'header',
+])

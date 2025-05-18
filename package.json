@@ -54,6 +54,7 @@
     "lib": "src"
   },
   "dependencies": {
+    "beautiful-error": "^1.0.0",
     "chalk-string": "^3.0.1",
     "figures": "^6.0.1",
     "filter-obj": "^6.1.0",
