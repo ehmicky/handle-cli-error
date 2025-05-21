@@ -176,6 +176,8 @@ Specify [different options per error class](#error-class-specific). The object:
   a simple, stable, consistent way
 - [`modern-errors-cli`](https://github.com/ehmicky/modern-errors-cli): Handle
   errors in CLI modules
+- [`modern-errors-beautiful`](https://github.com/ehmicky/modern-errors-beautiful):
+  Prettify errors messages and stacks
 - [`error-custom-class`](https://github.com/ehmicky/error-custom-class): Create
   one error class
 - [`error-class-utils`](https://github.com/ehmicky/error-class-utils): Utilities
