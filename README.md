@@ -200,6 +200,8 @@ Specify [different options per error class](#error-class-specific). The object:
   update an error's stack
 - [`error-cause-polyfill`](https://github.com/ehmicky/error-cause-polyfill):
   Polyfill `error.cause`
+- [`beautiful-error`](https://github.com/ehmicky/beautiful-error): Prettify
+  error messages and stacks
 - [`log-process-errors`](https://github.com/ehmicky/log-process-errors): Show
   some ❤ to Node.js process errors
 - [`error-http-response`](https://github.com/ehmicky/error-http-response):
