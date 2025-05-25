@@ -1,3 +1,10 @@
+# 5.2.1
+
+## Bug fixes
+
+- Fix issues printing errors that include `]` in their message, when the
+  [`stack`](README.md#-stack) option is `false`.
+
 # 5.2.0
 
 ## Features
