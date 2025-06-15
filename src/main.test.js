@@ -1,6 +1,7 @@
 import test from 'ava'
 import figures from 'figures'
 import { validateOptions } from 'handle-cli-error'
+import { spy } from 'sinon'
 import { each } from 'test-each'
 
 import { handleError } from './helpers/main.test.js'
@@ -38,4 +39,13 @@ test.serial('Does not log if "silent" is true', (t) => {
   const error = new TypeError('test')
   const { consoleArg } = handleError(error, { silent: true })
   t.is(consoleArg, undefined)
+})
+
+test.serial('Can pass custom log function', (t) => {
+  const error = new TypeError('test')
+  const log = spy()
+  handleError(error, { log })
+  t.true(log.calledOnce)
+  t.is(log.args.length, 1)
+  t.true(log.firstCall.args[0].includes('TypeError: test'))
 })

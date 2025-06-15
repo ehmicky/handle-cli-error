@@ -14,6 +14,11 @@ export const DEFAULT_OPTS = {
   silent: false,
   exitCode: DEFAULT_EXIT_CODE,
   timeout: DEFAULT_TIMEOUT,
+  // Do not pass `console.error` directly, to allow monkey-patching
+  log(message) {
+    // eslint-disable-next-line no-console, no-restricted-globals
+    console.error(message)
+  },
 }
 
 // Remove `undefined` values of an object

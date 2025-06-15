@@ -11,25 +11,24 @@ const handleCliError = (error, opts) => {
   const errorA = normalizeException(error)
   const {
     error: errorB,
-    opts: { silent, exitCode, timeout },
+    opts: { silent, exitCode, timeout, log },
     beautifulErrorOpts,
   } = getOpts(errorA, opts)
 
-  printError(errorB, silent, beautifulErrorOpts)
+  printError({ error: errorB, silent, log, beautifulErrorOpts })
   exitProcess(exitCode, timeout)
 }
 
 // We pass the `error` instance to `console.error()`, so it prints not only its
 // `message` and `stack` but also its properties, `cause`, aggregate `errors`,
 // add colors, inline preview, etc. using `util.inspect()`
-const printError = (error, silent, beautifulErrorOpts) => {
+const printError = ({ error, silent, log, beautifulErrorOpts }) => {
   if (silent) {
     return
   }
 
   const errorString = beautifulError(error, beautifulErrorOpts)
-  // eslint-disable-next-line no-restricted-globals, no-console
-  console.error(errorString)
+  log(errorString)
 }
 
 export default handleCliError

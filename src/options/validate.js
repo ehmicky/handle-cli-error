@@ -22,11 +22,9 @@ export const validateOptions = (opts = {}) => {
 }
 
 export const normalizeOptions = (name, opts) => {
-  const { silent, exitCode, timeout, ...beautifulErrorOpts } = applyClassesOpts(
-    name,
-    opts,
-  )
-  const optsA = { silent, exitCode, timeout }
+  const { silent, exitCode, timeout, log, ...beautifulErrorOpts } =
+    applyClassesOpts(name, opts)
+  const optsA = { silent, exitCode, timeout, log }
   Object.entries(optsA).forEach(validateOpt)
   validateBeautifulOptions(beautifulErrorOpts)
   return { opts: optsA, beautifulErrorOpts }
@@ -44,8 +42,15 @@ const validateBooleanOpt = (value, optName) => {
   }
 }
 
+const validateFunction = (value, optName) => {
+  if (typeof value !== 'function') {
+    throw new TypeError(`"${optName}" must be a function: ${value}`)
+  }
+}
+
 const VALIDATORS = {
   silent: validateBooleanOpt,
   exitCode: validateExitCode,
   timeout: validateTimeout,
+  log: validateFunction,
 }
