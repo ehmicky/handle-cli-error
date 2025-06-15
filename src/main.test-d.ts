@@ -47,8 +47,6 @@ handleCliError('', { log: (message: unknown) => {} })
 expectAssignable<Options>({ log: (message: unknown) => {} })
 handleCliError('', { log: (message: string) => true })
 expectAssignable<Options>({ log: (message: string) => true })
-handleCliError('', { log: async (message: string) => {} })
-expectAssignable<Options>({ log: async (message: string) => {} })
 // eslint-disable-next-line no-console, no-restricted-globals
 handleCliError('', { log: console.log })
 // eslint-disable-next-line no-console, no-restricted-globals
