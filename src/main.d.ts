@@ -44,6 +44,7 @@ export type Options = BeautifulErrorOptions & {
   readonly timeout?: number
 
   /**
+   * Function used to print the error message.
    *
    * @default console.error
    */
