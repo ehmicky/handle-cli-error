@@ -39,6 +39,30 @@ expectAssignable<Options>({ timeout: Number.POSITIVE_INFINITY })
 handleCliError('', { timeout: '0' })
 expectNotAssignable<Options>({ timeout: '0' })
 
+handleCliError('', { log: () => {} })
+expectAssignable<Options>({ log: () => {} })
+handleCliError('', { log: (message: string) => {} })
+expectAssignable<Options>({ log: (message: string) => {} })
+handleCliError('', { log: (message: unknown) => {} })
+expectAssignable<Options>({ log: (message: unknown) => {} })
+handleCliError('', { log: (message: string) => true })
+expectAssignable<Options>({ log: (message: string) => true })
+handleCliError('', { log: async (message: string) => {} })
+expectAssignable<Options>({ log: async (message: string) => {} })
+// eslint-disable-next-line no-console, no-restricted-globals
+handleCliError('', { log: console.log })
+// eslint-disable-next-line no-console, no-restricted-globals
+expectAssignable<Options>({ log: console.log })
+// @ts-expect-error
+handleCliError('', { log: 0 })
+expectNotAssignable<Options>({ log: 0 })
+// @ts-expect-error
+handleCliError('', { log: (message: boolean) => {} })
+expectNotAssignable<Options>({ log: (message: boolean) => {} })
+// @ts-expect-error
+handleCliError('', { log: (message: string, second: boolean) => {} })
+expectNotAssignable<Options>({ log: (message: string, second: boolean) => {} })
+
 handleCliError('', { classes: {} })
 expectAssignable<Options>({ classes: {} })
 // @ts-expect-error

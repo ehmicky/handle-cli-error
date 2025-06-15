@@ -44,6 +44,12 @@ export type Options = BeautifulErrorOptions & {
   readonly timeout?: number
 
   /**
+   *
+   * @default console.error
+   */
+  readonly log?: (message: string) => void
+
+  /**
    * Specify different options per error class. The object:
    *  - Keys are either the
    *    [`error.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/name),
