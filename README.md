@@ -14,8 +14,7 @@ Error handler for CLI applications.
 # Features
 
 - 🖍️ Pretty [colors](#%EF%B8%8F-colors), [icons](#-icon) and [header](#-header)
-- 💣 [Error class-specific](#-classes) and [custom](#custom-serialization)
-  handling
+- 💣 [Error class-specific](#-classes) and [custom](#-custom) handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
 - 🔕 Log verbosity: [message](#-silent), [stack](#-stack),
@@ -194,10 +193,13 @@ Specify [different options per error class](#error-class-specific). The object:
   or `"default"` (used if no `error.name` matches)
 - Values are [options](#options) objects
 
-## Custom serialization
+#### 🪛 custom
 
-The output can be transformed/mapped by defining an `error.beautiful(output)`
-method returning a string.
+_Type_: `string | symbol`\
+_Default_: `beautiful`
+
+Name of a method to map the output. That method must take the output as a string
+argument, transform it then return it.
 
 <!-- eslint-disable fp/no-class -->
 
