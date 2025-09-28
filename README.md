@@ -17,7 +17,8 @@ Error handler for CLI applications.
 - 💣 [Error class-specific](#-classes) handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
-- 🔕 Log verbosity: [message](#-silent), [stack](#-stack), [properties](#-props)
+- 🔕 Log verbosity: [message](#-silent), [stack](#-stack),
+  [nested errors](#-cause), [properties](#-props)
 - 🚨 Custom [exit code](#-exitcode) and [log function](#-log)
 - 💥 Exception-safe
 
@@ -105,6 +106,16 @@ _Type_: `boolean`\
 _Default_: `true`
 
 Whether to log the error's stack trace.
+
+#### 🪏 cause
+
+_Type_: `boolean`\
+_Default_: `true`
+
+Whether to show nested errors, i.e.
+[`error.cause`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause)
+and
+[`error.errors`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError/errors).
 
 #### 📢 props
 
