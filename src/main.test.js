@@ -49,3 +49,17 @@ test.serial('Can pass custom log function', (t) => {
   t.is(log.args.length, 1)
   t.true(log.firstCall.args[0].includes('TypeError: test'))
 })
+
+// eslint-disable-next-line fp/no-class
+class CustomError extends Error {
+  // eslint-disable-next-line class-methods-use-this
+  beautiful(errorString) {
+    return errorString.toUpperCase()
+  }
+}
+
+test.serial('Can use .beautiful()', (t) => {
+  const error = new CustomError('test')
+  const { consoleArg } = handleError(error)
+  t.true(consoleArg.includes(`${figures.cross} CUSTOMERROR: TEST`))
+})
