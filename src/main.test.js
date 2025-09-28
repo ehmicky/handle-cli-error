@@ -63,3 +63,10 @@ test.serial('Can use .beautiful()', (t) => {
   const { consoleArg } = handleError(error)
   t.true(consoleArg.includes(`${figures.cross} CUSTOMERROR: TEST`))
 })
+
+test.serial('Can use .beautiful() deeply', (t) => {
+  const error = new Error('test', { cause: new CustomError('inner') })
+  const { consoleArg } = handleError(error)
+  t.true(consoleArg.includes(`${figures.cross} Error: test`))
+  t.true(consoleArg.includes(`\n    ${figures.cross} CUSTOMERROR: INNER`))
+})
