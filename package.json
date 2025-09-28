@@ -54,7 +54,7 @@
     "lib": "src"
   },
   "dependencies": {
-    "beautiful-error": "^2.1.0",
+    "beautiful-error": "^2.2.0",
     "filter-obj": "^6.1.0",
     "is-plain-obj": "^4.1.0",
     "normalize-exception": "^4.0.1"
