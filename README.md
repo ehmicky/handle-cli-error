@@ -14,7 +14,8 @@ Error handler for CLI applications.
 # Features
 
 - 🖍️ Pretty [colors](#%EF%B8%8F-colors), [icons](#-icon) and [header](#-header)
-- 💣 [Error class-specific](#-classes) handling
+- 💣 [Error class-specific](#-classes) and [custom](#custom-serialization)
+  handling
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
 - 🔕 Log verbosity: [message](#-silent), [stack](#-stack),
@@ -192,6 +193,24 @@ Specify [different options per error class](#error-class-specific). The object:
   [`error.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/name),
   or `"default"` (used if no `error.name` matches)
 - Values are [options](#options) objects
+
+## Custom serialization
+
+The output can be transformed/mapped by defining an `error.beautiful(output)`
+method returning a string.
+
+<!-- eslint-disable fp/no-class -->
+
+```js
+class ExampleError extends Error {
+  beautiful(output) {
+    return output.replaceAll('secret', '***')
+  }
+}
+
+const error = new ExampleError('Unknown value: secret')
+handleCliError(error) // 'Unknown value: ***'
+```
 
 # Related projects
 
