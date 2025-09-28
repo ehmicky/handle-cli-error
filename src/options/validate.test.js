@@ -30,6 +30,7 @@ each(
     { timeout: Number.NaN },
     { timeout: Number.NEGATIVE_INFINITY },
     { timeout: -1 },
+    { custom: 0 },
     { unknown: true },
     { classes: true },
     { classes: { default: true } },

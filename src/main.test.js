@@ -70,3 +70,10 @@ test.serial('Can use .beautiful() deeply', (t) => {
   t.true(consoleArg.includes(`${figures.cross} Error: test`))
   t.true(consoleArg.includes(`\n    ${figures.cross} CUSTOMERROR: INNER`))
 })
+
+test.serial('Can use "custom" option', (t) => {
+  const error = new Error('test')
+  error.pretty = (errorString) => errorString.toUpperCase()
+  const { consoleArg } = handleError(error, { custom: 'pretty' })
+  t.true(consoleArg.includes(`${figures.cross} ERROR: TEST`))
+})
