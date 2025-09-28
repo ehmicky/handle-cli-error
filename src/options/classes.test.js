@@ -1,4 +1,5 @@
 import test from 'ava'
+import figures from 'figures'
 import { each } from 'test-each'
 
 import { handleError } from '../helpers/main.test.js'
@@ -20,3 +21,9 @@ each(
     })
   },
 )
+
+test.serial('Forward beautiful-error options', (t) => {
+  const typeError = new TypeError('test')
+  const { consoleArg } = handleError(typeError, { icon: 'warning' })
+  t.true(consoleArg.includes(`${figures.warning} TypeError: test`))
+})
