@@ -15,7 +15,17 @@ export const applyClassesOpts = (name, opts = {}) => {
   const classesOpts = classes[name] || classes.default || {}
   validateObject(classesOpts, `classes.${name}`)
 
-  return { ...optsA, ...removeUndefined(classesOpts) }
+  const beautifulErrorOpts = {
+    ...splitOpts(optsA).beautifulErrorOpts,
+    classes: Object.fromEntries(
+      Object.entries(classes).map(pickBeautifulErrorOpts),
+    ),
+  }
+  const optsB = splitOpts({
+    ...optsA,
+    ...removeUndefined(classesOpts),
+  }).opts
+  return { opts: optsB, beautifulErrorOpts }
 }
 
 export const validateObject = (value, optName) => {
@@ -23,3 +33,16 @@ export const validateObject = (value, optName) => {
     throw new Error(`"${optName}" must be a plain object: ${value}`)
   }
 }
+
+const pickBeautifulErrorOpts = ([name, opts]) => [
+  name,
+  splitOpts(opts).beautifulErrorOpts,
+]
+
+const splitOpts = ({
+  silent,
+  exitCode,
+  timeout,
+  log,
+  ...beautifulErrorOpts
+}) => ({ opts: { silent, exitCode, timeout, log }, beautifulErrorOpts })

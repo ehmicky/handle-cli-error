@@ -14,7 +14,6 @@ const handleCliError = (error, opts) => {
     opts: { silent, exitCode, timeout, log },
     beautifulErrorOpts,
   } = getOpts(errorA, opts)
-
   printError({ error: errorB, silent, log, beautifulErrorOpts })
   exitProcess(exitCode, timeout)
 }

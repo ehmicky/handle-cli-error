@@ -22,9 +22,7 @@ export const validateOptions = (opts = {}) => {
 }
 
 export const normalizeOptions = (name, opts) => {
-  const { silent, exitCode, timeout, log, ...beautifulErrorOpts } =
-    applyClassesOpts(name, opts)
-  const optsA = { silent, exitCode, timeout, log }
+  const { opts: optsA, beautifulErrorOpts } = applyClassesOpts(name, opts)
   Object.entries(optsA).forEach(validateOpt)
   validateBeautifulOptions(beautifulErrorOpts)
   return { opts: optsA, beautifulErrorOpts }
