@@ -55,12 +55,18 @@ each(
 
 each(
   [
-    ...['silent', 'stack', 'props', 'colors', 'exitCode', 'timeout'].flatMap(
-      (optName) => [
-        { [optName]: undefined },
-        { classes: { default: { [optName]: undefined } } },
-      ],
-    ),
+    ...[
+      'silent',
+      'stack',
+      'props',
+      'colors',
+      'exitCode',
+      'timeout',
+      'log',
+    ].flatMap((optName) => [
+      { [optName]: undefined },
+      { classes: { default: { [optName]: undefined } } },
+    ]),
     ...[undefined, {}].flatMap((value) => [
       value,
       { classes: value },
