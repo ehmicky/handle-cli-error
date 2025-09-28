@@ -39,3 +39,15 @@ each(
     })
   },
 )
+
+test.serial('Apply option "classes" to nested errors', (t) => {
+  const typeError = new TypeError('test', { cause: new URIError('test') })
+  const { consoleArg } = handleError(typeError, {
+    classes: {
+      TypeError: { icon: 'warning' },
+      URIError: { icon: 'info' },
+    },
+  })
+  t.true(consoleArg.includes(`${figures.warning} TypeError: test`))
+  t.true(consoleArg.includes(`${figures.info} URIError: test`))
+})
