@@ -32,6 +32,12 @@ each(
     { classes: true },
     { classes: { default: true } },
     { classes: { default: { classes: {} } } },
+    { classes: { default: { silent: 0 } } },
+    { classes: { default: { stack: 0 } } },
+    { classes: { Error: true } },
+    { classes: { Error: { classes: {} } } },
+    { classes: { Error: { silent: 0 } } },
+    { classes: { Error: { stack: 0 } } },
   ],
   ({ title }, options) => {
     test.serial(`Handle invalid options | ${title}`, (t) => {
