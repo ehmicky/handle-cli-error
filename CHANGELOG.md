@@ -1,3 +1,11 @@
+# 6.1.0
+
+## Features
+
+- The output can be customized by defining an
+  [`error.beautiful(output)`](README.md#custom-serialization) method returning a
+  string.
+
 # 6.0.0
 
 ## Breaking changes
