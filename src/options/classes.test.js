@@ -22,8 +22,20 @@ each(
   },
 )
 
-test.serial('Forward beautiful-error options', (t) => {
-  const typeError = new TypeError('test')
-  const { consoleArg } = handleError(typeError, { icon: 'warning' })
-  t.true(consoleArg.includes(`${figures.warning} TypeError: test`))
-})
+each(
+  [
+    { options: { icon: 'warning' }, icon: 'warning' },
+    {
+      options: { classes: { TypeError: { icon: 'warning' } } },
+      icon: 'warning',
+    },
+    { options: { classes: { URIError: { icon: 'warning' } } }, icon: 'cross' },
+  ],
+  ({ title }, { options, icon }) => {
+    test.serial(`Forward beautiful-error options | ${title}`, (t) => {
+      const typeError = new TypeError('test')
+      const { consoleArg } = handleError(typeError, options)
+      t.true(consoleArg.includes(`${figures[icon]} TypeError: test`))
+    })
+  },
+)
