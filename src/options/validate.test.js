@@ -12,6 +12,7 @@ each(
     true,
     { silent: 0 },
     { stack: 0 },
+    { cause: 0 },
     { props: 0 },
     { colors: 0 },
     { icon: 'unknown' },
@@ -35,10 +36,12 @@ each(
     { classes: { default: { classes: {} } } },
     { classes: { default: { silent: 0 } } },
     { classes: { default: { stack: 0 } } },
+    { classes: { default: { cause: 0 } } },
     { classes: { Error: true } },
     { classes: { Error: { classes: {} } } },
     { classes: { Error: { silent: 0 } } },
     { classes: { Error: { stack: 0 } } },
+    { classes: { Error: { cause: 0 } } },
   ],
   ({ title }, options) => {
     test.serial(`Handle invalid options | ${title}`, (t) => {
@@ -58,6 +61,7 @@ each(
     ...[
       'silent',
       'stack',
+      'cause',
       'props',
       'colors',
       'exitCode',

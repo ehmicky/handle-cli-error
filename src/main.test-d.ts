@@ -17,6 +17,12 @@ expectAssignable<Options>({ stack: true })
 handleCliError('', { stack: 'true' })
 expectNotAssignable<Options>({ stack: 'true' })
 
+handleCliError('', { cause: true })
+expectAssignable<Options>({ cause: true })
+// @ts-expect-error
+handleCliError('', { cause: 'true' })
+expectNotAssignable<Options>({ cause: 'true' })
+
 handleCliError('', { exitCode: 0 })
 expectAssignable<Options>({ exitCode: 0 })
 // @ts-expect-error
