@@ -1,10 +1,16 @@
+# 6.2.0
+
+## Features
+
+- Add a [`custom`](README.md#-custom) option to choose the name of the
+  customization method. By default, it is `'beautiful'`.
+
 # 6.1.0
 
 ## Features
 
 - The output can be customized by defining an
-  [`error.beautiful(output)`](README.md#custom-serialization) method returning a
-  string.
+  [`error.beautiful(output)`](README.md#-custom) method returning a string.
 
 # 6.0.0
 
