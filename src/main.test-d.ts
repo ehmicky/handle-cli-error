@@ -80,6 +80,8 @@ expectAssignable<Options>({ classes: { other: {} } })
 
 handleCliError('', { classes: { default: { exitCode: 0 } } })
 expectAssignable<Options>({ classes: { default: { exitCode: 0 } } })
+handleCliError('', { classes: { default: { stack: true } } })
+expectAssignable<Options>({ classes: { default: { stack: true } } })
 // @ts-expect-error
 handleCliError('', { classes: { default: { classes: {} } } })
 expectNotAssignable<Options>({ classes: { default: { classes: {} } } })
@@ -88,6 +90,9 @@ expectNotAssignable<Options>({ classes: { Error: undefined } })
 // @ts-expect-error
 handleCliError('', { classes: { default: { exitCode: '0' } } })
 expectNotAssignable<Options>({ classes: { default: { exitCode: '0' } } })
+// @ts-expect-error
+handleCliError('', { classes: { default: { stack: 0 } } })
+expectNotAssignable<Options>({ classes: { default: { stack: 0 } } })
 
 expectType<void>(validateOptions({}))
 validateOptions(0)
